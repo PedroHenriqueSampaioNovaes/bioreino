@@ -1,0 +1,24 @@
+{
+  "name": "bioreino-refactor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "commit": "cz"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "workspaces": [
+    "server",
+    "client"
+  ]
+}
