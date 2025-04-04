@@ -1,4 +1,5 @@
 import './config/preload-env';
+import './db/connection';
 
 import express from 'express';
 import 'express-async-errors';
