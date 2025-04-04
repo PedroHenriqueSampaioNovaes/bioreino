@@ -1,6 +1,11 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
+
 import express from 'express';
 import 'express-async-errors';
+
 import routes from './routes';
+
 import { errorHandling } from './middlewares/errorHandling';
 
 const app = express();
