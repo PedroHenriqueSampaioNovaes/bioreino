@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
+import './config/preload-env';
 
 import express from 'express';
 import 'express-async-errors';
