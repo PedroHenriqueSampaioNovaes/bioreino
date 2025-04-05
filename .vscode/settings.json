@@ -1,5 +1,5 @@
 {
   "code-runner.executorMap": {
-    "typescript": "DOTENV_CONFIG_PATH=./server/.env.local npx tsx -r dotenv/config"
+    "typescript": "DOTENV_CONFIG_PATH=./server/.env.local npx tsx watch -r dotenv/config"
   }
 }
