@@ -1,5 +1,5 @@
 export class ApiError {
-  constructor(public message: string, public statusCode = 422) {
+  constructor(public message: string, public statusCode = 409) {
     this.message = message;
     this.statusCode = statusCode;
   }
