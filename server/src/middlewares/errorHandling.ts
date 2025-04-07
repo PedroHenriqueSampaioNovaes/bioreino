@@ -17,6 +17,13 @@ export function errorHandling(err: any, req: Request, res: Response, _: any) {
     });
   }
 
+  if (err.name === 'ValidationError') {
+    return void res.status(400).json({
+      message: 'Erro de validação.',
+      issues: err.errors,
+    });
+  }
+
   return void res
     .status(500)
     .json({ ok: false, message: (err as Error).message });
