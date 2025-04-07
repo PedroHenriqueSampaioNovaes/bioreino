@@ -20,7 +20,7 @@ export class CreateUserService {
 
     const userAlreadyExists = await User.findOne({ email });
     if (userAlreadyExists) {
-      throw new ApiError('E-mail/Senha já existe.');
+      throw new ApiError('E-mail/Senha já existe.', 409);
     }
 
     if (!isValidObjectId(plan)) {
