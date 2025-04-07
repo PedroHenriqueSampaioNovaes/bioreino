@@ -10,9 +10,11 @@ export function errorHandling(err: any, req: Request, res: Response, _: any) {
   }
 
   if (err instanceof ZodError) {
-    return void res
-      .status(400)
-      .json({ ok: false, message: 'erro de validação.', issues: err.flatten() });
+    return void res.status(400).json({
+      ok: false,
+      message: 'Erro de validação.',
+      issues: err.flatten(),
+    });
   }
 
   return void res
