@@ -38,16 +38,14 @@ const userSchema = new Schema<IUser>(
     email: { type: String, required: true },
     plan: { type: Schema.ObjectId, ref: 'Plan', required: true },
     password: { type: String, required: true },
-    coursesProgress: {
-      type: [
-        {
-          _id: Schema.ObjectId,
-          title: { type: String, required: true },
-          progress: { type: Number, required: true },
-          lessonsViewed: { type: [Schema.ObjectId], required: true },
-        },
-      ],
-    },
+    coursesProgress: [
+      {
+        _id: Schema.ObjectId,
+        title: { type: String, required: true },
+        progress: { type: Number, required: true },
+        lessonsViewed: { type: [Schema.ObjectId], required: true },
+      },
+    ],
     lastCourseAndLessonAcessed: {
       course: Schema.ObjectId,
       lesson: Schema.ObjectId,
