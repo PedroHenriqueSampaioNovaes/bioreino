@@ -1,4 +1,5 @@
 import { Schema, model, Types } from 'mongoose';
+
 import { ISubscriptionPlan } from './SubscriptionPlanModel';
 
 interface IUser {
@@ -6,26 +7,19 @@ interface IUser {
   email: string;
   plan: Types.ObjectId | ISubscriptionPlan;
   password: string;
-  coursesProgress: [
-    {
-      _id: Types.ObjectId;
-      title: string;
-      progress: number;
-      lessonsViewed: [Types.ObjectId];
-    }
-  ];
-  lastCourseAndLessonAcessed: {
+  lastWatched: {
     course: {
       courseTitle: string;
       slug: string;
       professor: string;
       imageUrl: string;
     };
-    lastLesson: {
+    lesson: {
       lessonTitle: string;
       lessonDescription: string;
       slug: string;
     };
+    watchedAt: Date;
   };
   passwordResetToken: string;
   passwordResetExpires: Date;
@@ -38,17 +32,19 @@ const userSchema = new Schema<IUser>(
     email: { type: String, required: true },
     plan: { type: Schema.ObjectId, ref: 'Plan', required: true },
     password: { type: String, required: true },
-    coursesProgress: [
-      {
-        _id: Schema.ObjectId,
-        title: { type: String, required: true },
-        progress: { type: Number, required: true },
-        lessonsViewed: { type: [Schema.ObjectId], required: true },
+    lastWatched: {
+      course: {
+        courseTitle: String,
+        slug: String,
+        professor: String,
+        imageUrl: String,
       },
-    ],
-    lastCourseAndLessonAcessed: {
-      course: Schema.ObjectId,
-      lesson: Schema.ObjectId,
+      lesson: {
+        lessonTitle: String,
+        lessonDescription: String,
+        slug: String,
+      },
+      watchedAt: Date,
     },
     passwordResetToken: {
       type: String,
