@@ -5,13 +5,13 @@ import { ApiError } from '../../utils/ApiError';
 
 import { User } from '../../models/UserModel';
 
-interface LoginRequest {
+interface ILoginRequest {
   email: string;
   password: string;
 }
 
 export class LoginUserService {
-  static async execute({ email, password }: LoginRequest) {
+  static async execute({ email, password }: ILoginRequest) {
     const user = await User.findOne({ email }).populate(
       'plan',
       '-benefits -price'

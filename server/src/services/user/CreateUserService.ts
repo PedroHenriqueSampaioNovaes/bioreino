@@ -6,7 +6,7 @@ import { ApiError } from '../../utils/ApiError';
 import { User } from '../../models/UserModel';
 import { SubscriptionPlan } from '../../models/SubscriptionPlanModel';
 
-interface UserRequest {
+interface IUserRequest {
   name: string;
   email: string;
   password: string;
@@ -14,7 +14,7 @@ interface UserRequest {
 }
 
 export class CreateUserService {
-  static async execute({ email, password, name, plan }: UserRequest) {
+  static async execute({ email, password, name, plan }: IUserRequest) {
     const salt = genSaltSync();
     const passwordHash = hashSync(password, salt);
 
