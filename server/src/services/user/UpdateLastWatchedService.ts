@@ -13,7 +13,6 @@ interface IWatchedLessonRequest {
 export class UpdateLastWatchedService {
   static async execute({ user_id, courseId, lessonId }: IWatchedLessonRequest) {
     const course = await Course.findById(courseId);
-
     if (!course) {
       throw new ApiError('Não foi possível encontrar o curso.');
     }
