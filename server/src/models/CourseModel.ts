@@ -21,7 +21,7 @@ interface ICourse {
   }[];
 }
 
-const courseScheme = new Schema<ICourse>(
+const courseSchema = new Schema<ICourse>(
   {
     professor: { type: String, required: true },
     imageUrl: { type: String, required: true },
@@ -36,4 +36,4 @@ const courseScheme = new Schema<ICourse>(
   { timestamps: true }
 );
 
-export const Course = model<ICourse>('Course', courseScheme);
+export const Course = model<ICourse>('Course', courseSchema);

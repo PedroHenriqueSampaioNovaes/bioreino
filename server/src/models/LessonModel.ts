@@ -9,7 +9,7 @@ interface ILesson {
   courseTitle: string;
 }
 
-const lessonScheme = new Schema<ILesson>(
+const lessonSchema = new Schema<ILesson>(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
@@ -21,4 +21,4 @@ const lessonScheme = new Schema<ILesson>(
   { timestamps: true }
 );
 
-export const Lesson = model<ILesson>('Lesson', lessonScheme);
+export const Lesson = model<ILesson>('Lesson', lessonSchema);
