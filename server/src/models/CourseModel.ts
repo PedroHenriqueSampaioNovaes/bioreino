@@ -19,6 +19,7 @@ interface ICourse {
     videoUrl: string;
     slug: string;
   }[];
+  free: boolean;
 }
 
 const courseSchema = new Schema<ICourse>(
@@ -32,6 +33,7 @@ const courseSchema = new Schema<ICourse>(
       type: [Types.ObjectId],
       required: true,
     },
+    free: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
