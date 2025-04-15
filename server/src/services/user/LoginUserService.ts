@@ -17,7 +17,7 @@ export class LoginUserService {
       '-benefits -price'
     );
     if (!user) {
-      throw new ApiError('E-mail ou senha incorreto.');
+      throw new ApiError('E-mail ou senha incorreto.', 400);
     }
 
     // compare password with db password
