@@ -1,11 +1,11 @@
 import { Schema, model, Types } from 'mongoose';
 
-import { ISubscriptionPlan } from './SubscriptionPlanModel';
+import { IPlan } from './PlanModel';
 
 interface IUser {
   name: string;
   email: string;
-  plan: Types.ObjectId | ISubscriptionPlan;
+  plan: Types.ObjectId | IPlan;
   password: string;
   lastWatched: {
     course: {
