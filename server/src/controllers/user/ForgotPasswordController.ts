@@ -25,7 +25,7 @@ export class ForgotPasswordController {
         {
           from: 'suporte@bioreino.com.br',
           to: 'pedrohenriquesampaiodenovaes@gmail.com',
-          subject: 'Pedido de resete de senha',
+          subject: 'Pedido de redefinição de senha',
           template: 'auth/forgot_password',
           context: { user_email: bodyData.email, token },
         },
