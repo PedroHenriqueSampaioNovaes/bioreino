@@ -4,7 +4,7 @@ import { genSaltSync, hashSync } from 'bcryptjs';
 import { ApiError } from '../../utils/ApiError';
 
 import { User } from '../../models/UserModel';
-import { SubscriptionPlan } from '../../models/SubscriptionPlanModel';
+import { Plan } from '../../models/PlanModel';
 
 interface IUserRequest {
   name: string;
@@ -29,7 +29,7 @@ export class CreateUserService {
       );
     }
 
-    const planAlreadyExists = await SubscriptionPlan.findById(plan);
+    const planAlreadyExists = await Plan.findById(plan);
     if (!planAlreadyExists) {
       throw new ApiError('Plano de assinatura não encontrado.');
     }
