@@ -11,6 +11,7 @@ const plan = new Schema<IPlan>({
   name: { type: String, required: true },
   price: { type: String, required: true },
   benefits: { type: [String], required: true },
+  fullaccess: Boolean,
 });
 
 export const Plan = model<IPlan>('Plan', plan);
