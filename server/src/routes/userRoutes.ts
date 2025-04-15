@@ -21,4 +21,4 @@ router.patch(
 );
 router.patch('/reset_password', ResetPasswordController.handle);
 
-export default router.use('/users', router);
+export default router.use('/user', router);
