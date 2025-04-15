@@ -4,16 +4,22 @@ import { ListCourseService } from '../../services/course/ListCourseService';
 
 export class ListCourseController {
   static async handle(
-    req: Request<any, any, any, { limit?: string; free?: string }>,
+    req: Request<
+      any,
+      any,
+      any,
+      { limit?: string; free?: string; planId?: string }
+    >,
     res: Response,
     next: NextFunction
   ) {
     try {
-      const { limit, free } = req.query;
+      const { limit, free, planId } = req.query;
 
       const courses = await ListCourseService.execute({
         limit: limit ? Number(limit) : undefined,
-        free: Boolean(free),
+        free: free ? (free === 'true' ? true : false) : undefined,
+        planId,
       });
 
       res.json(courses);
