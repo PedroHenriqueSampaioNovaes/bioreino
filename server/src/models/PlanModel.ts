@@ -1,18 +1,16 @@
 import { Schema, model } from 'mongoose';
 
-export interface ISubscriptionPlan {
+export interface IPlan {
   name: string;
   price: string;
   benefits: string[];
+  fullaccess?: boolean;
 }
 
-const subscriptionPlanSchema = new Schema<ISubscriptionPlan>({
+const plan = new Schema<IPlan>({
   name: { type: String, required: true },
   price: { type: String, required: true },
   benefits: { type: [String], required: true },
 });
 
-export const SubscriptionPlan = model<ISubscriptionPlan>(
-  'Plan',
-  subscriptionPlanSchema
-);
+export const Plan = model<IPlan>('Plan', plan);
