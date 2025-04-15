@@ -6,6 +6,7 @@ import { CreateUserController } from '../controllers/user/CreateUserController';
 import { LoginUserController } from '../controllers/user/LoginUserController';
 import { UpdateLastWatchedController } from '../controllers/user/UpdateLastWatchedController';
 import { ForgotPasswordController } from '../controllers/user/ForgotPasswordController';
+import { ResetPasswordController } from '../controllers/user/ResetPasswordController';
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.patch(
   isAuthenticated,
   UpdateLastWatchedController.handle
 );
+router.patch('/reset_password', ResetPasswordController.handle);
 
 export default router.use('/users', router);
