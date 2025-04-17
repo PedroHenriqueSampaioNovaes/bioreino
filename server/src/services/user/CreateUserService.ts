@@ -10,11 +10,11 @@ interface IUserRequest {
   name: string;
   email: string;
   password: string;
-  plan: string;
+  planId: string;
 }
 
 export class CreateUserService {
-  static async execute({ email, password, name, plan }: IUserRequest) {
+  static async execute({ email, password, name, planId }: IUserRequest) {
     const salt = genSaltSync();
     const passwordHash = hashSync(password, salt);
 
@@ -23,14 +23,14 @@ export class CreateUserService {
       throw new ApiError('E-mail/Senha já existe.', 409);
     }
 
-    if (!isValidObjectId(plan)) {
+    if (!isValidObjectId(planId)) {
       throw new ApiError(
         'Houve um erro ao validar o _id do plano de assinatura.'
       );
     }
 
-    const planAlreadyExists = await Plan.findById(plan);
-    if (!planAlreadyExists) {
+    const plan = await Plan.findById(planId);
+    if (!plan) {
       throw new ApiError('Plano de assinatura não encontrado.');
     }
 
@@ -38,7 +38,7 @@ export class CreateUserService {
       email,
       password: passwordHash,
       name,
-      plan: planAlreadyExists._id,
+      plan: plan._id,
     });
     await user.save();
 

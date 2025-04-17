@@ -16,7 +16,7 @@ export class CreateUserController {
           .string({ required_error: 'A senha é obrigatória.' })
           .trim()
           .min(8, { message: 'A senha deve ter pelo menos 8 dígitos.' }),
-        plan: z.string({
+        planId: z.string({
           required_error: 'O plano de assinatura é obrigatório.',
         }),
       });
