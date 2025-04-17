@@ -23,7 +23,7 @@ interface IUser {
   };
   passwordResetToken: string;
   passwordResetExpires: Date;
-  trialUserExpiresAfter: Date;
+  accountExpiresAfter: Date;
 }
 
 const userSchema = new Schema<IUser>(
@@ -54,7 +54,7 @@ const userSchema = new Schema<IUser>(
       type: Date,
       select: false,
     },
-    trialUserExpiresAfter: {
+    accountExpiresAfter: {
       type: Date,
       select: false,
     },
