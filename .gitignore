@@ -3,3 +3,16 @@ package-lock.json
 
 .env
 .env.local
+
+# next.js
+client/.next/
+client/out/
+
+# production
+client/build
+
+# misc
+.DS_Store
+
+# vercel
+.vercel
