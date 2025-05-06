@@ -16,6 +16,7 @@ export function errorHandling(err: any, req: Request, res: Response, _: any) {
     });
   }
 
+  // Error due to data type conflict with the Mongoose schema.
   if (err.name === 'ValidationError') {
     return void res.status(400).json({
       ok: false,
