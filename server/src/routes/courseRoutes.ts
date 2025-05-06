@@ -4,6 +4,6 @@ import { ListCourseController } from '../controllers/course/ListCourseController
 
 const router = Router();
 
-router.get('/all', ListCourseController.handle);
+router.get('/', ListCourseController.handle);
 
-export default router.use('/course', router);
+export default router.use('/courses', router);

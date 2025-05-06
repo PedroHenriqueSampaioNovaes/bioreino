@@ -4,6 +4,6 @@ import { ListCategoryController } from '../controllers/category/ListCategoryCont
 
 const router = Router();
 
-router.get('/all', ListCategoryController.handle);
+router.get('/', ListCategoryController.handle);
 
-export default router.use('/category', router);
+export default router.use('/categories', router);
