@@ -16,7 +16,7 @@ export class LoginUserService {
       .populate('plan', '-benefits -price')
       .select('+accountExpiresAfter');
     if (!user) {
-      throw new ApiError('E-mail ou senha incorreto.', 400);
+      throw new ApiError('E-mail ou senha incorreto.');
     }
 
     // compare the password with db password if it's not a temporary account
