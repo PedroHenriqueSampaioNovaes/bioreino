@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import classNames from 'classnames';
-import { catamaran, fredoka } from '../../common/fonts';
+import { catamaran, fredoka } from '../common/fonts';
+import 'normalize.css';
 import './globals.css';
 
 export const metadata: Metadata = {
