@@ -1,0 +1,29 @@
+.submit {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 2rem;
+  background: var(--bg-2);
+  border: none;
+  border-radius: 1.25rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: var(--font-3);
+  font-weight: 700;
+  font-family: var(--type-second);
+  line-height: 1;
+  letter-spacing: 0.0938rem;
+  cursor: pointer;
+  transition: 0.15s ease-in-out;
+}
+
+.submit:hover,
+.submit:focus {
+  outline: none;
+  box-shadow: 0 0 8px var(--bg-2);
+  transform: scale(1.02);
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
