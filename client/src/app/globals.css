@@ -22,6 +22,8 @@
   --gradient-1: linear-gradient(to right, #0eb301, #36a32c, #0eb301);
   --gradient-2: linear-gradient(to right, #36a32c, #60dd56);
 
+  --color-error-message: #ff4c2c;
+
   --contrast-1: #737373;
   --contrast-2: #eee;
 }
@@ -35,4 +37,32 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+label {
+  font-family: var(--type-second);
+  font-weight: 500;
+  font-size: var(--font-9);
+  line-height: 1.25rem;
+}
+
+h1 {
+  margin: 0;
+}
+
+.errorMessage {
+  color: var(--color-error-message);
+}
+
+.animeLeft {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeLeft 0.3s forwards;
+}
+
+@keyframes animeLeft {
+  100% {
+    opacity: 1;
+    transform: initial;
+  }
 }
