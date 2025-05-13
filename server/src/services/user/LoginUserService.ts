@@ -12,9 +12,7 @@ interface ILoginRequest {
 
 export class LoginUserService {
   static async execute({ email, password }: ILoginRequest) {
-    const user = await User.findOne({ email })
-      .populate('plan', '-benefits -price')
-      .select('+accountExpiresAfter');
+    const user = await User.findOne({ email }).select('+accountExpiresAfter');
     if (!user) {
       throw new ApiError('E-mail ou senha incorreto.');
     }
@@ -27,18 +25,18 @@ export class LoginUserService {
       }
     }
 
+    const daysForTokenToExpires = 7;
+    const tokenExpiresAt = new Date();
+    tokenExpiresAt.setDate(tokenExpiresAt.getDate() + daysForTokenToExpires);
     const token = jwt.sign(
       { email: user.email, name: user.name },
       process.env.JWT_PRIVATE_KEY as string,
-      { subject: user._id.toString(), expiresIn: '7d' }
+      { subject: user._id.toString(), expiresIn: `${daysForTokenToExpires}d` }
     );
 
     return {
       token,
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      plan: user.plan,
+      tokenExpiresAt,
     };
   }
 }
