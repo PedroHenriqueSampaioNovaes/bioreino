@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.875rem;
+  position: relative;
+}
+
+.back {
+  position: absolute;
+}
+
+.title {
+  text-align: center;
+  font-family: var(--type-second);
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0 auto 0 auto;
+}
+
+@media screen and (min-width: 425px) {
+  .title {
+    font-size: 2.25rem;
+  }
+}
+
+@media screen and (min-width: 1120px) {
+  .title {
+    font-size: 2.625rem;
+  }
+}
