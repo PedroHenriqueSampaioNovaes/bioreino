@@ -7,3 +7,7 @@ export function LOGIN() {
 export function USER_GET() {
   return { url: BASE_URL + '/user/me' };
 }
+
+export function FORGOT_PASSWORD() {
+  return { url: BASE_URL + '/user/forgot_password' };
+}
