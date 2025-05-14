@@ -11,7 +11,7 @@ export interface InputProps extends Omit<ComponentProps<'input'>, 'required'> {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, type, error, name,  ...props }, ref) => {
+  ({ label, type, error, name, ...props }, ref) => {
     return (
       <div className={classNames(styles.wrapper)}>
         <label htmlFor={name} className={classNames(styles.label)}>
