@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { z } from 'zod';
 
-import { ForgotPasswordService } from '../../services/user/ForgotPasswordServiceService';
+import { ForgotPasswordService } from '../../services/user/ForgotPasswordService';
 import { sendMail } from '../../modules/sendMail';
 
 export class ForgotPasswordController {
