@@ -16,7 +16,7 @@ export class ForgotPasswordController {
 
       const bodyData = bodyScheme.parse(req.body);
 
-      const { token } = await ForgotPasswordService.execute({
+      const { email, token } = await ForgotPasswordService.execute({
         ...bodyData,
         user_id,
       });
@@ -24,7 +24,7 @@ export class ForgotPasswordController {
       const message = await sendMail(
         {
           from: 'suporte@bioreino.com.br',
-          to: 'pedrohenriquesampaiodenovaes@gmail.com',
+          to: email,
           subject: 'Pedido de redefinição de senha',
           template: 'auth/forgot_password',
           context: { user_email: bodyData.email, token },
