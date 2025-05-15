@@ -1,7 +1,5 @@
 import { User } from '../../models/UserModel';
 
-import { ApiError } from '../../utils/ApiError';
-
 import crypto from 'crypto';
 
 interface IForgotPassword {
@@ -12,9 +10,7 @@ interface IForgotPassword {
 export class ForgotPasswordService {
   static async execute({ email }: IForgotPassword) {
     const user = await User.findOne({ email });
-    if (!user) {
-      throw new ApiError('Usuário não encontrado.', 400);
-    }
+    if (!user) return { token: '', email: '' };
 
     const token = crypto.randomBytes(20).toString('hex');
     const now = new Date();
@@ -24,6 +20,6 @@ export class ForgotPasswordService {
       $set: { passwordResetToken: token, passwordResetExpires: now },
     });
 
-    return { token };
+    return { token, email: user.email };
   }
 }
