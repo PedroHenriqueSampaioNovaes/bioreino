@@ -13,13 +13,10 @@ export async function sendMail(
   successMessage?: string
 ) {
   try {
-    await transporter.sendMail(mailOptions);
+    if (mailOptions.to) await transporter.sendMail(mailOptions);
 
     return successMessage || 'E-mail enviado com sucesso!';
   } catch {
-    throw new ApiError(
-      'Ocorreu um erro ao tentar enviar o e-mail.',
-      400
-    );
+    throw new ApiError('Ocorreu um erro ao tentar enviar o e-mail.', 400);
   }
 }
