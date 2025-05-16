@@ -21,7 +21,7 @@ export class ResetPasswordController {
 
       await ResetPasswordService.execute({ ...bodyData });
 
-      res.json();
+      return void res.json({ message: 'Senha redefinida com sucesso!' });
     } catch (error) {
       next(error);
     }
