@@ -11,3 +11,7 @@ export function USER_GET() {
 export function FORGOT_PASSWORD() {
   return { url: BASE_URL + '/user/forgot_password' };
 }
+
+export function RESET_PASSWORD() {
+  return { url: BASE_URL + '/user/reset_password' };
+}
