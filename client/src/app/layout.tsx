@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import classNames from 'classnames';
+import { ToastContainer } from 'react-toastify';
+
 import { catamaran, fredoka } from '../common/fonts';
 import 'normalize.css';
 import './globals.css';
@@ -25,6 +27,7 @@ export default async function RootLayout({
     <html lang="pt-br">
       <body className={classNames(fredoka.variable, catamaran.variable)}>
         <UserContextProvider userData={user}>{children}</UserContextProvider>
+        <ToastContainer />
       </body>
     </html>
   );
