@@ -5,8 +5,8 @@
 }
 
 :root {
-  --bg-1: #36a32c;
-  --bg-2: #0eb301;
+  --bg-1: var(--color-primary);
+  --bg-2: var(--color-secondary);
 
   --font-1: 3rem; /* 48px */
   --font-2: 1.5rem; /* 24px */
@@ -22,6 +22,8 @@
   --gradient-1: linear-gradient(to right, #0eb301, #36a32c, #0eb301);
   --gradient-2: linear-gradient(to right, #36a32c, #60dd56);
 
+  --color-primary: #36a32c;
+  --color-secondary: #0eb301;
   --color-error-message: #ff4c2c;
 
   --contrast-1: #737373;
@@ -50,6 +52,23 @@ h1 {
   margin: 0;
 }
 
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+svg {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
 .errorMessage {
   color: var(--color-error-message);
 }
@@ -58,6 +77,43 @@ h1 {
   opacity: 0;
   transform: translateX(-20px);
   animation: animeLeft 0.3s forwards;
+}
+
+.container {
+  max-width: 76.25rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+.bgGradientPrimary {
+  background-image: var(--gradient-1);
+}
+
+.title {
+  font-family: var(--font-secondary-catamaran);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0.625rem 0 3.125rem 0;
+  color: #fff;
+}
+
+@media screen and (min-width: 769px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
 }
 
 @keyframes animeLeft {
