@@ -1,0 +1,230 @@
+.home :global(.sectionSpacing) {
+  padding-top: 3.125rem;
+  padding-bottom: 3.125rem;
+}
+
+/* --- HEADER --- */
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: #fff;
+  transition: 0.15s;
+  z-index: 999;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem;
+}
+
+.nav .logo {
+  width: 125px;
+}
+
+.nav > ul {
+  display: flex;
+  align-items: center;
+}
+
+.index li {
+  display: flex;
+  align-items: center;
+}
+
+.index li + li::before {
+  content: '';
+  display: inline-block;
+  background: var(--contrast-1);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin: 0.875rem;
+}
+
+.index a {
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  padding: 0.25rem;
+  transition: 0.15s ease-in-out;
+}
+
+.index a:hover {
+  font-size: 1rem;
+  color: var(--color-primary);
+}
+
+.login {
+  display: block;
+  color: var(--contrast-1);
+  padding: 0.5rem 1rem;
+  margin-right: 0.625rem;
+}
+
+.callToAction {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--bg-1);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: 0.15s ease-in-out;
+}
+
+.callToAction:hover,
+.callToAction:focus {
+  outline: none;
+  box-shadow: 0 0 8px var(--bg-2);
+  transform: scale(1.05);
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .nav .logo {
+    width: 150px;
+  }
+}
+
+/* --- INTRODUCTION --- */
+.introduction {
+  margin-top: 145px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.developmentTeam {
+  display: none;
+}
+
+.title {
+  max-width: 30rem;
+  font-family: var(--font-secondary-catamaran);
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0 auto;
+}
+
+.paragraph {
+  font-size: 1.125rem;
+  color: var(--contrast-1);
+  margin: 1rem auto 2rem auto;
+  max-width: 37.5rem;
+  line-height: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .introduction {
+    margin-top: 6.875rem;
+  }
+
+  .title {
+    font-size: 2.625rem;
+    max-width: 37.5rem;
+    line-height: 3.125rem;
+  }
+
+  .paragraph {
+    margin-top: 1.875rem;
+    margin-bottom: 4rem;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .introduction {
+    grid-template-columns: minmax(auto, 43.75rem) 339px;
+    justify-content: space-between;
+    justify-items: left;
+    gap: 2.5rem;
+    text-align: left;
+    margin-top: 8.125rem;
+  }
+
+  .title {
+    margin-top: 0.625rem;
+  }
+
+  .paragraph {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .developmentTeam {
+    display: block;
+    margin-left: 0.1875rem;
+  }
+}
+
+@media screen and (min-width: 1112px) {
+  .title {
+    font-size: 3rem;
+    max-width: none;
+  }
+}
+
+/* DOWNLOAD THE APP - GITHUB */
+.downloadApp {
+  margin-top: 2.8125rem;
+  margin-bottom: 2.8125rem;
+  padding: 0.75rem 1rem;
+  border-radius: 1.25rem;
+
+  background: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem 0.75rem;
+
+  text-align: center;
+}
+
+.downloadApp .github {
+  cursor: pointer;
+  padding: 0.5rem;
+
+  flex-shrink: 0;
+  display: flex;
+}
+
+@media screen and (min-width: 768px) {
+  .downloadApp {
+    padding: 1.25rem 1.875rem;
+
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* SHOWCASE COURSES */
+.listCourse {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 1.5625rem;
+}
+
+.course {
+  background: #fff;
+}
+
+@media screen and (min-width: 1024px) {
+  .listCourse {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+  }
+}
