@@ -27,7 +27,7 @@ export class ListCourseService {
         query['plan'] = new Types.ObjectId(plan.id as string);
     }
 
-    const courses = await Course.find(query).limit(limit ?? 0);
+    const courses = await Course.find(query).limit(limit ?? 0).populate('plan', '-benefits -price');
 
     return courses;
   }
