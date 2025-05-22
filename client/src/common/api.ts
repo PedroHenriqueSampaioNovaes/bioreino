@@ -1,3 +1,5 @@
+import { ICourseGet } from "./@types/course";
+
 const BASE_URL = `${process.env.NEXT_PUBLIC_URL}/api`;
 
 export function LOGIN() {
@@ -14,4 +16,10 @@ export function FORGOT_PASSWORD() {
 
 export function RESET_PASSWORD() {
   return { url: BASE_URL + '/user/reset_password' };
+}
+
+export function COURSE_GET({ limit, free, planId }: ICourseGet) {
+  return {
+    url: BASE_URL + `/courses/?limit=${limit}&free=${free}&planId=${planId}`,
+  };
 }
