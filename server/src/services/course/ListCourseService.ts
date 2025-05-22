@@ -13,11 +13,11 @@ interface ICourseRequest {
 
 export class ListCourseService {
   static async execute({ limit, free, planId }: ICourseRequest) {
-    let query = {} as {[key: string]: any};
+    let query = {} as { [key: string]: any };
 
     if (free !== undefined) query['free'] = free;
 
-    if (planId) {
+    if (planId && Types.ObjectId.isValid(planId)) {
       const plan = await Plan.findById(planId);
 
       if (!plan)
