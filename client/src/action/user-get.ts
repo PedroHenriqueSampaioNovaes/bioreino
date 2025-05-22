@@ -21,7 +21,7 @@ export default async function getUser() {
     const data = await response.json();
     if (!response.ok) throw new Error(data.message);
 
-    return { data: data as IUser, error: '', ok: false };
+    return { data: data as IUser, error: '', ok: true };
   } catch (error) {
     return apiError(error);
   }
