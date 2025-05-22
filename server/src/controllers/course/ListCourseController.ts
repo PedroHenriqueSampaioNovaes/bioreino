@@ -18,7 +18,7 @@ export class ListCourseController {
 
       const courses = await ListCourseService.execute({
         limit: limit ? Number(limit) : undefined,
-        free: free ? (free === 'true' ? true : false) : undefined,
+        free: free === 'true' ? true : free === 'false' ? false : undefined,
         planId,
       });
 
