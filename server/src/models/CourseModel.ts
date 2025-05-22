@@ -1,5 +1,7 @@
 import { Schema, model, Types } from 'mongoose';
 
+import { IPlan } from './PlanModel';
+
 interface ICourse {
   professor: string;
   imageUrl: string;
@@ -20,6 +22,7 @@ interface ICourse {
     slug: string;
   }[];
   free: boolean;
+  plan: Types.ObjectId | IPlan;
 }
 
 const courseSchema = new Schema<ICourse>(
@@ -34,6 +37,7 @@ const courseSchema = new Schema<ICourse>(
       required: true,
     },
     free: { type: Boolean, default: false },
+    plan: { type: Schema.ObjectId, ref: 'Plan', required: true }
   },
   { timestamps: true }
 );
