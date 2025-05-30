@@ -23,3 +23,9 @@ export function COURSES_GET({ limit, free, planId }: ICourseGet) {
     url: BASE_URL + `/courses/?limit=${limit}&free=${free}&planId=${planId}`,
   };
 }
+
+export function SUBSCRIPTIONS_GET() {
+  return {
+    url: BASE_URL + `/subscriptions`,
+  };
+}
