@@ -1,17 +1,17 @@
 'use server';
 
-import { COURSE_GET } from '@/common/api';
+import { COURSES_GET } from '@/common/api';
 import apiError from '@/common/apiError';
 
 import { ICourse, ICourseGet } from '@/common/@types/course';
 
-export default async function getCourse({
+export default async function getCourses({
   free,
   limit,
   planId,
 }: ICourseGet = {}) {
   try {
-    const { url } = COURSE_GET({ free, limit, planId });
+    const { url } = COURSES_GET({ free, limit, planId });
     const response = await fetch(url, { cache: 'force-cache' });
 
     const data = await response.json();
