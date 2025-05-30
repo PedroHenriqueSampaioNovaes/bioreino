@@ -28,6 +28,8 @@
 
   --contrast-1: #737373;
   --contrast-2: #eee;
+
+  --card-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
 body {
@@ -106,7 +108,15 @@ svg {
   color: #fff;
 }
 
-@media screen and (min-width: 769px) {
+.titleDark {
+  color: #000;
+}
+
+.subtitleDark {
+  color: var(--contrast-1);
+}
+
+@media screen and (min-width: 768px) {
   .title {
     font-size: 2.25rem;
   }
