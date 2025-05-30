@@ -1,0 +1,46 @@
+.course {
+  background: #fff;
+
+  max-width: 390px;
+  width: 100%;
+
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  position: relative;
+}
+
+.subscription {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.3125rem 0.9375rem;
+  background: #fff;
+  border-bottom-left-radius: 1.25rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.background {
+  height: 6.25rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.details {
+  padding: 1.25rem;
+}
+
+.courseName {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+  line-height: 1;
+}
+
+.teacher {
+  font-size: 1rem;
+  color: var(--contrast-1);
+  font-weight: 500;
+}

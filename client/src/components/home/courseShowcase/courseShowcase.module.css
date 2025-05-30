@@ -1,0 +1,13 @@
+.listCourse {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 1.5625rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .listCourse {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+  }
+}
