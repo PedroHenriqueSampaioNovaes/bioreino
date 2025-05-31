@@ -4,13 +4,12 @@ import styles from './header.module.css';
 import classNames from 'classnames';
 import Link from 'next/link';
 
-import BioreinoLogo from '@/icons/Bioreino';
-
 import useMedia from '@/hooks/useMedia';
 import useScrollToElement from '@/hooks/useScrollToElement';
 import useHighlightIndexWhenScroll from '@/hooks/useHighlightIndexWhenScroll';
 
 import HeaderWithShadowOnScroll from '@/components/layout/HeaderWithShadowOnScroll';
+import BioreinoLogoLink from '@/components/layout/BioreinoLogoLink';
 
 export default function HomeHeader() {
   const isLargeDevice = useMedia('(min-width: 1024px)');
@@ -30,13 +29,7 @@ export default function HomeHeader() {
   return (
     <HeaderWithShadowOnScroll id="header" className={classNames(styles.header)}>
       <nav className={classNames(styles.nav, 'container')}>
-        <Link
-          href="/"
-          aria-label="Bioreino - Home"
-          className={classNames(styles.logo)}
-        >
-          <BioreinoLogo />
-        </Link>
+        <BioreinoLogoLink />
 
         {isLargeDevice && (
           <ul className={styles.indexAnchorList}>

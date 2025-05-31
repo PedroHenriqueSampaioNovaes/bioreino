@@ -16,10 +16,6 @@
   position: relative;
 }
 
-.nav .logo {
-  width: 125px;
-}
-
 .nav > ul {
   display: flex;
   align-items: center;
@@ -91,9 +87,5 @@
   .nav {
     flex-direction: row;
     justify-content: space-between;
-  }
-
-  .nav .logo {
-    width: 150px;
   }
 }
