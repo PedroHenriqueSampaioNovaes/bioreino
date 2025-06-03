@@ -41,6 +41,7 @@ export class UpdateCourseProgressService {
       courseId,
     });
 
+    // If the lesson is already watched, we do not need to update the progress
     const lessonAlreadyWatched = courseProgress?.lessons.some(
       (lessonInProgress) => lessonInProgress.lessonId.equals(lesson._id)
     );
@@ -52,10 +53,9 @@ export class UpdateCourseProgressService {
       : 1;
     const quantityLessonsInTheCourse = course.lessons.length;
 
-    const progress = +(
-      (quantityLessonsWatched / quantityLessonsInTheCourse) *
-      100
-    ).toFixed(2);
+    const progress = Math.ceil(
+      (quantityLessonsWatched / quantityLessonsInTheCourse) * 100
+    );
 
     // Updates the course progress with a new lesson or creates
     // it if the document for this course progress related to the user does not exist
