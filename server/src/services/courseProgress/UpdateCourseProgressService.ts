@@ -26,6 +26,16 @@ export class UpdateCourseProgressService {
       throw new ApiError('Não foi possível encontrar a aula.');
     }
 
+    // Check if the lesson actually belongs to the course
+    const lessonBelongsToCourse = course.lessons.some((lesson) => {
+      return lesson._id.equals(lessonId);
+    });
+    if (!lessonBelongsToCourse) {
+      throw new ApiError(
+        `A aula "${lesson.title}" não pertence ao curso informado.`
+      );
+    }
+
     const courseProgress = await CourseProgress.findOne({
       userId: user_id,
       courseId,
