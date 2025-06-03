@@ -6,7 +6,7 @@ import { UpdateCourseProgressService } from '../../services/courseProgress/Updat
 
 export class UpdateCourseProgressController {
   static async handle(
-    req: Request<{ courseId: string }>,
+    req: Request<{ course_id: string }>,
     res: Response,
     next: NextFunction
   ) {
@@ -19,7 +19,7 @@ export class UpdateCourseProgressController {
 
       const bodyData = bodyScheme.parse({
         ...req.body,
-        courseId: req.params.courseId,
+        courseId: req.params.course_id,
       });
 
       await UpdateCourseProgressService.execute({
