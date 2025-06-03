@@ -7,7 +7,7 @@ import { UpdateCourseProgressController } from '../controllers/courseProgress/Up
 const router = Router();
 
 router.patch(
-  '/:courseId',
+  '/:course_id',
   isAuthenticated,
   UpdateCourseProgressController.handle
 );
