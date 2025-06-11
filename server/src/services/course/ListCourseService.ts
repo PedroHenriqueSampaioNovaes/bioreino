@@ -1,6 +1,6 @@
-import { Types } from 'mongoose';
+import { FilterQuery, Types } from 'mongoose';
 
-import { Course } from '../../models/CourseModel';
+import { Course, ICourse } from '../../models/CourseModel';
 import { Plan } from '../../models/PlanModel';
 
 import { ApiError } from '../../utils/ApiError';
@@ -13,7 +13,7 @@ interface ICourseRequest {
 
 export class ListCourseService {
   static async execute({ limit, free, planId }: ICourseRequest) {
-    let query = {} as { [key: string]: any };
+    const query = {} as FilterQuery<ICourse>;
 
     if (free !== undefined) query['free'] = free;
 
@@ -27,7 +27,9 @@ export class ListCourseService {
         query['plan'] = new Types.ObjectId(plan.id as string);
     }
 
-    const courses = await Course.find(query).limit(limit ?? 0).populate('plan', '-benefits -price');
+    const courses = await Course.find(query)
+      .limit(limit ?? 0)
+      .populate('plan', '-benefits -price');
 
     return courses;
   }

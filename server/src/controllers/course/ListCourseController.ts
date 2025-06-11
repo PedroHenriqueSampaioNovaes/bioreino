@@ -8,18 +8,18 @@ export class ListCourseController {
       any,
       any,
       any,
-      { limit?: string; free?: string; planId?: string }
+      { limit?: string; free?: string; plan_id?: string }
     >,
     res: Response,
     next: NextFunction
   ) {
     try {
-      const { limit, free, planId } = req.query;
+      const { limit, free, plan_id } = req.query;
 
       const courses = await ListCourseService.execute({
         limit: limit ? Number(limit) : undefined,
         free: free === 'true' ? true : free === 'false' ? false : undefined,
-        planId,
+        planId: plan_id,
       });
 
       res.json(courses);
