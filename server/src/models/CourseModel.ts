@@ -2,7 +2,7 @@ import { Schema, model, Types } from 'mongoose';
 
 import { IPlan } from './PlanModel';
 
-interface ICourse {
+export interface ICourse {
   professor: string;
   imageUrl: string;
   title: string;
@@ -13,14 +13,16 @@ interface ICourse {
     name: string;
     value: string;
   };
-  lessons: {
-    _id: Types.ObjectId;
-    title: string;
-    description: string;
-    transcription: string;
-    videoUrl: string;
-    slug: string;
-  }[];
+  lessons:
+    | {
+        _id: Types.ObjectId;
+        title: string;
+        description: string;
+        transcription: string;
+        videoUrl: string;
+        slug: string;
+      }[]
+    | Types.ObjectId[];
   free: boolean;
   plan: Types.ObjectId | IPlan;
 }
@@ -33,11 +35,11 @@ const courseSchema = new Schema<ICourse>(
     slug: { type: String, required: true },
     category: { type: Types.ObjectId, required: true },
     lessons: {
-      type: [Types.ObjectId],
+      type: [Schema.ObjectId],
       required: true,
     },
     free: { type: Boolean, default: false },
-    plan: { type: Schema.ObjectId, ref: 'Plan', required: true }
+    plan: { type: Schema.ObjectId, ref: 'Plan', required: true },
   },
   { timestamps: true }
 );
