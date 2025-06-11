@@ -3,4 +3,5 @@ export interface ISubscription {
   name: string;
   benefits: string[];
   price: number;
+  fullaccess: boolean;
 }
