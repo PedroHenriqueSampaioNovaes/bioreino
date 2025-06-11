@@ -2,13 +2,13 @@ import { Schema, model } from 'mongoose';
 
 export interface ICategory {
   name: string;
-  plan: string;
+  plan: Types.ObjectId;
 }
 
 const categorySchema = new Schema<ICategory>(
   {
     name: { type: String, required: true },
-    plan: { type: String, required: true },
+    plan: { type: Schema.ObjectId, required: true },
   },
   { timestamps: true }
 );
