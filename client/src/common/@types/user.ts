@@ -1,4 +1,4 @@
-type ILastWatched = {
+export type ILastWatched = {
   course: {
     courseTitle: string;
     slug: string;
