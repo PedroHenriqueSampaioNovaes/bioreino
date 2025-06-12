@@ -11,7 +11,7 @@ import { ISubscription } from '@/common/@types/subscription';
 
 import formatCurrency from '@/common/utils/formatCurrency';
 
-type SubscriptionItemProps = Omit<ISubscription, '_id'>;
+type SubscriptionItemProps = Pick<ISubscription, 'benefits' | 'name' | 'price'>;
 
 export default function SubscriptionItem({
   benefits,
