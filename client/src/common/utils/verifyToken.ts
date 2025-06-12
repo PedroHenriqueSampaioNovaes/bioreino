@@ -1,10 +1,14 @@
 import * as jose from 'jose';
 
-export function verifyToken(token: string): boolean {
+export async function verifyToken(token: string): Promise<boolean> {
   try {
-    jose.jwtVerify(token, new TextEncoder().encode(process.env.JWT_SALT), {
-      algorithms: ['HS256'],
-    });
+    await jose.jwtVerify(
+      token,
+      new TextEncoder().encode(process.env.JWT_SALT),
+      {
+        algorithms: ['HS256'],
+      }
+    );
 
     return true;
   } catch {
