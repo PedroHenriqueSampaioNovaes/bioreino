@@ -1,0 +1,81 @@
+.card {
+  border-radius: 1.25rem;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.card img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 80px;
+  object-fit: cover;
+  z-index: -1;
+}
+
+@media (min-width: 425px) {
+  .card img {
+    max-height: 90px;
+  }
+}
+
+.title,
+.instructor,
+.progress,
+.percentage {
+  font-weight: 500;
+}
+
+.details {
+  padding: 1rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  margin-top: -1.25rem;
+}
+
+.details .title {
+  font-size: 1.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 426px) {
+  .details .title {
+    font-size: 1.375rem;
+  }
+}
+
+.details .instructor {
+  font-size: 1rem;
+  color: var(--contrast-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.125rem;
+  margin-top: 0.875rem;
+}
+
+.progress .progressBar {
+  height: 1.25rem;
+  background: #d9d9d9;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.progress .progressBarCompleted {
+  height: 100%;
+  background-image: var(--gradient-2);
+  border-radius: inherit;
+}
+
+.progress .percentage {
+  font-size: 1rem;
+  text-align: right;
+}

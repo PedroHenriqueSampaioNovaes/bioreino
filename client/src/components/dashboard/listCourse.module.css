@@ -1,0 +1,17 @@
+.containerCourses {
+  display: grid;
+  align-items: start;
+  gap: 1.5rem;
+}
+
+@media (min-width: 550px) {
+  .containerCourses {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .containerCourses {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
