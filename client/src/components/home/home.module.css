@@ -7,6 +7,10 @@
   padding-bottom: 0;
 }
 
+.home :global(#subscribe) {
+  padding-bottom: 0;
+}
+
 /* --- INTRODUCTION --- */
 .introduction {
   margin-top: 145px;
