@@ -27,6 +27,7 @@ export default function About({
         width={700}
         height={551}
         priority
+        sizes="(max-width: 1023px) 100vw, 50vw"
         alt={alt}
         className={classNames(styles.img, {
           [styles.orderReverse]: invert,
