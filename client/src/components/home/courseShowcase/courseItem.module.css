@@ -22,10 +22,9 @@
   letter-spacing: 1px;
 }
 
-.background {
+.course img {
   height: 6.25rem;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
 }
 
 .details {
