@@ -12,12 +12,12 @@ import GithubLogo from '@/icons/Github';
 import { ICourse } from '@/common/@types/course';
 import { ISubscription } from '@/common/@types/subscription';
 
-import CourseShowcase from './courseShowcase/CourseShowcase';
-import About from './about/About';
-import Testimony from './testimonies/Testimony';
+import CourseShowcase from './CourseShowcase';
+import About from './About';
+import Testimony from './Testimony';
 import Footer from '../layout/Footer';
-import Subscriptions from './subscriptions/Subscriptions';
-import HomeHeader from './header/HomeHeader';
+import Subscriptions from './Subscriptions';
+import HomeHeader from './HomeHeader';
 
 interface IHomeProps {
   courses: ICourse[];

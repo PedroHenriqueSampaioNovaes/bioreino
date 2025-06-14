@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 
-import styles from './subscription.module.css';
+import styles from './subscriptions.module.css';
 
 import { ISubscription } from '@/common/@types/subscription';
 
