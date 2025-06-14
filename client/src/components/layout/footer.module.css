@@ -6,3 +6,7 @@
   font-size: 0.875rem;
   margin-top: 3.125rem;
 }
+
+.footer a {
+  text-decoration: underline;
+}
