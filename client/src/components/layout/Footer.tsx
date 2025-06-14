@@ -10,7 +10,7 @@ export default function Footer() {
         <Link href="https://github.com/AraraDevs" target="_blank">
           AraraDevs
         </Link>{' '}
-        - Todos os direitos reservados
+        - Projeto de Faculdade para fins acadêmicos
       </p>
     </footer>
   );
