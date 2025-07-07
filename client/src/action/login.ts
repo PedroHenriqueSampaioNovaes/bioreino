@@ -31,6 +31,13 @@ export default async function login({ email, password }: ILogin) {
       expires: new Date(data.tokenExpiresAt),
     });
 
+    cookieStore.set('user_id', data.userId, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'lax',
+      expires: new Date(data.tokenExpiresAt),
+    });
+
     return { data: null, ok: true, error: '' };
   } catch (error: unknown) {
     return apiError(error);
