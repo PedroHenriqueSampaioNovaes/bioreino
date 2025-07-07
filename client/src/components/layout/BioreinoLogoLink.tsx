@@ -5,9 +5,19 @@ import Link from 'next/link';
 
 import BioreinoLogo from '@/icons/BioreinoLogo';
 
-export default function BioreinoLogoLink() {
+interface BioreinoLogoLinkProps {
+  classNameCustom?: string;
+}
+
+export default function BioreinoLogoLink({
+  classNameCustom,
+}: BioreinoLogoLinkProps) {
   return (
-    <Link href="/" aria-label="Bioreino - Home" className={styles.logo}>
+    <Link
+      href="/"
+      aria-label="Bioreino - Home"
+      className={classNameCustom || styles.logo}
+    >
       <BioreinoLogo />
     </Link>
   );
