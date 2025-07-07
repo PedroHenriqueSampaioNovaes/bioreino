@@ -34,10 +34,7 @@ const courseSchema = new Schema<ICourse>(
     title: { type: String, required: true },
     slug: { type: String, required: true },
     category: { type: Types.ObjectId, required: true },
-    lessons: {
-      type: [Schema.ObjectId],
-      required: true,
-    },
+    lessons: [{ type: Schema.ObjectId, ref: 'Lesson', required: true }],
     free: { type: Boolean, default: false },
     plan: { type: Schema.ObjectId, ref: 'Plan', required: true },
   },
