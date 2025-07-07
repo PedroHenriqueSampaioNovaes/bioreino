@@ -1,6 +1,6 @@
 import { FilterQuery, Types } from 'mongoose';
 
-import { Category, ICategory } from '../../models/Category';
+import { Category, ICategory } from '../../models/CategoryModel';
 import { Plan } from '../../models/PlanModel';
 
 import { ApiError } from '../../utils/ApiError';
