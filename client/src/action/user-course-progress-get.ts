@@ -1,12 +1,14 @@
 'use server';
 
 import { USER_COURSE_PROGRESS_GET } from '@/common/api';
+
 import apiError from '@/common/apiError';
-import { IProgress } from '@/common/@types/course';
+
+import { IUserCourseProgress } from '@/common/@types/user-course-progress';
 
 import { cookies } from 'next/headers';
 
-export default async function getUserCoursesProgress() {
+export default async function getUserCourseProgress() {
   try {
     const token = (await cookies()).get('token')?.value;
 
@@ -15,13 +17,12 @@ export default async function getUserCoursesProgress() {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      cache: 'force-cache',
     });
 
     const data = await response.json();
     if (!response.ok) throw new Error(data.message);
 
-    return { data: data as IProgress[], error: '', ok: true };
+    return { data: data as IUserCourseProgress[], error: '', ok: true };
   } catch (error) {
     return apiError(error);
   }
