@@ -3,6 +3,7 @@ import { ApiError } from '../../utils/ApiError';
 import { Course } from '../../models/CourseModel';
 import { Lesson } from '../../models/LessonModel';
 import { CourseProgress } from '../../models/CourseProgressModel';
+import { User } from '../../models/UserModel';
 
 interface ICourseProgressRequest {
   courseId: string;
@@ -35,6 +36,29 @@ export class UpdateCourseProgressService {
         `A aula "${lesson.title}" não pertence ao curso informado.`
       );
     }
+
+    // Updates the last lesson watched of the user
+    await User.findOneAndUpdate(
+      { _id: user_id },
+      {
+        $set: {
+          lastWatched: {
+            course: {
+              courseTitle: course.title,
+              slug: course.slug,
+              professor: course.professor,
+              imageUrl: course.imageUrl,
+            },
+            lesson: {
+              lessonTitle: lesson.title,
+              lessonDescription: lesson.description,
+              slug: lesson.slug,
+            },
+            watchedAt: new Date(),
+          },
+        },
+      }
+    );
 
     const courseProgress = await CourseProgress.findOne({
       userId: user_id,
