@@ -7,6 +7,8 @@
 :root {
   --bg-1: var(--color-primary);
   --bg-2: var(--color-secondary);
+  --bg-3: #1b1d20;
+  --bg-4: #0E1013;
 
   --font-1: 3rem; /* 48px */
   --font-2: 1.5rem; /* 24px */
