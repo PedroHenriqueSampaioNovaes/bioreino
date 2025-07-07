@@ -1,22 +1,70 @@
 import { NextResponse, NextRequest } from 'next/server';
 
 import { verifyToken } from './common/utils/verifyToken';
+import { cookies } from 'next/headers';
+
+const publicRoutes = [
+  { path: '/', whenAuthenticated: 'next' },
+  { path: '/login', whenAuthenticated: 'redirect' },
+  { path: '/register', whenAuthenticated: 'redirect' },
+] as const;
+
+const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/login';
 
 export async function middleware(request: NextRequest) {
-  const token = request.cookies.get('token')?.value;
-  const isAuthenticated = token ? verifyToken(token) : false;
+  const path = request.nextUrl.pathname;
+  const publicRoute = publicRoutes.find((route) => route.path === path);
 
-  if (!isAuthenticated && request.nextUrl.pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/login', request.url));
+  const token = request.cookies.get('token')?.value;
+
+  if (!token && publicRoute) {
+    return NextResponse.next();
   }
 
-  if (isAuthenticated && request.nextUrl.pathname.startsWith('/login')) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+  if (!token && !publicRoute) {
+    const redirectUrl = request.nextUrl.clone();
+
+    redirectUrl.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE;
+
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  if (token && publicRoute && publicRoute.whenAuthenticated === 'redirect') {
+    const redirectUrl = request.nextUrl.clone();
+
+    redirectUrl.pathname = '/dashboard';
+
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  if (token && !publicRoute) {
+    const isAuthenticated = token ? await verifyToken(token) : false;
+
+    if (!isAuthenticated) {
+      (await cookies()).delete('token');
+
+      const redirectUrl = request.nextUrl.clone();
+
+      redirectUrl.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE;
+
+      return NextResponse.redirect(redirectUrl);
+    }
+
+    return NextResponse.next();
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/login/:path*', '/dashboard/:path*'],
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+  ],
 };
