@@ -1,4 +1,4 @@
-export type ILastWatched = {
+export interface ILastWatched {
   course: {
     courseTitle: string;
     slug: string;
@@ -11,9 +11,9 @@ export type ILastWatched = {
     slug: string;
   };
   watchedAt: string;
-};
+}
 
-export type IUser = {
+export interface IUser {
   _id: string;
   name: string;
   email: string;
@@ -22,5 +22,5 @@ export type IUser = {
     name: string;
     fullaccess: boolean;
   };
-  lastWatched: ILastWatched;
-};
+  lastWatched?: ILastWatched;
+}
