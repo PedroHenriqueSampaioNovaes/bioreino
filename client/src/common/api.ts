@@ -15,6 +15,10 @@ export function USER_COURSE_PROGRESS_GET() {
   return { url: BASE_URL + '/course_progress' };
 }
 
+export function USER_COURSE_PROGRESS_PATCH(courseId: string) {
+  return { url: BASE_URL + `/course_progress/${courseId}` };
+}
+
 export function FORGOT_PASSWORD() {
   return { url: BASE_URL + '/user/forgot_password' };
 }
@@ -26,6 +30,12 @@ export function RESET_PASSWORD() {
 export function COURSES_GET({ limit, free, planId }: IListCourseGet) {
   return {
     url: BASE_URL + `/courses/?limit=${limit}&free=${free}&plan_id=${planId}`,
+  };
+}
+
+export function COURSE_GET({ slug }: ICourseGet) {
+  return {
+    url: BASE_URL + `/courses/slug/${slug}`,
   };
 }
 
