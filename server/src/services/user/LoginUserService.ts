@@ -29,12 +29,13 @@ export class LoginUserService {
     const tokenExpiresAt = new Date();
     tokenExpiresAt.setDate(tokenExpiresAt.getDate() + daysForTokenToExpires);
     const token = jwt.sign(
-      { email: user.email, name: user.name },
+      { _id: user._id, email: user.email, name: user.name },
       process.env.JWT_PRIVATE_KEY as string,
       { subject: user._id.toString(), expiresIn: `${daysForTokenToExpires}d` }
     );
 
     return {
+      userId: user._id,
       token,
       tokenExpiresAt,
     };
