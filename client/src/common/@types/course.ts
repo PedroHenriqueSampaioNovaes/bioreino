@@ -1,7 +1,13 @@
-export interface ICourseGet {
+import { ILesson } from './lesson';
+
+export interface IListCourseGet {
   limit?: number;
   free?: boolean;
   planId?: string;
+}
+
+export interface ICourseGet {
+  slug: string;
 }
 
 export interface ICourse {
@@ -10,7 +16,7 @@ export interface ICourse {
   imageUrl: string;
   category: string;
   title: string;
-  lessons: string[];
+  lessons: string[] | ILesson[];
   updatedAt: string;
   slug: string;
   free: boolean;
