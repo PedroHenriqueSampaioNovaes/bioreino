@@ -1,3 +1,5 @@
+'use server';
+
 import { cookies } from 'next/headers';
 
 import { USER_GET } from '@/common/api';
@@ -16,7 +18,6 @@ export default async function getUser() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      cache: 'force-cache',
     });
     const data = await response.json();
     if (!response.ok) throw new Error(data.message);
