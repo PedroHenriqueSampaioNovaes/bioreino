@@ -3,13 +3,14 @@
 import styles from './listCourse.module.css';
 import classNames from 'classnames';
 
-import { ICourse, IProgress } from '@/common/@types/course';
+import { ICourse } from '@/common/@types/course';
+import { IUserCourseProgress } from '@/common/@types/user-course-progress';
 
 import CourseItem from './CourseItem';
 
 interface IListCourseProps {
   courses: ICourse[];
-  courseProgress: IProgress[];
+  courseProgress: IUserCourseProgress[];
 }
 
 export default function ListCourse({
