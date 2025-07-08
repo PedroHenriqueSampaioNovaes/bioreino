@@ -1,0 +1,145 @@
+.transcriptionContainer {
+  max-width: 1445px;
+  margin: 0 auto;
+}
+
+.transcriptionTitle {
+  font-family: var(--type-second);
+  font-size: 1.125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 12px;
+    background-color: var(--bg-4);
+    border-radius: 1.25rem;
+  }
+}
+
+.transcriptionText {
+  max-height: 200px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-right: 5px;
+
+  font-size: 0.875rem;
+  text-align: justify;
+  line-height: 1.2;
+
+  position: relative;
+
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    display: block;
+    position: sticky;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(27, 29, 32, 0.4),
+      rgba(27, 29, 32)
+    );
+    height: 115px;
+  }
+}
+
+.transcriptionText.active {
+  max-height: 400px;
+  overflow: auto;
+
+  &::after {
+    content: none;
+  }
+
+  &::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--bg-4);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--contrast-1);
+    border: 4px solid var(--bg-4);
+    border-radius: 8px;
+  }
+}
+
+.noTranscription {
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.expandButton {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  margin: 1.875rem auto 0 auto;
+
+  font-family: var(--type-second);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expandButton > svg {
+  transition: 0.3s;
+}
+
+.expandButton.active > svg {
+  transform: rotate(-180deg);
+}
+
+@media screen and (min-width: 426px) {
+  .transcriptionText,
+  .noTranscription {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .transcriptionTitle {
+    font-size: 1.375rem;
+  }
+
+  .transcriptionText,
+  .noTranscription {
+    font-size: 1.125rem;
+  }
+
+  .expandButton {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .transcriptionTitle {
+    font-size: 1.75rem;
+  }
+
+  .transcriptionText,
+  .noTranscription {
+    font-size: 1.375rem;
+  }
+}

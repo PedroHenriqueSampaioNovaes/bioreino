@@ -1,0 +1,13 @@
+.wrapper {
+  background: var(--bg-3);
+  color: #fff;
+}
+
+.container {
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  transition: margin 0.3s;
+}
