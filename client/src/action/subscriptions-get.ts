@@ -1,8 +1,8 @@
 'use server';
 
-import { SUBSCRIPTIONS_GET } from "@/common/api";
-import { ISubscription } from "@/common/@types/subscription";
-import apiError from "@/common/apiError";
+import { SUBSCRIPTIONS_GET } from '@/common/api';
+import { ISubscription } from '@/common/@types/subscription';
+import apiError from '@/common/apiError';
 
 export default async function getSubscriptions() {
   try {
