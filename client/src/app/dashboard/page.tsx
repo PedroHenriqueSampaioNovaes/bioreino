@@ -24,7 +24,6 @@ export default async function DashboardPage() {
 
   return (
     <Dashboard
-      lastWatched={user.lastWatched}
       courses={courses || []}
       courseProgress={courseProgress || []}
       subscriptions={subscriptions || []}
