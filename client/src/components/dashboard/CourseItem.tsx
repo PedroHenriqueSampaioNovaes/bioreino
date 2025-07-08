@@ -7,11 +7,12 @@ import Image from 'next/image';
 import styles from './CourseItem.module.css';
 import classNames from 'classnames';
 
-import { ICourse, IProgress } from '@/common/@types/course';
+import { ICourse } from '@/common/@types/course';
+import { IUserCourseProgress } from '@/common/@types/user-course-progress';
 
 interface ICourseItemProps {
   course: ICourse;
-  courseProgress: IProgress[];
+  courseProgress: IUserCourseProgress[];
   priorityByIndex: number;
 }
 
@@ -27,6 +28,7 @@ function CourseItem({
   return (
     <Link
       href={`/curso/${course.slug}`}
+      prefetch={false}
       key={course._id}
       className={classNames(styles.card)}
     >
