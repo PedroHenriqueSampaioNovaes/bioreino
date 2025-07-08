@@ -14,8 +14,8 @@ import BioreinoLogoLink from '../layout/BioreinoLogoLink';
 import logout from '@/action/logout';
 import Link from 'next/link';
 
-import { ILastWatched } from '@/common/@types/user';
-import { ICourse, IProgress } from '@/common/@types/course';
+import { ICourse } from '@/common/@types/course';
+import { IUserCourseProgress } from '@/common/@types/user-course-progress';
 import { ISubscription } from '@/common/@types/subscription';
 import { ICategory } from '@/common/@types/category';
 
@@ -24,15 +24,13 @@ import Title from './Title';
 import MyCourses from './MyCourses';
 
 interface IDashboardProps {
-  lastWatched: ILastWatched;
   courses: ICourse[];
-  courseProgress: IProgress[];
+  courseProgress: IUserCourseProgress[];
   subscriptions: ISubscription[];
   categories: ICategory[];
 }
 
 export default function Dashboard({
-  lastWatched,
   courses,
   courseProgress,
   subscriptions,
@@ -71,7 +69,7 @@ export default function Dashboard({
             {user?.lastWatched ? (
               <div className={styles.cardLastCourse}>
                 <Image
-                  src={lastWatched.course.imageUrl}
+                  src={user?.lastWatched.course.imageUrl}
                   alt=""
                   width={966}
                   height={750}
@@ -80,13 +78,13 @@ export default function Dashboard({
                 />
                 <div className={styles.details}>
                   <h2 className={styles.courseTitle} tabIndex={0}>
-                    {lastWatched.course.courseTitle}
+                    {user?.lastWatched.course.courseTitle}
                   </h2>
                   <p
                     className={styles.instructor}
-                    aria-label={`Instrutor do curso: ${lastWatched.course.professor}`}
+                    aria-label={`Instrutor do curso: ${user?.lastWatched.course.professor}`}
                   >
-                    Prof: {lastWatched.course.professor}
+                    Prof: {user?.lastWatched.course.professor}
                   </p>
                   <hr className={styles.divisor} />
                   <h1
@@ -97,21 +95,21 @@ export default function Dashboard({
                     Continuar de onde parou:
                   </h1>
                   <Link
-                    href={`/curso/${lastWatched.course.slug}/${lastWatched.lesson.slug}`}
+                    href={`/curso/${user?.lastWatched.course.slug}/${user?.lastWatched.lesson.slug}`}
                     className={styles.lesson}
                   >
                     <ClapperboardClosed />
                     <h3
                       className={styles.lessonTitle}
-                      title={lastWatched.lesson.lessonTitle}
+                      title={user?.lastWatched.lesson.lessonTitle}
                     >
-                      {lastWatched.lesson.lessonTitle}
+                      {user?.lastWatched.lesson.lessonTitle}
                     </h3>
                     <p
                       className={styles.lessonDescription}
-                      title={lastWatched.lesson.lessonDescription}
+                      title={user?.lastWatched.lesson.lessonDescription}
                     >
-                      {lastWatched.lesson.lessonDescription}
+                      {user?.lastWatched.lesson.lessonDescription}
                     </p>
                   </Link>
                 </div>
