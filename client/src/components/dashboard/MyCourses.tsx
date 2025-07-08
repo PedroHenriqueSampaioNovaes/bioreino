@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { ICourse, IProgress } from '@/common/@types/course';
+import { ICourse } from '@/common/@types/course';
+import { IUserCourseProgress } from '@/common/@types/user-course-progress';
 import { ISubscription } from '@/common/@types/subscription';
 import { ICategory } from '@/common/@types/category';
 
@@ -14,7 +15,7 @@ import Filter from './filter';
 
 interface IMyCoursesProps {
   courses: ICourse[];
-  courseProgress: IProgress[];
+  courseProgress: IUserCourseProgress[];
   subscriptions: ISubscription[];
   categories: ICategory[];
 }
