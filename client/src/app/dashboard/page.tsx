@@ -19,7 +19,7 @@ export default async function DashboardPage() {
 
   const { data: subscriptions } = await getSubscriptions();
   const { data: courses } = await getCourses({ planId: user?.plan._id });
-  const { data: courseProgress } = await getUserCoursesProgress();
+  const { data: courseProgress } = await getUserCourseProgress();
   const { data: categories } = await getCategories({ planId: user?.plan._id });
 
   return (
