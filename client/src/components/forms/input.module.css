@@ -1,13 +1,3 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.75rem;
-}
-
-.label {
-  padding-bottom: 0.3125rem;
-}
-
 .input {
   background: var(--contrast-2);
   border: 1px solid var(--contrast-2);
@@ -24,14 +14,14 @@
   box-shadow: 0 0 0 2px #0eb30180;
 }
 
-.input.error {
-  border-color: var(--color-error-message);
-  box-shadow: 0 0 0 2px #ffad9e;
+.error {
+  border-color: var(--color-error-message) !important;
+  box-shadow: 0 0 0 2px #ffad9e !important;
 }
 
-.input.error:focus,
-.input.error:hover {
-  background: #fff;
+.error:focus,
+.error:hover {
+  background: #fff !important;
 }
 
 .errorMessage {
