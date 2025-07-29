@@ -30,9 +30,9 @@ export default function Filter({
     <>
       <p>Filtrar por:</p>
       <div className={styles.filter}>
-        <SelectCustom
+        <SelectCustom.Default
           items={subscriptions.map((subscription) => ({
-            name: subscription.name,
+            label: subscription.name,
             value: subscription._id,
             disabled:
               subscription.fullaccess === true &&
@@ -43,9 +43,9 @@ export default function Filter({
           ariaLabel="Filtrar por plano de assinatura"
         />
         <Arrow />
-        <SelectCustom
+        <SelectCustom.Default
           items={categories.map((category) => ({
-            name: category.name,
+            label: category.name,
             value: category.value,
           }))}
           setFilter={setFilterCategory}
