@@ -23,8 +23,8 @@ interface IMyCoursesProps {
 function filterCourses(
   courses: ICourse[],
   categories: ICategory[],
-  filterCategory: string,
-  filterPlan: string
+  filterCategory: string | null,
+  filterPlan: string | null
 ) {
   const categoryId = categories.find(
     (category) => category.value === filterCategory
@@ -46,8 +46,8 @@ export default function MyCourses({
 }: IMyCoursesProps) {
   const { user } = useUser();
 
-  const [filterPlan, setFilterPlan] = useState(user?.plan._id || '');
-  const [filterCategory, setFilterCategory] = useState('');
+  const [filterPlan, setFilterPlan] = useState(user?.plan._id || null);
+  const [filterCategory, setFilterCategory] = useState<string | null>('');
 
   const listCourse = useMemo(
     () => filterCourses(courses, categories, filterCategory, filterPlan),
