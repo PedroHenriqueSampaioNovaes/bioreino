@@ -30,7 +30,7 @@ export default function Filter({
     <>
       <p>Filtrar por:</p>
       <div className={styles.filter}>
-        <SelectCustom.Default
+        <SelectCustom.DefaultBase
           items={subscriptions.map((subscription) => ({
             label: subscription.name,
             value: subscription._id,
@@ -41,15 +41,17 @@ export default function Filter({
           initialValue={user?.plan._id}
           setFilter={setFilterPlan}
           ariaLabel="Filtrar por plano de assinatura"
+          className={styles.width}
         />
         <Arrow />
-        <SelectCustom.Default
+        <SelectCustom.DefaultBase
           items={categories.map((category) => ({
             label: category.name,
             value: category.value,
           }))}
           setFilter={setFilterCategory}
           ariaLabel="Filtrar por categoria"
+          className={styles.width}
         />
       </div>
     </>
