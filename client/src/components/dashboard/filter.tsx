@@ -15,8 +15,8 @@ interface IFilter {
   user: IUser | null;
   subscriptions: ISubscription[];
   categories: ICategory[];
-  setFilterPlan: Dispatch<SetStateAction<string | null>>;
-  setFilterCategory: Dispatch<SetStateAction<string | null>>;
+  setFilterPlan: Dispatch<SetStateAction<string>>;
+  setFilterCategory: Dispatch<SetStateAction<string>>;
 }
 
 export default function Filter({

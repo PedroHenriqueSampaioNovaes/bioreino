@@ -46,8 +46,8 @@ export default function MyCourses({
 }: IMyCoursesProps) {
   const { user } = useUser();
 
-  const [filterPlan, setFilterPlan] = useState(user?.plan._id || null);
-  const [filterCategory, setFilterCategory] = useState<string | null>('');
+  const [filterPlan, setFilterPlan] = useState(user?.plan._id || '');
+  const [filterCategory, setFilterCategory] = useState<string>('');
 
   const listCourse = useMemo(
     () => filterCourses(courses, categories, filterCategory, filterPlan),
