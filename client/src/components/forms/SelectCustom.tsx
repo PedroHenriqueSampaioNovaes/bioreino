@@ -1,15 +1,16 @@
 'use client';
 
 import { Dispatch, SetStateAction, useState } from 'react';
+import classNames from 'classnames';
 import styles from './selectCustom.module.css';
 import stylesInput from './input.module.css';
-import classNames from 'classnames';
+import stylesLabel from './label.module.css';
 
 import { IoCheckmark, IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import { Select } from '@base-ui-components/react/select';
+import { Field } from '@base-ui-components/react/field';
 import { useController, UseControllerProps } from 'react-hook-form';
 
-import Label from './Label';
 import ErrorMessage from './ErrorMessage';
 
 function findOption(
@@ -19,19 +20,43 @@ function findOption(
   return options.find((option) => option.value === target);
 }
 
-interface IDefault {
-  items: { label: string; value: string | null; disabled?: boolean }[];
-  initialValue?: string;
-  setFilter: Dispatch<SetStateAction<string | null>>;
-  ariaLabel: string;
+interface SelectItem {
+  label: string;
+  value: string;
+  disabled?: boolean;
 }
 
-export function Default({
+function renderSelectItems(items: SelectItem[]) {
+  return items.map(({ label, value, disabled }) => (
+    <Select.Item
+      key={label}
+      className={styles.Item}
+      value={value}
+      disabled={disabled}
+    >
+      <Select.ItemIndicator className={styles.ItemIndicator}>
+        <IoCheckmark className={styles.ItemIndicatorIcon} />
+      </Select.ItemIndicator>
+      <Select.ItemText className={styles.ItemText}>{label}</Select.ItemText>
+    </Select.Item>
+  ));
+}
+
+interface IDefaultBase {
+  items: SelectItem[];
+  initialValue?: string;
+  setFilter: Dispatch<SetStateAction<string>>;
+  ariaLabel: string;
+  className?: string;
+}
+
+export function DefaultBase({
   items,
   initialValue,
   setFilter,
   ariaLabel,
-}: IDefault) {
+  className,
+}: IDefaultBase) {
   const [isOpen, setIsOpen] = useState(false);
 
   const initialOption =
@@ -44,7 +69,10 @@ export function Default({
       onOpenChange={(open) => setIsOpen(open)}
       onValueChange={(value) => setFilter(value)}
     >
-      <Select.Trigger className={styles.Select} aria-label={ariaLabel}>
+      <Select.Trigger
+        className={classNames(styles.Select, className)}
+        aria-label={ariaLabel}
+      >
         <Select.Value className={styles.TriggerValue} />
         <Select.Icon className={styles.SelectIcon}>
           {isOpen ? <IoChevronUp /> : <IoChevronDown />}
@@ -59,21 +87,7 @@ export function Default({
         >
           <Select.ScrollUpArrow className={styles.ScrollArrow} />
           <Select.Popup className={styles.Popup}>
-            {items.map((item) => (
-              <Select.Item
-                key={item.label}
-                className={styles.Item}
-                value={item.value}
-                disabled={item.disabled}
-              >
-                <Select.ItemIndicator className={styles.ItemIndicator}>
-                  <IoCheckmark className={styles.ItemIndicatorIcon} />
-                </Select.ItemIndicator>
-                <Select.ItemText className={styles.ItemText}>
-                  {item.label}
-                </Select.ItemText>
-              </Select.Item>
-            ))}
+            {renderSelectItems(items)}
           </Select.Popup>
           <Select.ScrollDownArrow className={styles.ScrollArrow} />
         </Select.Positioner>
@@ -82,40 +96,46 @@ export function Default({
   );
 }
 
-interface IControlled {
-  items: { label: string; value: string | null; disabled?: boolean }[];
-  initialValue?: string;
+type FormValues = Record<string, unknown>;
+
+interface IUncontrolled<T extends FormValues = FormValues> {
+  items: SelectItem[];
+  label: string;
   ariaLabel: string;
   id: string;
-  controller: UseControllerProps;
+  controller: UseControllerProps<T>;
+  className?: string;
 }
 
-export function Controlled({
+export function Uncontrolled<T extends FormValues>({
   items,
-  initialValue,
   ariaLabel,
+  label,
   id,
   controller,
-}: IControlled) {
+  className,
+}: IUncontrolled<T>) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { field, fieldState } = useController(controller);
 
-  const option = (initialValue && findOption(items, initialValue)) || items[0];
-
   return (
-    <>
+    <Field.Root className={stylesLabel.wrapper}>
+      <Field.Label className={classNames(stylesLabel.label, styles.Label)}>
+        {label}
+      </Field.Label>
+
       <Select.Root
         items={items}
         name={field.name}
-        value={field.value || option.value}
+        value={field.value}
         onOpenChange={setIsOpen}
         onValueChange={field.onChange}
         id={id}
         inputRef={field.ref}
       >
         <Select.Trigger
-          className={classNames(styles.Select, {
+          className={classNames(styles.Select, className, {
             [stylesInput.error]: fieldState.error,
           })}
           aria-label={ariaLabel}
@@ -135,21 +155,7 @@ export function Controlled({
           >
             <Select.ScrollUpArrow className={styles.ScrollArrow} />
             <Select.Popup className={styles.Popup}>
-              {items.map((item) => (
-                <Select.Item
-                  key={item.label}
-                  className={styles.Item}
-                  value={item.value}
-                  disabled={item.disabled}
-                >
-                  <Select.ItemIndicator className={styles.ItemIndicator}>
-                    <IoCheckmark className={styles.ItemIndicatorIcon} />
-                  </Select.ItemIndicator>
-                  <Select.ItemText className={styles.ItemText}>
-                    {item.label}
-                  </Select.ItemText>
-                </Select.Item>
-              ))}
+              {renderSelectItems(items)}
             </Select.Popup>
             <Select.ScrollDownArrow className={styles.ScrollArrow} />
           </Select.Positioner>
@@ -161,30 +167,13 @@ export function Controlled({
           {fieldState.error.message}
         </ErrorMessage>
       )}
-    </>
-  );
-}
-
-interface IWithLabel extends IControlled {
-  id: string;
-  label: string;
-}
-
-// Component with label
-export function WithLabel({ id, label, ...props }: IWithLabel) {
-  return (
-    <div className={styles.wrapper}>
-      <Label htmlFor={id} label={label}>
-        <Controlled {...props} id={id} />
-      </Label>
-    </div>
+    </Field.Root>
   );
 }
 
 const SelectCustom = {
-  Default,
-  WithLabel,
-  Controlled,
+  DefaultBase,
+  Uncontrolled,
 };
 
 export default SelectCustom;
