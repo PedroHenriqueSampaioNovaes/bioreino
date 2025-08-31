@@ -11,7 +11,7 @@ import { useUser } from '@/context/UserContext';
 
 import ListCourse from './ListCourse';
 import Title from './Title';
-import Filter from './filter';
+import Filter from './Filter';
 
 interface IMyCoursesProps {
   courses: ICourse[];
