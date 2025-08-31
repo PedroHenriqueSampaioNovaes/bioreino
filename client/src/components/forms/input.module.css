@@ -6,8 +6,12 @@
   font-family: var(--type-first);
 }
 
-.input:hover:not(.error),
-.input:focus:not(.error) {
+.input[disabled] {
+  cursor: not-allowed;
+}
+
+.input:hover:not(.error, [disabled]),
+.input:focus:not(.error, [disabled]) {
   outline: none;
   background: #fff;
   border-color: var(--bg-2);
