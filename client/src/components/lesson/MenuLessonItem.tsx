@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import styles from './MenuLessonItem.module.css';
+import styles from './menuLessonItem.module.css';
 import Link from 'next/link';
 import classNames from 'classnames';
 

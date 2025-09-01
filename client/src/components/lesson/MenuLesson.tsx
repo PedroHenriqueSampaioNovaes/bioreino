@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './MenuLesson.module.css';
+import styles from './menuLesson.module.css';
 import Link from 'next/link';
 import classNames from 'classnames';
 

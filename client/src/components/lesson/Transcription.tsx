@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import styles from './Transcription.module.css';
+import styles from './transcription.module.css';
 import classNames from 'classnames';
 
 import { useLesson } from '@/context/LessonContext';

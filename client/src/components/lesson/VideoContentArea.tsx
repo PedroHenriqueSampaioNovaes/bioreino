@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './VideoContentArea.module.css';
+import styles from './videoContentArea.module.css';
 import classNames from 'classnames';
 
 import { useLesson } from '@/context/LessonContext';

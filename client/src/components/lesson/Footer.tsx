@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import styles from './Footer.module.css';
+import styles from './footer.module.css';
 import classNames from 'classnames';
 
 import { IoChevronForward } from 'react-icons/io5';

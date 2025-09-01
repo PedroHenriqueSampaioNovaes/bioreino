@@ -4,7 +4,7 @@ import { memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import styles from './CourseItem.module.css';
+import styles from './courseItem.module.css';
 import classNames from 'classnames';
 
 import { ICourse } from '@/common/@types/course';

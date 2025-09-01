@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from './Lesson.module.css';
+import styles from './lesson.module.css';
 
 import { useLesson } from '@/context/LessonContext';
 import { useUser } from '@/context/UserContext';

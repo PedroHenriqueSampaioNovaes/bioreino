@@ -1,7 +1,7 @@
 'use client';
 
 import { ComponentProps, ReactNode } from 'react';
-import styles from './Title.module.css';
+import styles from './title.module.css';
 
 interface ITitle extends ComponentProps<'h4'> {
   children: ReactNode;
