@@ -24,6 +24,7 @@ interface IUser {
   passwordResetToken: string;
   passwordResetExpires: Date;
   accountExpiresAfter: Date;
+  active: Boolean;
 }
 
 const userSchema = new Schema<IUser>(
@@ -57,6 +58,10 @@ const userSchema = new Schema<IUser>(
     accountExpiresAfter: {
       type: Date,
       select: false,
+    },
+    active: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
