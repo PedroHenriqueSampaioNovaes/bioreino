@@ -2,30 +2,47 @@ import { Schema, model, Types } from 'mongoose';
 
 import { IPlan } from './PlanModel';
 
+interface ILastWatched {
+  course: {
+    courseTitle: string;
+    slug: string;
+    professor: string;
+    imageUrl: string;
+  };
+  lesson: {
+    lessonTitle: string;
+    lessonDescription: string;
+    slug: string;
+  };
+  watchedAt: Date;
+}
+
 interface IUser {
   name: string;
   email: string;
   plan: Types.ObjectId | IPlan;
   password: string;
-  lastWatched: {
-    course: {
-      courseTitle: string;
-      slug: string;
-      professor: string;
-      imageUrl: string;
-    };
-    lesson: {
-      lessonTitle: string;
-      lessonDescription: string;
-      slug: string;
-    };
-    watchedAt: Date;
-  };
+  lastWatched: ILastWatched;
   passwordResetToken: string;
   passwordResetExpires: Date;
   accountExpiresAfter: Date;
   active: Boolean;
 }
+
+const lastWatchedSchema = new Schema<ILastWatched>({
+  course: {
+    courseTitle: String,
+    slug: String,
+    professor: String,
+    imageUrl: String,
+  },
+  lesson: {
+    lessonTitle: String,
+    lessonDescription: String,
+    slug: String,
+  },
+  watchedAt: Date,
+});
 
 const userSchema = new Schema<IUser>(
   {
@@ -33,20 +50,7 @@ const userSchema = new Schema<IUser>(
     email: { type: String, required: true },
     plan: { type: Schema.ObjectId, ref: 'Plan', required: true },
     password: { type: String, required: true },
-    lastWatched: {
-      course: {
-        courseTitle: String,
-        slug: String,
-        professor: String,
-        imageUrl: String,
-      },
-      lesson: {
-        lessonTitle: String,
-        lessonDescription: String,
-        slug: String,
-      },
-      watchedAt: Date,
-    },
+    lastWatched: lastWatchedSchema,
     passwordResetToken: {
       type: String,
       select: false,
