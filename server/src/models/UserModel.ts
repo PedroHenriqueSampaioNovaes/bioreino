@@ -26,7 +26,12 @@ interface IUser {
   passwordResetToken: string;
   passwordResetExpires: Date;
   accountExpiresAfter: Date;
-  active: Boolean;
+  status: 'active' | null;
+  stripe_customer_id: string | null;
+  subscription: null | {
+    id: string;
+    priceId: string;
+  };
 }
 
 const lastWatchedSchema = new Schema<ILastWatched>({
@@ -63,9 +68,21 @@ const userSchema = new Schema<IUser>(
       type: Date,
       select: false,
     },
-    active: {
-      type: Boolean,
-      default: false,
+    status: {
+      type: String,
+      enum: ['active'],
+      default: null,
+    },
+    stripe_customer_id: {
+      type: String,
+      default: null,
+    },
+    subscription: {
+      type: {
+        id: String,
+        priceId: String,
+      },
+      default: null,
     },
   },
   { timestamps: true }
