@@ -18,6 +18,7 @@
     "mongoose": "^8.13.2",
     "nodemailer": "^6.10.0",
     "nodemailer-express-handlebars": "6.1.2",
+    "stripe": "^18.5.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
