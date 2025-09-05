@@ -28,7 +28,7 @@ interface IUser {
   accountExpiresAfter: Date;
   status: 'active' | null;
   stripe_customer_id: string | null;
-  subscription: null | {
+  stripe_subscription: null | {
     id: string;
     priceId: string;
   };
@@ -70,19 +70,30 @@ const userSchema = new Schema<IUser>(
     },
     status: {
       type: String,
-      enum: ['active'],
+      enum: [
+        'open',
+        'active',
+        'incomplete',
+        'canceled',
+        'paused',
+        'incomplete_expired',
+        'trialing',
+        'past_due',
+        'unpaid',
+      ],
       default: null,
     },
     stripe_customer_id: {
       type: String,
       default: null,
     },
-    subscription: {
+    stripe_subscription: {
       type: {
         id: String,
         priceId: String,
       },
       default: null,
+      _id: false,
     },
   },
   { timestamps: true }
