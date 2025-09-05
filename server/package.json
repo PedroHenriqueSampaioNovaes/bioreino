@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "tsx watch ./src/server"
+    "start": "tsx watch ./src/server",
+    "stripe": "stripe listen --forward-to localhost:3333/api/stripe/webhook"
   },
   "keywords": [],
   "author": "",
