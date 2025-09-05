@@ -11,7 +11,13 @@ import { errorHandling } from './middlewares/errorHandling';
 const app = express();
 const PORT = 3333;
 
-app.use(express.json());
+app.use((req, res, next) => {
+  if (req.originalUrl === '/api/stripe/webhook') {
+    next();
+  } else {
+    express.json()(req, res, next);
+  }
+});
 
 // Creates a base API route for other routes
 routes.forEach((route) => app.use('/api', route));

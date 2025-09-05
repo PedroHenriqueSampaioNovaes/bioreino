@@ -1,29 +1,58 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { z } from 'zod';
-
 import { CreateUserService } from '../../services/user/CreateUserService';
+
+import { IAddress } from '../../@types/user/address';
+import { ICard } from '../../@types/user/payment';
+
+import { bodyScheme } from '../../schema/createUser';
 
 export class CreateUserController {
   static async handle(req: Request, res: Response, next: NextFunction) {
     try {
-      const bodyScheme = z.object({
-        name: z
-          .string({ required_error: 'O nome é obrigatório.' })
-          .min(5, 'O nome deve ter pelo menos 5 dígitos.'),
-        email: z.string({ required_error: 'O e-mail é obrigatório.' }).email(),
-        password: z
-          .string({ required_error: 'A senha é obrigatória.' })
-          .trim()
-          .min(8, { message: 'A senha deve ter pelo menos 8 dígitos.' }),
-        planId: z.string({
-          required_error: 'O plano de assinatura é obrigatório.',
-        }),
-      });
-
       const bodyData = bodyScheme.parse(req.body);
 
-      const user = await CreateUserService.execute(bodyData);
+      const keyAddress = [
+        'state',
+        'cep',
+        'street',
+        'home_number',
+        'neighborhood',
+      ];
+
+      const keyCard = [
+        'card_number',
+        'cardholder_name',
+        'validate',
+        'cvv',
+        'installment',
+      ];
+
+      const addressFields = Object.entries(bodyData)
+        .filter(([key]) => keyAddress.includes(key))
+        .reduce(
+          (obj: IAddress, [key, value]) => ({
+            ...obj,
+            [key]: value,
+          }),
+          {}
+        );
+
+      const cardFields = Object.entries(bodyData)
+        .filter(([key]) => keyCard.includes(key))
+        .reduce(
+          (obj: ICard, [key, value]) => ({
+            ...obj,
+            [key]: value,
+          }),
+          {}
+        );
+
+      const user = await CreateUserService.execute({
+        ...bodyData,
+        address: addressFields,
+        card: cardFields,
+      });
 
       res.status(201).json(user);
     } catch (error) {
