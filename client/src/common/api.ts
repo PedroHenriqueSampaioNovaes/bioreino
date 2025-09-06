@@ -7,6 +7,10 @@ export function LOGIN() {
   return { url: BASE_URL + '/user/session' };
 }
 
+export function USER_CREATE() {
+  return { url: BASE_URL + '/user' };
+}
+
 export function USER_GET() {
   return { url: BASE_URL + '/user/me' };
 }

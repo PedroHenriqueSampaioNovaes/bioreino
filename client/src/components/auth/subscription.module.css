@@ -1,0 +1,30 @@
+.benefitsTitle,
+.total > h3 {
+  font-family: var(--type-second);
+  font-size: var(--font-3);
+  text-transform: uppercase;
+}
+
+.benefitsTitle {
+  margin-top: 1.5rem;
+  margin-bottom: 0.3125rem;
+}
+
+.benefitList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.total span {
+  font-family: var(--type-first);
+  font-size: 1.125rem;
+  font-weight: 500;
+}

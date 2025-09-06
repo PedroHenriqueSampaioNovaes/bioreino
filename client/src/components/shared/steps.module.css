@@ -1,0 +1,125 @@
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.375rem;
+
+  padding: 0 0.75rem;
+  margin-bottom: 1.375rem;
+}
+
+.buttonLabel {
+  background: none;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  gap: 1.375rem;
+
+  text-transform: uppercase;
+  text-align: center;
+
+  max-width: min-content;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
+.number {
+  font-size: 0.875rem;
+
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+
+    width: 1.625rem;
+    height: 1.625rem;
+
+    background: var(--contrast-2);
+    border-radius: 50%;
+
+    z-index: -1;
+  }
+}
+
+.label {
+  font-family: var(--type-first);
+  font-size: 0.875rem;
+
+  margin-top: 0.1875rem;
+}
+
+@media screen and (min-width: 48rem) {
+  .labels {
+    gap: 2rem;
+  }
+
+  .number {
+    font-size: 1.375rem;
+
+    &::before {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+}
+
+.buttonContainer {
+  margin-top: 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+@media screen and (min-width: 36rem) {
+  .buttonContainer {
+    justify-content: flex-end;
+  }
+}
+
+.button {
+  background-color: var(--contrast-2);
+  color: #616161;
+
+  padding: 0.5rem 12px.5rem;
+
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+
+  cursor: not-allowed;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
+.prevButton {
+  &:not([disabled]) {
+    border-color: #000;
+    background: none;
+    color: #000;
+  }
+}
+
+.nextButton {
+  &:not([disabled]) {
+    font-weight: 500;
+    background-color: var(--bg-2);
+    color: #fff;
+  }
+}
