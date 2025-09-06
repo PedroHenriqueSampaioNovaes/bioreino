@@ -34,20 +34,23 @@ interface IUser {
   };
 }
 
-const lastWatchedSchema = new Schema<ILastWatched>({
-  course: {
-    courseTitle: String,
-    slug: String,
-    professor: String,
-    imageUrl: String,
+const lastWatchedSchema = new Schema<ILastWatched>(
+  {
+    course: {
+      courseTitle: String,
+      slug: String,
+      professor: String,
+      imageUrl: String,
+    },
+    lesson: {
+      lessonTitle: String,
+      lessonDescription: String,
+      slug: String,
+    },
+    watchedAt: Date,
   },
-  lesson: {
-    lessonTitle: String,
-    lessonDescription: String,
-    slug: String,
-  },
-  watchedAt: Date,
-});
+  { _id: true }
+);
 
 const userSchema = new Schema<IUser>(
   {
