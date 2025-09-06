@@ -14,12 +14,12 @@ export class CreateTemporaryAccountService {
   static async execute({ email, password, name, planId }: IUserRequest) {
     const userAlreadyExists = await User.findOne({ email });
     if (userAlreadyExists) {
-      throw new ApiError('E-mail/Senha já existe.', 409);
+      throw new ApiError('E-mail já existe', 409);
     }
 
     const plan = await Plan.findById(planId);
     if (!plan) {
-      throw new ApiError('Plano de assinatura não encontrado.');
+      throw new ApiError('Plano de assinatura não encontrado');
     }
 
     const now = new Date();

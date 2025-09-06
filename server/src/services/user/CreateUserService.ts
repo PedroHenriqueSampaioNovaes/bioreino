@@ -40,7 +40,7 @@ export class CreateUserService {
 
     const userAlreadyExists = await User.findOne({ email });
     if (userAlreadyExists) {
-      throw new ApiError('E-mail/Senha incorreto', 409);
+      throw new ApiError('E-mail já existe', 409);
     }
 
     if (!isValidObjectId(subscriptionId)) {
