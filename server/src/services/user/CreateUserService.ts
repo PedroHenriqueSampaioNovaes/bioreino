@@ -40,18 +40,18 @@ export class CreateUserService {
 
     const userAlreadyExists = await User.findOne({ email });
     if (userAlreadyExists) {
-      throw new ApiError('E-mail/Senha já existe.', 409);
+      throw new ApiError('E-mail/Senha incorreto', 409);
     }
 
     if (!isValidObjectId(subscriptionId)) {
       throw new ApiError(
-        'Houve um erro ao validar o _id do plano de assinatura.'
+        'Houve um erro ao validar o id do plano de assinatura'
       );
     }
 
     const plan = await Plan.findById(subscriptionId);
     if (!plan) {
-      throw new ApiError('Plano de assinatura não encontrado.');
+      throw new ApiError('Plano de assinatura não encontrado');
     }
 
     let activeAccount = null;
