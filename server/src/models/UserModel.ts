@@ -30,7 +30,7 @@ interface IUser {
   stripe_customer_id: string | null;
   stripe_subscription: null | {
     id: string;
-    priceId: string;
+    price_id: string;
   };
 }
 
@@ -93,7 +93,7 @@ const userSchema = new Schema<IUser>(
     stripe_subscription: {
       type: {
         id: String,
-        priceId: String,
+        price_id: String,
       },
       default: null,
       _id: false,

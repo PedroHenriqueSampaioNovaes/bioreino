@@ -46,7 +46,7 @@ export default async function manageSubscription(
           $set: {
             status: subscription,
             stripe_subscription: {
-              priceId: subscription.items.data[0].price.id,
+              price_id: subscription.items.data[0].price.id,
             },
           },
         }
