@@ -101,6 +101,7 @@ export class CreateUserService {
       password: passwordHash,
       name,
       plan: plan._id,
+      payment_method,
       status: activeAccount,
       stripe_customer_id: customer?.id || null,
     });

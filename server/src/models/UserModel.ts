@@ -27,6 +27,7 @@ interface IUser {
   passwordResetExpires: Date;
   accountExpiresAfter: Date;
   status: 'active' | null;
+  payment_method: string;
   stripe_customer_id: string | null;
   stripe_subscription: null | {
     id: string;
@@ -86,6 +87,7 @@ const userSchema = new Schema<IUser>(
       ],
       default: null,
     },
+    payment_method: { type: String, required: true },
     stripe_customer_id: {
       type: String,
       default: null,
