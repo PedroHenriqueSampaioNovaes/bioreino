@@ -4,9 +4,10 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev:all": "run-p frontend backend",
+    "dev:all": "run-p frontend backend stripe",
     "frontend": "npm run dev --prefix client",
     "backend": "npm run start --prefix server",
+    "stripe": "npm run stripe --prefix server",
     "commit": "cz"
   },
   "keywords": [],
