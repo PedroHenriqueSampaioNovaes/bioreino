@@ -2,12 +2,12 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
-import { IStateBrazil, StatesProvider } from '@/context/StatesContext';
+import { type IStateBrazil, StatesProvider } from '@/context/StatesContext';
+import { SubscriptionProvider } from '@/context/SubscriptionContext';
 
 import getSubscriptions from '@/action/subscriptions-get';
 
 import CreateAccountFormHeader from '@/components/auth/CreateAccountFormHeader';
-import { SubscriptionProvider } from '@/context/SubscriptionContext';
 
 export const metadata: Metadata = {
   title: 'Bioreino | Assine',
