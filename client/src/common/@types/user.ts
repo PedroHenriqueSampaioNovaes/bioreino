@@ -29,7 +29,7 @@ export interface IUserCreate {
   _id: string;
   email: string;
   password: string;
-  checkoutURL: string;
+  checkoutURL: string | null;
 }
 
 export interface IUserPost {
