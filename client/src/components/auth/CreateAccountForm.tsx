@@ -39,7 +39,6 @@ export default function CreateAccountForm() {
       ...dataForm,
       subscriptionId: dataForm.subscription,
     });
-    console.log(data, error);
 
     if (ok === false) {
       toast.error(error, { position: 'top-center' });
