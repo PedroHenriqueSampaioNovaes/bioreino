@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { ICourse } from '@/common/@types/course';
 import { IUserCourseProgress } from '@/common/@types/user-course-progress';
 
-import CourseItem from './CourseItem';
+import CourseCard from './CourseCard';
 
 interface IListCourseProps {
   courses: ICourse[];
@@ -20,7 +20,7 @@ export default function ListCourse({
   return (
     <div className={classNames(styles.containerCourses)}>
       {courses.map((course, i) => (
-        <CourseItem
+        <CourseCard
           key={course._id}
           course={course}
           courseProgress={courseProgress}
