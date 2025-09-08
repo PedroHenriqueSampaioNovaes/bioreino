@@ -1,16 +1,16 @@
 'use client';
 
-import styles from './courseItem.module.css';
+import styles from './courseCard.module.css';
 import classNames from 'classnames';
 import Image from 'next/image';
 
 import { ICourse } from '@/common/@types/course';
 
-interface ICourseItemProps {
+interface ICourseCardProps {
   course: ICourse;
 }
 
-export default function CourseItem({ course }: ICourseItemProps) {
+export default function CourseCard({ course }: ICourseCardProps) {
   return (
     <li className={classNames(styles.course)}>
       <a href="">

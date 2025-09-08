@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { ICourse } from '@/common/@types/course';
 
-import CourseItem from './CourseItem';
+import CourseCard from './CourseCard';
 
 interface ICourseShowcaseProps {
   courses: ICourse[];
@@ -15,7 +15,7 @@ export default function CourseShowcase({ courses }: ICourseShowcaseProps) {
   return (
     <ul className={classNames(styles.listCourse)}>
       {courses.map((course) => (
-        <CourseItem key={course._id} course={course} />
+        <CourseCard key={course._id} course={course} />
       ))}
     </ul>
   );

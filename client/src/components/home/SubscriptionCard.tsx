@@ -4,20 +4,20 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { IoCheckmarkCircle } from 'react-icons/io5';
 
-import styles from './subscriptionItem.module.css';
+import styles from './subscriptionCard.module.css';
 import stylesButton from '@/components/forms/button.module.css';
 
 import { ISubscription } from '@/common/@types/subscription';
 
 import formatCurrency from '@/common/utils/formatCurrency';
 
-type SubscriptionItemProps = Pick<ISubscription, 'benefits' | 'name' | 'price'>;
+type SubscriptionCardProps = Pick<ISubscription, 'benefits' | 'name' | 'price'>;
 
-export default function SubscriptionItem({
+export default function SubscriptionCard({
   benefits,
   name,
   price,
-}: SubscriptionItemProps) {
+}: SubscriptionCardProps) {
   return (
     <div className={classNames(styles.card)}>
       <h3 className={classNames(styles.title)}>{name}</h3>
