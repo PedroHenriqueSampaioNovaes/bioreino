@@ -16,6 +16,8 @@ interface ICourseItemProps {
   priorityByIndex: number;
 }
 
+const maxAmountPriorityImages = 10;
+
 function CourseCard({
   course,
   courseProgress,
@@ -37,7 +39,7 @@ function CourseCard({
         alt=""
         width={966}
         height={750}
-        priority={priorityByIndex < 10}
+        priority={priorityByIndex < maxAmountPriorityImages}
         sizes="(max-width: 549px) 100vw, (max-width: 899px) 50vw, 25vw"
       />
 
