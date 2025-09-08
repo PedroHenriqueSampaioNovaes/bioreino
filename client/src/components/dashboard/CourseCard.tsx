@@ -16,7 +16,7 @@ interface ICourseItemProps {
   priorityByIndex: number;
 }
 
-function CourseItem({
+function CourseCard({
   course,
   courseProgress,
   priorityByIndex,
@@ -72,4 +72,4 @@ function CourseItem({
   );
 }
 
-export default memo(CourseItem);
+export default memo(CourseCard);
