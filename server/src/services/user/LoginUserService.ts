@@ -25,6 +25,12 @@ export class LoginUserService {
       }
     }
 
+    if (user.status !== 'active') {
+      throw new ApiError(
+        'Conta inativa. Ative-a efetuando o pagamento da assinatura.'
+      );
+    }
+
     const daysForTokenToExpires = 7;
     const tokenExpiresAt = new Date();
     tokenExpiresAt.setDate(tokenExpiresAt.getDate() + daysForTokenToExpires);
