@@ -2,6 +2,18 @@ import { Schema, model, Types } from 'mongoose';
 
 import { IPlan } from './PlanModel';
 
+const userAccountStatus = [
+  'open',
+  'active',
+  'incomplete',
+  'canceled',
+  'paused',
+  'incomplete_expired',
+  'trialing',
+  'past_due',
+  'unpaid',
+] as const;
+
 interface ILastWatched {
   course: {
     courseTitle: string;
@@ -26,7 +38,7 @@ interface IUser {
   passwordResetToken: string;
   passwordResetExpires: Date;
   accountExpiresAfter: Date;
-  status: 'active' | null;
+  status: typeof userAccountStatus[number] | null;
   payment_method: string;
   stripe_customer_id: string | null;
   stripe_subscription: null | {
@@ -74,17 +86,7 @@ const userSchema = new Schema<IUser>(
     },
     status: {
       type: String,
-      enum: [
-        'open',
-        'active',
-        'incomplete',
-        'canceled',
-        'paused',
-        'incomplete_expired',
-        'trialing',
-        'past_due',
-        'unpaid',
-      ],
+      enum: userAccountStatus,
       default: null,
     },
     payment_method: { type: String, required: true },
