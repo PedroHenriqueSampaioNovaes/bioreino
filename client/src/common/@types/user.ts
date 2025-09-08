@@ -23,6 +23,18 @@ export interface IUser {
     fullaccess: boolean;
   };
   lastWatched?: ILastWatched;
+  status:
+    | 'open'
+    | 'active'
+    | 'incomplete'
+    | 'canceled'
+    | 'paused'
+    | 'incomplete_expired'
+    | 'trialing'
+    | 'past_due'
+    | 'unpaid'
+    | null;
+  payment_method: string;
 }
 
 export interface IUserCreate {
