@@ -13,24 +13,33 @@ import { useController, UseControllerProps } from 'react-hook-form';
 
 import ErrorMessage from './ErrorMessage';
 
-function findOption(
-  options: { label: string; value: string | null }[],
-  target: string | null
-) {
-  return options.find((option) => option.value === target);
+export interface ISelectItemBase {
+  label: string;
+  value: string;
+  disabled?: boolean;
+  onAction?: () => void;
 }
 
-interface SelectItem {
+export interface ISelectItem {
   label: string;
   value: string;
   disabled?: boolean;
 }
 
-function renderSelectItems(items: SelectItem[]) {
-  return items.map(({ label, value, disabled }) => (
+function findOption<T extends Pick<ISelectItemBase, 'label' | 'value'>>(
+  options: T[],
+  target: string | null
+) {
+  return options.find((option) => option.value === target);
+}
+
+function renderSelectItems(items: ISelectItemBase[]) {
+  return items.map(({ label, value, disabled = false, onAction }) => (
     <Select.Item
       key={label}
-      className={styles.Item}
+      className={classNames(styles.Item, {
+        [styles.disabled]: !!onAction,
+      })}
       value={value}
       disabled={disabled}
     >
@@ -43,7 +52,7 @@ function renderSelectItems(items: SelectItem[]) {
 }
 
 interface IDefaultBase {
-  items: SelectItem[];
+  items: ISelectItem[];
   initialValue?: string;
   setFilter: Dispatch<SetStateAction<string>>;
   ariaLabel: string;
@@ -96,10 +105,77 @@ export function DefaultBase({
   );
 }
 
+interface IControlledWithCallback {
+  items: ISelectItemBase[];
+  initialValue?: string;
+  setFilter: Dispatch<SetStateAction<string>>;
+  ariaLabel: string;
+  className?: string;
+}
+
+export function ControlledWithCallback({
+  items,
+  initialValue,
+  setFilter,
+  ariaLabel,
+  className,
+}: IControlledWithCallback) {
+  const initialOption =
+    (initialValue && findOption(items, initialValue)?.value) || items[0].value;
+
+  const [currentValue, setCurrentValue] = useState(initialOption);
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Select.Root
+      items={items}
+      defaultValue={currentValue}
+      value={currentValue}
+      onOpenChange={(open) => setIsOpen(open)}
+      onValueChange={(value) => {
+        if (value === currentValue) return;
+
+        const optionSelected = findOption(items, value);
+
+        if (optionSelected && optionSelected.onAction) {
+          optionSelected.onAction();
+        } else {
+          setCurrentValue(value);
+          setFilter(value);
+        }
+      }}
+    >
+      <Select.Trigger
+        className={classNames(styles.Select, className)}
+        aria-label={ariaLabel}
+      >
+        <Select.Value className={styles.TriggerValue} />
+        <Select.Icon className={styles.SelectIcon}>
+          {isOpen ? <IoChevronUp /> : <IoChevronDown />}
+        </Select.Icon>
+      </Select.Trigger>
+
+      <Select.Portal>
+        <Select.Positioner
+          className={styles.Positioner}
+          alignItemWithTrigger={false}
+          sideOffset={2}
+        >
+          <Select.ScrollUpArrow className={styles.ScrollArrow} />
+          <Select.Popup className={styles.Popup}>
+            {renderSelectItems(items)}
+          </Select.Popup>
+          <Select.ScrollDownArrow className={styles.ScrollArrow} />
+        </Select.Positioner>
+      </Select.Portal>
+    </Select.Root>
+  );
+}
+
 type FormValues = Record<string, unknown>;
 
 interface IUncontrolled<T extends FormValues = FormValues> {
-  items: SelectItem[];
+  items: ISelectItem[];
   label: string;
   ariaLabel: string;
   id: string;
@@ -174,6 +250,7 @@ export function Uncontrolled<T extends FormValues>({
 const SelectCustom = {
   DefaultBase,
   Uncontrolled,
+  ControlledWithCallback,
 };
 
 export default SelectCustom;
