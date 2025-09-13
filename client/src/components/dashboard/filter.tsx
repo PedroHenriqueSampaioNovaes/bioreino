@@ -10,10 +10,10 @@ import { IUser } from '@/common/@types/user';
 import Arrow from '@/icons/Arrow';
 import AdviceMessageWhat from '@/icons/AdviceMessageWhat';
 
-import SelectCustom, {
+import Select, {
   ISelectItem,
   ISelectItemBase,
-} from '@/components/forms/SelectCustom';
+} from '@/components/forms/Select';
 
 import DialogImage from '../ui/AlertDialogImage';
 
@@ -60,7 +60,7 @@ export default function Filter({
     <>
       <p>Filtrar por:</p>
       <div className={styles.filter}>
-        <SelectCustom.ControlledWithCallback
+        <Select.ControlledWithCallback
           items={subscriptionOptions}
           initialValue={user?.plan._id}
           setFilter={setFilterPlan}
@@ -68,7 +68,7 @@ export default function Filter({
           className={styles.width}
         />
         <Arrow />
-        <SelectCustom.DefaultBase
+        <Select.DefaultBase
           items={categoryOptions}
           setFilter={setFilterCategory}
           ariaLabel="Filtrar por categoria"

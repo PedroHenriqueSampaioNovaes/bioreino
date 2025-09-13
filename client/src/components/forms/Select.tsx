@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useState } from 'react';
 import classNames from 'classnames';
-import styles from './selectCustom.module.css';
+import styles from './select.module.css';
 import stylesInput from './input.module.css';
 import stylesLabel from './label.module.css';
 

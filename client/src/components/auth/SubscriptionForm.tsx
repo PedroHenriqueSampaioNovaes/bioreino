@@ -12,7 +12,7 @@ import formatCurrency from '@/common/utils/formatCurrency';
 
 import { useSubscription } from '@/context/SubscriptionContext';
 
-import SelectCustom from '../forms/SelectCustom';
+import Select from '../forms/Select';
 
 interface ISubscriptionFormProps {
   subscriptions: ISubscription[];
@@ -49,7 +49,7 @@ export default function SubscriptionForm({
 
   return (
     <>
-      <SelectCustom.ControlledByRHF
+      <Select.ControlledByRHF
         label="Selecione um plano *"
         ariaLabel="Selecione um plano de assinatura"
         id="subscription"

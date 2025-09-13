@@ -10,7 +10,7 @@ import formatCurrency from '@/common/utils/formatCurrency';
 
 import Input from '../forms/Input';
 import FieldSplit from '../forms/FieldSplit';
-import SelectCustom from '../forms/SelectCustom';
+import Select from '../forms/Select';
 
 function getInstallments(price: number) {
   const installments: { label: string; value: string }[] = [];
@@ -83,7 +83,7 @@ export default function CreditCardForm({ price }: ICreditCardForm) {
           {...registerWithMask('cvv', '999', { jitMasking: true })}
           error={errors.cvv?.message}
         />
-        <SelectCustom.ControlledByRHF
+        <Select.ControlledByRHF
           id="installments"
           ariaLabel="Parcele em até 12 vezes sem juros"
           label="Parcelas (12x sem juros)"

@@ -8,7 +8,7 @@ import type { IStateBrazil } from '@/context/StatesContext';
 import type { CreateAccountFormValues } from '@/schemas/createAccountSchema';
 
 import Input from '../forms/Input';
-import SelectCustom from '../forms/SelectCustom';
+import Select from '../forms/Select';
 
 interface IAddressFormProps {
   states: IStateBrazil[];
@@ -58,7 +58,7 @@ export default function AddressForm({ states }: IAddressFormProps) {
         error={errors.cep?.message}
       />
 
-      <SelectCustom.ControlledByRHF
+      <Select.ControlledByRHF
         items={[
           { label: 'Selecione um estado', value: '', disabled: true },
           ...listState,
