@@ -174,7 +174,7 @@ export function ControlledWithCallback({
 
 type FormValues = Record<string, unknown>;
 
-interface IUncontrolled<T extends FormValues = FormValues> {
+interface IControlledByRHF<T extends FormValues = FormValues> {
   items: ISelectItem[];
   label: string;
   ariaLabel: string;
@@ -183,14 +183,14 @@ interface IUncontrolled<T extends FormValues = FormValues> {
   className?: string;
 }
 
-export function Uncontrolled<T extends FormValues>({
+export function ControlledByRHF<T extends FormValues>({
   items,
   ariaLabel,
   label,
   id,
   controller,
   className,
-}: IUncontrolled<T>) {
+}: IControlledByRHF<T>) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { field, fieldState } = useController(controller);
@@ -249,7 +249,7 @@ export function Uncontrolled<T extends FormValues>({
 
 const SelectCustom = {
   DefaultBase,
-  Uncontrolled,
+  ControlledByRHF,
   ControlledWithCallback,
 };
 

@@ -58,7 +58,7 @@ export default function AddressForm({ states }: IAddressFormProps) {
         error={errors.cep?.message}
       />
 
-      <SelectCustom.Uncontrolled
+      <SelectCustom.ControlledByRHF
         items={[
           { label: 'Selecione um estado', value: '', disabled: true },
           ...listState,

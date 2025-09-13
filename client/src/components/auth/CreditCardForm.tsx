@@ -83,7 +83,7 @@ export default function CreditCardForm({ price }: ICreditCardForm) {
           {...registerWithMask('cvv', '999', { jitMasking: true })}
           error={errors.cvv?.message}
         />
-        <SelectCustom.Uncontrolled
+        <SelectCustom.ControlledByRHF
           id="installments"
           ariaLabel="Parcele em até 12 vezes sem juros"
           label="Parcelas (12x sem juros)"

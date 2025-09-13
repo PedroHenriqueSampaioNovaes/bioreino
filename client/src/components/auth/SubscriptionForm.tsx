@@ -49,7 +49,7 @@ export default function SubscriptionForm({
 
   return (
     <>
-      <SelectCustom.Uncontrolled
+      <SelectCustom.ControlledByRHF
         label="Selecione um plano *"
         ariaLabel="Selecione um plano de assinatura"
         id="subscription"
