@@ -64,7 +64,7 @@ export default function CreateAccountForm() {
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <h1 className={styles.title}>
         Assine e tenha acesso aos cursos do plano selecionado
       </h1>
@@ -125,6 +125,6 @@ export default function CreateAccountForm() {
         labelAction="Finalizar Pagamento"
         saveFormData={saveFormData}
       />
-    </div>
+    </>
   );
 }

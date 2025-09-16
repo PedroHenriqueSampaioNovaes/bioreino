@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
+import styles from './assinar.module.css';
+
 import { type IStateBrazil, StatesProvider } from '@/context/StatesContext';
 import { SubscriptionProvider } from '@/context/SubscriptionContext';
 
@@ -31,7 +33,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
     <StatesProvider states={states}>
       <SubscriptionProvider subscriptions={subscriptions}>
         <CreateAccountFormHeader />
-        {children}
+        <div className={styles.container}>{children}</div>
       </SubscriptionProvider>
     </StatesProvider>
   );
