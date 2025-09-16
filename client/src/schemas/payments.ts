@@ -1,19 +1,7 @@
 import z from 'zod';
+import { basePersonalDataSchema, personalDataRefine } from './personalData';
 
-function personalDataRefine<T extends z.ZodTypeAny>(
-  data: z.infer<T>,
-  ctx: z.RefinementCtx
-) {
-  if (data.password !== data.confirm_password) {
-    ctx.addIssue({
-      path: ['confirm_password'],
-      message: 'As senhas devem ser iguais',
-      code: z.ZodIssueCode.custom,
-    });
-  }
-}
-
-function paymentMethodRefine<T extends z.ZodTypeAny>(
+export function paymentMethodRefine<T extends z.ZodTypeAny>(
   data: z.infer<T>,
   ctx: z.RefinementCtx
 ) {
@@ -107,17 +95,6 @@ function paymentMethodRefine<T extends z.ZodTypeAny>(
   }
 }
 
-const basePersonalDataSchema = z.object({
-  name: z.string().min(5, 'O nome deve ter pelo menos 5 dígitos'),
-  email: z.string().nonempty('Preencha este campo').email('E-mail inválido'),
-  cpf: z
-    .string()
-    .nonempty('Preencha este campo')
-    .regex(/[0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}/, 'CPF incorreto'),
-  password: z.string().min(8, 'Mínimo 8 caracteres'),
-  confirm_password: z.string().nonempty('Preencha este campo'),
-});
-
 export const personalDataSchema =
   basePersonalDataSchema.superRefine(personalDataRefine);
 
@@ -125,7 +102,7 @@ export const subscriptionSchema = z.object({
   subscription: z.string().nonempty('Escolha uma opção'),
 });
 
-const basePaymentMethodSchema = z.object({
+export const basePaymentMethodSchema = z.object({
   payment_method: z.enum(['pix', 'credit_card', 'bank_slip', 'stripe', '']),
   state: z.string().optional(),
   cep: z.string().optional(),
@@ -141,14 +118,3 @@ const basePaymentMethodSchema = z.object({
 
 export const paymentMethodSchema =
   basePaymentMethodSchema.superRefine(paymentMethodRefine);
-
-export const formSchema = z
-  .object({
-    ...basePersonalDataSchema.shape,
-    ...subscriptionSchema.shape,
-    ...basePaymentMethodSchema.shape,
-  })
-  .superRefine(personalDataRefine)
-  .superRefine(paymentMethodRefine);
-
-export type CreateAccountFormValues = z.infer<typeof formSchema>;
