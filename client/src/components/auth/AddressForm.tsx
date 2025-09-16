@@ -3,12 +3,16 @@
 import { FocusEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useHookFormMask } from 'use-mask-input';
+import z from 'zod';
 
 import type { IStateBrazil } from '@/context/StatesContext';
-import type { CreateAccountFormValues } from '@/schemas/createAccountSchema';
+
+import { basePaymentMethodSchema } from '@/schemas/payments';
 
 import Input from '../forms/Input';
 import Select from '../forms/Select';
+
+type AddressFormValues = z.infer<typeof basePaymentMethodSchema>;
 
 interface IAddressFormProps {
   states: IStateBrazil[];
@@ -20,7 +24,7 @@ export default function AddressForm({ states }: IAddressFormProps) {
     setValue,
     trigger,
     formState: { errors },
-  } = useFormContext<CreateAccountFormValues>();
+  } = useFormContext<AddressFormValues>();
   const registerWithMask = useHookFormMask(register);
 
   async function handleZipcodeBlur(e: FocusEvent<HTMLInputElement>) {

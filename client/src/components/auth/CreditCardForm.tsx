@@ -3,14 +3,17 @@
 import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useHookFormMask } from 'use-mask-input';
-
-import type { CreateAccountFormValues } from '@/schemas/createAccountSchema';
+import z from 'zod';
 
 import formatCurrency from '@/common/utils/formatCurrency';
+
+import { basePaymentMethodSchema } from '@/schemas/payments';
 
 import Input from '../forms/Input';
 import FieldSplit from '../forms/FieldSplit';
 import Select from '../forms/Select';
+
+type CardFormValues = z.infer<typeof basePaymentMethodSchema>;
 
 function getInstallments(price: number) {
   const installments: { label: string; value: string }[] = [];
@@ -36,7 +39,7 @@ export default function CreditCardForm({ price }: ICreditCardForm) {
     control,
     setValue,
     formState: { errors },
-  } = useFormContext<CreateAccountFormValues>();
+  } = useFormContext<CardFormValues>();
   const registerWithMask = useHookFormMask(register);
 
   function formatValidityField(e: ChangeEvent<HTMLInputElement>) {

@@ -4,16 +4,21 @@ import { useParams } from 'next/navigation';
 import styles from './createAccountForm.module.css';
 import { SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import z from 'zod';
 
 import Steps from '../shared/Steps';
 
 import {
-  type CreateAccountFormValues,
-  formSchema,
+  basePaymentMethodSchema,
+  paymentMethodRefine,
   paymentMethodSchema,
   personalDataSchema,
   subscriptionSchema,
-} from '@/schemas/createAccountSchema';
+} from '@/schemas/payments';
+import {
+  basePersonalDataSchema,
+  personalDataRefine,
+} from '@/schemas/personalData';
 
 import { useSubscription } from '@/context/SubscriptionContext';
 
@@ -22,6 +27,17 @@ import userCreate from '@/action/user-create';
 import PersonalDataForm from './PersonalDataForm';
 import MethodPaymentForm from './MethodPaymentForm';
 import SubscriptionForm from './SubscriptionForm';
+
+const formSchema = z
+  .object({
+    ...basePersonalDataSchema.shape,
+    ...subscriptionSchema.shape,
+    ...basePaymentMethodSchema.shape,
+  })
+  .superRefine(personalDataRefine)
+  .superRefine(paymentMethodRefine);
+
+type AccountFormValues = z.infer<typeof formSchema>;
 
 export default function CreateAccountForm() {
   const params = useParams() as { subscription: string };
@@ -32,9 +48,7 @@ export default function CreateAccountForm() {
     getSubscriptionByKeyValue('name', params.subscription)?._id ||
     subscriptions[0]._id;
 
-  const saveFormData: SubmitHandler<CreateAccountFormValues> = async (
-    dataForm
-  ) => {
+  const saveFormData: SubmitHandler<AccountFormValues> = async (dataForm) => {
     const { ok, data, error } = await userCreate({
       ...dataForm,
       subscriptionId: dataForm.subscription,

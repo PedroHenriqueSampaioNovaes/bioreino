@@ -2,10 +2,12 @@
 
 import { useFormContext } from 'react-hook-form';
 import { useHookFormMask } from 'use-mask-input';
-
-import { CreateAccountFormValues } from '@/schemas/createAccountSchema';
+import z from 'zod';
 
 import Input from '../forms/Input';
+import { basePersonalDataSchema } from '@/schemas/personalData';
+
+type PersonalDataFormValues = z.infer<typeof basePersonalDataSchema>;
 
 export default function PersonalDataForm() {
   const {
@@ -13,7 +15,7 @@ export default function PersonalDataForm() {
     getValues,
     trigger,
     formState: { errors },
-  } = useFormContext<CreateAccountFormValues>();
+  } = useFormContext<PersonalDataFormValues>();
   const registerWithMask = useHookFormMask(register);
 
   return (

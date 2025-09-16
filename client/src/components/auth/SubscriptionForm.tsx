@@ -3,16 +3,24 @@
 import { useEffect } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import styles from './subscription.module.css';
-
-import type { CreateAccountFormValues } from '@/schemas/createAccountSchema';
+import z from 'zod';
 
 import { ISubscription } from '@/common/@types/subscription';
+
+import {
+  basePaymentMethodSchema,
+  subscriptionSchema,
+} from '@/schemas/payments';
 
 import formatCurrency from '@/common/utils/formatCurrency';
 
 import { useSubscription } from '@/context/SubscriptionContext';
 
 import Select from '../forms/Select';
+
+type SubscriptionFormValues = z.infer<
+  typeof subscriptionSchema & typeof basePaymentMethodSchema
+>;
 
 interface ISubscriptionFormProps {
   subscriptions: ISubscription[];
@@ -24,7 +32,7 @@ export default function SubscriptionForm({
   const { getSubscriptionByKeyValue } = useSubscription();
 
   const { control, getValues, setValue } =
-    useFormContext<CreateAccountFormValues>();
+    useFormContext<SubscriptionFormValues>();
 
   const watchSubscription = useWatch({ control, name: 'subscription' });
 

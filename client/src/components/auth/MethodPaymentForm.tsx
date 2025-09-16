@@ -2,23 +2,30 @@
 
 import styles from './methodPaymentForm.module.css';
 import { useFormContext, useWatch } from 'react-hook-form';
+import z from 'zod';
 
 import formatCurrency from '@/common/utils/formatCurrency';
 
+import {
+  basePaymentMethodSchema,
+  subscriptionSchema,
+} from '@/schemas/payments';
+
 import { useStates } from '@/context/StatesContext';
-
-import type { CreateAccountFormValues } from '@/schemas/createAccountSchema';
-
 import { useSubscription } from '@/context/SubscriptionContext';
 
 import AddressForm from './AddressForm';
 import CreditCardForm from './CreditCardForm';
 
+type MethodPaymentFormValues = z.infer<
+  typeof basePaymentMethodSchema & typeof subscriptionSchema
+>;
+
 export default function MethodPaymentForm() {
   const { states } = useStates();
   const { getSubscriptionByKeyValue } = useSubscription();
 
-  const { register, control } = useFormContext<CreateAccountFormValues>();
+  const { register, control } = useFormContext<MethodPaymentFormValues>();
 
   const watchPaymentMethod = useWatch({ control, name: 'payment_method' });
   const watchSubscription = useWatch({ control, name: 'subscription' });
