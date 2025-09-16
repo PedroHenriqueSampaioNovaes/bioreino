@@ -92,7 +92,7 @@ export default function Filter({
           ),
           callToActionDeny: 'Deixar pra depois',
           callToActionConfirm: 'Atualizar plano',
-          href: '/assinar/upgrade',
+          href: `/assinar/${fullAccessSubscription?.name}`,
         }}
       />
     </>
