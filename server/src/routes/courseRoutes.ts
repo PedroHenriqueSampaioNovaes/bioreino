@@ -9,4 +9,4 @@ const router = Router();
 router.get('/', ListCourseController.handle);
 router.get('/slug/:slug', isAuthenticated, GetCourseController.handle);
 
-export default router.use('/courses', router);
+export default { router, baseRoute: '/courses' };

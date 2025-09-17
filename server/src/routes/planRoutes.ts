@@ -6,4 +6,4 @@ const router = Router();
 
 router.get('/', ListSubscriptionController.handle);
 
-export default router.use('/subscriptions', router);
+export default { router, baseRoute: '/subscriptions' };

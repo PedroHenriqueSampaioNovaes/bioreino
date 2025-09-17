@@ -10,4 +10,4 @@ router.post(
   SubscriptionWebhookController.handle
 );
 
-export default router.use('/stripe', router);
+export default { router, baseRoute: '/stripe' };

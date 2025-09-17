@@ -15,4 +15,4 @@ router.patch(
   UpdateCourseProgressController.handle
 );
 
-export default router.use('/course_progress', router);
+export default { router, baseRoute: '/course_progress' };

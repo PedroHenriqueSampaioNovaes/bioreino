@@ -6,4 +6,4 @@ const router = Router();
 
 router.get('/', ListCategoryController.handle);
 
-export default router.use('/categories', router);
+export default { router, baseRoute: '/categories' };
