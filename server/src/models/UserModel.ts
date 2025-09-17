@@ -14,6 +14,8 @@ const userAccountStatus = [
   'unpaid',
 ] as const;
 
+const paymentMethods = ['pix', 'credit_card', 'bank_slip', 'stripe'] as const;
+
 interface ILastWatched {
   course: {
     courseTitle: string;
@@ -38,8 +40,8 @@ interface IUser {
   passwordResetToken: string;
   passwordResetExpires: Date;
   accountExpiresAfter: Date;
-  status: typeof userAccountStatus[number] | null;
-  payment_method: string;
+  status: (typeof userAccountStatus)[number] | null;
+  payment_method: (typeof paymentMethods)[number];
   stripe_customer_id: string | null;
   stripe_subscription: null | {
     id: string;
@@ -89,7 +91,7 @@ const userSchema = new Schema<IUser>(
       enum: userAccountStatus,
       default: null,
     },
-    payment_method: { type: String, required: true },
+    payment_method: { type: String, enum: paymentMethods, required: true },
     stripe_customer_id: {
       type: String,
       default: null,
