@@ -20,7 +20,7 @@ export default async function manageSubscription(
             status: subscription.status,
             stripe_subscription: {
               id: subscription.id,
-              priceId: subscription.items.data[0].price.id,
+              price_id: subscription.items.data[0].price.id,
             },
           },
         }
