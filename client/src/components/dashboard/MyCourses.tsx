@@ -47,7 +47,7 @@ export default function MyCourses({
   const { user } = useUser();
 
   const [filterPlan, setFilterPlan] = useState(user?.plan._id || '');
-  const [filterCategory, setFilterCategory] = useState<string>('');
+  const [filterCategory, setFilterCategory] = useState('');
 
   const listCourse = useMemo(
     () => filterCourses(courses, categories, filterCategory, filterPlan),
@@ -74,6 +74,7 @@ export default function MyCourses({
         user={user}
         categories={categoryOptions}
         subscriptions={subscriptions}
+        filterCategory={filterCategory}
         setFilterPlan={setFilterPlan}
         setFilterCategory={setFilterCategory}
       />
