@@ -14,7 +14,7 @@ export default async function updateStripeUserAccount(
   user: UserDocument,
   stripe_price_id: string
 ) {
-  if (user.stripe_subscription && user.stripe_customer_id) {
+  if (user.stripe_customer_id) {
     const session = await stripe.billingPortal.sessions.create({
       customer: user.stripe_customer_id,
       return_url: process.env.STRIPE_UPDATE_CANCEL_URL,
