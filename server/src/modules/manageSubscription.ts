@@ -1,6 +1,7 @@
 import { stripe } from '../config/stripe';
 
 import { User } from '../models/UserModel';
+import { Plan } from '../models/PlanModel';
 
 type Action = 'create' | 'delete' | null;
 
@@ -11,12 +12,17 @@ export default async function manageSubscription(
 ) {
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
 
+  const subscriptionModel = await Plan.findOne({
+    stripe_price_id: subscription.items.data[0].price.id,
+  });
+
   if (action === 'create') {
     try {
       await User.findOneAndUpdate(
         { stripe_customer_id: customerId },
         {
           $set: {
+            plan: subscriptionModel?._id,
             status: subscription.status,
             stripe_subscription: {
               id: subscription.id,
@@ -44,8 +50,10 @@ export default async function manageSubscription(
         { stripe_customer_id: customerId },
         {
           $set: {
-            status: subscription,
+            plan: subscriptionModel?._id,
+            status: subscription.status,
             stripe_subscription: {
+              id: subscription.id,
               price_id: subscription.items.data[0].price.id,
             },
           },
