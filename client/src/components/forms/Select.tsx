@@ -51,32 +51,29 @@ function renderSelectItems(items: ISelectItemBase[]) {
   ));
 }
 
-interface IDefaultBase {
+interface IControlled {
   items: ISelectItem[];
-  initialValue?: string;
-  setFilter: Dispatch<SetStateAction<string>>;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
   ariaLabel: string;
   className?: string;
 }
 
-export function DefaultBase({
+export function Controlled({
   items,
-  initialValue,
-  setFilter,
+  value,
+  setValue,
   ariaLabel,
   className,
-}: IDefaultBase) {
+}: IControlled) {
   const [isOpen, setIsOpen] = useState(false);
-
-  const initialOption =
-    (initialValue && findOption(items, initialValue)) || items[0];
 
   return (
     <Select.Root
       items={items}
-      defaultValue={initialOption.value}
       onOpenChange={(open) => setIsOpen(open)}
-      onValueChange={(value) => setFilter(value)}
+      value={value}
+      onValueChange={(value) => setValue(value)}
     >
       <Select.Trigger
         className={classNames(styles.Select, className)}
@@ -248,7 +245,7 @@ export function ControlledByRHF<T extends FormValues>({
 }
 
 const SelectCustom = {
-  DefaultBase,
+  Controlled,
   ControlledByRHF,
   ControlledWithCallback,
 };
