@@ -21,6 +21,7 @@ interface IFilter {
   user: IUser | null;
   subscriptions: ISubscription[];
   categories: ICategory[];
+  filterCategory: string;
   setFilterPlan: Dispatch<SetStateAction<string>>;
   setFilterCategory: Dispatch<SetStateAction<string>>;
 }
@@ -29,6 +30,7 @@ export default function Filter({
   user,
   subscriptions,
   categories,
+  filterCategory,
   setFilterPlan,
   setFilterCategory,
 }: IFilter) {
@@ -68,9 +70,10 @@ export default function Filter({
           className={styles.width}
         />
         <Arrow />
-        <Select.DefaultBase
+        <Select.Controlled
           items={categoryOptions}
-          setFilter={setFilterCategory}
+          value={filterCategory || categoryOptions[0]?.value}
+          setValue={setFilterCategory}
           ariaLabel="Filtrar por categoria"
           className={styles.width}
         />
