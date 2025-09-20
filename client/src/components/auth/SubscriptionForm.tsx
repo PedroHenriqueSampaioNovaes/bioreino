@@ -7,10 +7,8 @@ import z from 'zod';
 
 import { ISubscription } from '@/common/@types/subscription';
 
-import {
-  basePaymentMethodSchema,
-  subscriptionSchema,
-} from '@/schemas/payments';
+import { basePaymentMethodSchema } from '@/schemas/payments';
+import { subscriptionSchema } from '@/schemas/subscription';
 
 import formatCurrency from '@/common/utils/formatCurrency';
 

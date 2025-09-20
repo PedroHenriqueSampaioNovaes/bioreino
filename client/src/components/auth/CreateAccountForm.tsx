@@ -12,13 +12,13 @@ import {
   basePaymentMethodSchema,
   paymentMethodRefine,
   paymentMethodSchema,
-  personalDataSchema,
-  subscriptionSchema,
 } from '@/schemas/payments';
 import {
   basePersonalDataSchema,
   personalDataRefine,
+  personalDataSchema,
 } from '@/schemas/personalData';
+import { subscriptionSchema } from '@/schemas/subscription';
 
 import { useSubscription } from '@/context/SubscriptionContext';
 

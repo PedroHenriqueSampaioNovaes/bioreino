@@ -6,10 +6,8 @@ import z from 'zod';
 
 import formatCurrency from '@/common/utils/formatCurrency';
 
-import {
-  basePaymentMethodSchema,
-  subscriptionSchema,
-} from '@/schemas/payments';
+import { basePaymentMethodSchema } from '@/schemas/payments';
+import { subscriptionSchema } from '@/schemas/subscription';
 
 import { useStates } from '@/context/StatesContext';
 import { useSubscription } from '@/context/SubscriptionContext';
