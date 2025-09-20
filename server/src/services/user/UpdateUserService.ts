@@ -56,7 +56,9 @@ export class UpdateUserService {
 
     const updatedUser = await User.findByIdAndUpdate(user_id, userData, {
       new: true,
-    }).select('+name email plan status payment_method createdAt updatedAt');
+    })
+      .select('+name email plan status payment_method')
+      .populate('plan', '-benefits -price -stripe_price_id');
 
     return { updatedUser, stripeURL };
   }
