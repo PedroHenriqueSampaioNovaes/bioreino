@@ -58,13 +58,9 @@ export class CreateUserService {
     let checkoutURL = null;
     let customer = null;
 
-    if (
-      payment_method === 'pix' ||
-      payment_method === 'bank_slip' ||
-      payment_method === 'credit_card'
-    ) {
+    if (payment_method !== 'stripe') {
       activeAccount = 'active';
-    } else if (payment_method === 'stripe') {
+    } else {
       customer = await stripe.customers.create({
         name,
         email,
@@ -77,7 +73,6 @@ export class CreateUserService {
       });
 
       const stripeCheckoutSession = await stripe.checkout.sessions.create({
-        billing_address_collection: 'required',
         customer: customer.id,
         line_items: [
           {
