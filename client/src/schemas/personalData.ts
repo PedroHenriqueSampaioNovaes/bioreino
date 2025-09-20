@@ -23,3 +23,6 @@ export const basePersonalDataSchema = z.object({
   password: z.string().min(8, 'Mínimo 8 caracteres'),
   confirm_password: z.string().nonempty('Preencha este campo'),
 });
+
+export const personalDataSchema =
+  basePersonalDataSchema.superRefine(personalDataRefine);

@@ -1,5 +1,4 @@
 import z from 'zod';
-import { basePersonalDataSchema, personalDataRefine } from './personalData';
 
 export function paymentMethodRefine<T extends z.ZodTypeAny>(
   data: z.infer<T>,
@@ -94,13 +93,6 @@ export function paymentMethodRefine<T extends z.ZodTypeAny>(
     }
   }
 }
-
-export const personalDataSchema =
-  basePersonalDataSchema.superRefine(personalDataRefine);
-
-export const subscriptionSchema = z.object({
-  subscription: z.string().nonempty('Escolha uma opção'),
-});
 
 export const basePaymentMethodSchema = z.object({
   payment_method: z.enum(['pix', 'credit_card', 'bank_slip', 'stripe', '']),
