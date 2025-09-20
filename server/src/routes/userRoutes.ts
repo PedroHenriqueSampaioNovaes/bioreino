@@ -9,6 +9,7 @@ import { ForgotPasswordController } from '../controllers/user/ForgotPasswordCont
 import { ResetPasswordController } from '../controllers/user/ResetPasswordController';
 import { TemporaryAccountController } from '../controllers/user/TemporaryAccountController';
 import { DetailUserController } from '../controllers/user/DetailUserController';
+import { UpdateUserController } from '../controllers/user/UpdateUserController';
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.post('/temporary', TemporaryAccountController.handle);
 
 router.get('/me', isAuthenticated, DetailUserController.handle);
 
+router.patch('/', isAuthenticated, UpdateUserController.handle);
 router.patch(
   '/last_course',
   isAuthenticated,
