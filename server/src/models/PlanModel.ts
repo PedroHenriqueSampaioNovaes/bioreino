@@ -1,6 +1,7 @@
-import { Schema, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 
 export interface IPlan {
+  _id: Types.ObjectId;
   name: string;
   price: number;
   benefits: string[];

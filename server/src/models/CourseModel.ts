@@ -1,7 +1,5 @@
 import { Schema, model, Types } from 'mongoose';
 
-import { IPlan } from './PlanModel';
-
 export interface ICourse {
   professor: string;
   imageUrl: string;
@@ -13,18 +11,9 @@ export interface ICourse {
     name: string;
     value: string;
   };
-  lessons:
-    | {
-        _id: Types.ObjectId;
-        title: string;
-        description: string;
-        transcription: string;
-        videoUrl: string;
-        slug: string;
-      }[]
-    | Types.ObjectId[];
+  lessons: Types.ObjectId[];
   free: boolean;
-  plan: Types.ObjectId | IPlan;
+  plan: Types.ObjectId;
 }
 
 const courseSchema = new Schema<ICourse>(

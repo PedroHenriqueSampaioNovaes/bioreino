@@ -1,20 +1,13 @@
 import { Schema, model, Types } from 'mongoose';
 
-import { IPlan } from './PlanModel';
+import Stripe from 'stripe';
 
-const userAccountStatus = [
-  'open',
-  'active',
-  'incomplete',
-  'canceled',
-  'paused',
-  'incomplete_expired',
-  'trialing',
-  'past_due',
-  'unpaid',
+export const paymentMethods = [
+  'pix',
+  'credit_card',
+  'bank_slip',
+  'stripe',
 ] as const;
-
-const paymentMethods = ['pix', 'credit_card', 'bank_slip', 'stripe'] as const;
 
 interface ILastWatched {
   course: {
@@ -31,16 +24,16 @@ interface ILastWatched {
   watchedAt: Date;
 }
 
-interface IUser {
+export interface IUser {
   name: string;
   email: string;
-  plan: Types.ObjectId | IPlan;
+  plan: Types.ObjectId;
   password: string;
-  lastWatched: ILastWatched;
-  passwordResetToken: string;
-  passwordResetExpires: Date;
-  accountExpiresAfter: Date;
-  status: (typeof userAccountStatus)[number] | null;
+  lastWatched?: ILastWatched;
+  passwordResetToken?: string;
+  passwordResetExpires?: Date;
+  accountExpiresAfter?: Date;
+  status: Stripe.Subscription.Status | null;
   payment_method: (typeof paymentMethods)[number];
   stripe_customer_id: string | null;
   stripe_subscription: null | {
@@ -88,7 +81,6 @@ const userSchema = new Schema<IUser>(
     },
     status: {
       type: String,
-      enum: userAccountStatus,
       default: null,
     },
     payment_method: { type: String, enum: paymentMethods, required: true },
