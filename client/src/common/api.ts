@@ -15,6 +15,10 @@ export function USER_GET() {
   return { url: BASE_URL + '/user/me' };
 }
 
+export function USER_UPDATE() {
+  return { url: BASE_URL + '/user' };
+}
+
 export function USER_COURSE_PROGRESS_GET() {
   return { url: BASE_URL + '/course_progress' };
 }

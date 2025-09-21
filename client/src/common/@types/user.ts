@@ -13,6 +13,18 @@ export interface ILastWatched {
   watchedAt: string;
 }
 
+type SubscriptionStatus =
+  | 'open'
+  | 'active'
+  | 'incomplete'
+  | 'canceled'
+  | 'paused'
+  | 'incomplete_expired'
+  | 'trialing'
+  | 'past_due'
+  | 'unpaid'
+  | null;
+
 export interface IUser {
   _id: string;
   name: string;
@@ -23,17 +35,7 @@ export interface IUser {
     fullaccess: boolean;
   };
   lastWatched?: ILastWatched;
-  status:
-    | 'open'
-    | 'active'
-    | 'incomplete'
-    | 'canceled'
-    | 'paused'
-    | 'incomplete_expired'
-    | 'trialing'
-    | 'past_due'
-    | 'unpaid'
-    | null;
+  status: SubscriptionStatus;
   payment_method: string;
 }
 
@@ -62,4 +64,17 @@ export interface IUserPost {
   validate?: string;
   cvv?: string;
   installment?: string;
+}
+
+export interface IUserUpdate {
+  subscriptionId: string;
+  payment_method: string;
+}
+
+export interface IUserDataUpdate {
+  updatedUser: Pick<
+    IUser,
+    '_id' | 'email' | 'plan' | 'status' | 'payment_method'
+  >;
+  stripeURL: string | null;
 }
