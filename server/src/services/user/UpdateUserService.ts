@@ -1,5 +1,7 @@
 import { ApiError } from '../../utils/ApiError';
 
+import { stripe } from '../../config/stripe';
+
 import { paymentMethods, User } from '../../models/UserModel';
 import { Plan } from '../../models/PlanModel';
 
@@ -35,12 +37,16 @@ export class UpdateUserService {
       );
     }
 
-    userData.payment_method = payment_method;
+    // CANCEL SUBSCRIPTION ON STRIPE IF THE USER CHANGED THEIR PAYMENT METHOD FROM STRIPE TO ANOTHER
+    if (payment_method !== 'stripe' && userData.stripe_subscription) {
+      await stripe.subscriptions.cancel(userData.stripe_subscription.id);
+    }
 
     let stripeURL = null;
     let customerId = userData.stripe_customer_id;
 
     if (payment_method === 'stripe') {
+      // CREATE OR UPDATE CUSTOMER ON STRIPE
       const { url, stripeCustomerId } = await updateStripeUserAccount(
         userData,
         subscription.stripe_price_id
