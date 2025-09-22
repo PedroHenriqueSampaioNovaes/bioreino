@@ -52,6 +52,7 @@ export class UpdateUserService {
       userData.plan = subscription._id;
     }
 
+    userData.payment_method = payment_method;
     userData.stripe_customer_id = customerId;
 
     const updatedUser = await User.findByIdAndUpdate(user_id, userData, {
