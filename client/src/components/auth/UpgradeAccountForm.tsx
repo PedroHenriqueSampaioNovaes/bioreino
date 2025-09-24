@@ -15,13 +15,14 @@ import {
 import { subscriptionSchema } from '@/schemas/subscription';
 
 import { useSubscription } from '@/context/SubscriptionContext';
+import { useUser } from '@/context/UserContext';
+
+import userUpdate from '@/action/user-update';
 
 import Steps from '../shared/Steps';
 
 import SubscriptionForm from './SubscriptionForm';
 import MethodPaymentForm from './MethodPaymentForm';
-import userUpdate from '@/action/user-update';
-import { useUser } from '@/context/UserContext';
 
 const formSchema = z
   .object({
