@@ -1,17 +1,16 @@
 import { ApiError } from '../../utils/ApiError';
 
-import { User } from '../../models/UserModel';
+import { IUser, User } from '../../models/UserModel';
 import { Plan } from '../../models/PlanModel';
 
-interface IUserRequest {
-  name: string;
-  email: string;
-  password: string;
-  planId: string;
-}
-
 export class CreateTemporaryAccountService {
-  static async execute({ email, password, name, planId }: IUserRequest) {
+  static async execute({
+    email,
+    password,
+    name,
+    plan: planId,
+    payment_method,
+  }: IUser) {
     const userAlreadyExists = await User.findOne({ email });
     if (userAlreadyExists) {
       throw new ApiError('E-mail já existe', 409);
@@ -19,7 +18,7 @@ export class CreateTemporaryAccountService {
 
     const plan = await Plan.findById(planId);
     if (!plan) {
-      throw new ApiError('Plano de assinatura não encontrado');
+      throw new ApiError('Ocorreu um problema ao tentar obter a assinatura');
     }
 
     const now = new Date();
@@ -30,6 +29,7 @@ export class CreateTemporaryAccountService {
       password,
       name,
       plan: plan._id,
+      payment_method,
       accountExpiresAfter: now,
     });
     await user.save();
