@@ -33,10 +33,10 @@ export interface IUser {
   passwordResetToken?: string;
   passwordResetExpires?: Date;
   accountExpiresAfter?: Date;
-  status: Stripe.Subscription.Status | null;
+  status?: Stripe.Subscription.Status | null;
   payment_method: (typeof paymentMethods)[number];
-  stripe_customer_id: string | null;
-  stripe_subscription: null | {
+  stripe_customer_id?: string | null;
+  stripe_subscription?: null | {
     id: string;
     price_id: string;
   };
