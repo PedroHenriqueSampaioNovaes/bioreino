@@ -1,13 +1,9 @@
+import { Types } from 'mongoose';
 import { NextFunction, Request, Response } from 'express';
 
 import { CreateTemporaryAccountService } from '../../services/user/CreateTemporaryAccountService';
 
-interface IDataUser {
-  name: string;
-  email: string;
-  password: string;
-  planId: string;
-}
+import { IUser } from '../../models/UserModel';
 
 export class TemporaryAccountController {
   static async handle(req: Request, res: Response, next: NextFunction) {
@@ -15,11 +11,12 @@ export class TemporaryAccountController {
       const caracteres = 'abcdefghijklmnopqrstuvwxyz';
       const password = caracteres + '0123456789@!*.';
 
-      const dataUser: IDataUser = {
+      const dataUser: IUser = {
         name: 'Turista',
         email: '',
         password: '',
-        planId: '6577d38d69c149d4293871ec',
+        plan: new Types.ObjectId('6577d2cb69c149d4293871ea'),
+        payment_method: 'pix',
       };
 
       for (let i = 0; i < 15; i++) {
