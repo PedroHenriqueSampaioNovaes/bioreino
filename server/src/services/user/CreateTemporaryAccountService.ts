@@ -29,6 +29,7 @@ export class CreateTemporaryAccountService {
       password,
       name,
       plan: plan._id,
+      status: 'active',
       payment_method,
       accountExpiresAfter: now,
     });
