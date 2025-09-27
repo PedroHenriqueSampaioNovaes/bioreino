@@ -19,7 +19,7 @@ export class TemporaryAccountController {
         payment_method: 'pix',
       };
 
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 6; i++) {
         const index = Math.floor(Math.random() * caracteres.length);
         dataUser['email'] += caracteres[index];
       }
