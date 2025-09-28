@@ -17,12 +17,18 @@ export class LoginUserService {
       throw new ApiError('E-mail ou senha incorreto.');
     }
 
-    // compare the password with db password if it's not a temporary account
-    if (user.accountExpiresAfter === undefined) {
-      const matchPassword = compareSync(password, user.password);
-      if (!matchPassword) {
-        throw new ApiError('E-mail ou senha incorreto.');
-      }
+    const isTemporaryAccount = !!user.accountExpiresAfter;
+
+    // compare the password with db password
+    let matchPassword;
+    if (isTemporaryAccount) {
+      matchPassword = password === user.password;
+    } else {
+      matchPassword = compareSync(password, user.password);
+    }
+
+    if (!matchPassword) {
+      throw new ApiError('E-mail ou senha incorreto.');
     }
 
     if (user.status !== 'active') {
