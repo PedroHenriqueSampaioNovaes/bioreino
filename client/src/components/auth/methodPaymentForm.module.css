@@ -1,9 +1,3 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1.125rem;
-}
-
 .methodsPayment {
   display: flex;
   flex-direction: column;

@@ -37,7 +37,7 @@ export default function MethodPaymentForm() {
 
   if (!subscription) return null;
   return (
-    <div className={styles.wrapper}>
+    <>
       <div className={styles.methodsPayment}>
         {/* PIX */}
         <div className={styles.divisorPayRadio}>
@@ -125,6 +125,6 @@ export default function MethodPaymentForm() {
       </div>
 
       {needsAddress && <AddressForm states={states} />}
-    </div>
+    </>
   );
 }
