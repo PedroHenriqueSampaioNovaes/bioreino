@@ -46,6 +46,13 @@ export interface IUserCreate {
   checkoutURL: string | null;
 }
 
+export interface IUserTemporaryCreate {
+  _id: string;
+  email: string;
+  password: string;
+  accountExpiresAfter: Date;
+}
+
 export interface IUserPost {
   name: string;
   email: string;

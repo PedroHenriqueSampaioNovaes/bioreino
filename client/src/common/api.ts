@@ -11,6 +11,10 @@ export function USER_CREATE() {
   return { url: BASE_URL + '/user' };
 }
 
+export function USER_TEMPORARY_CREATE() {
+  return { url: BASE_URL + '/user/temporary' };
+}
+
 export function USER_GET() {
   return { url: BASE_URL + '/user/me' };
 }

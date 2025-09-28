@@ -1,0 +1,25 @@
+.callToAction {
+  display: block;
+
+  background-color: var(--color-warning-message);
+  color: #000;
+
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  line-height: 1.2;
+
+  padding: 0.625rem 1.25rem;
+  margin: 0 auto 1.25rem auto;
+
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+.toastMsg hr {
+  margin: 0.375rem 0;
+}
+
+.toastMsg p:first-of-type {
+  margin-bottom: 0.125rem;
+}
