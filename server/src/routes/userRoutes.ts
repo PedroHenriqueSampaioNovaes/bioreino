@@ -7,7 +7,7 @@ import { LoginUserController } from '../controllers/user/LoginUserController';
 import { UpdateLastWatchedController } from '../controllers/user/UpdateLastWatchedController';
 import { ForgotPasswordController } from '../controllers/user/ForgotPasswordController';
 import { ResetPasswordController } from '../controllers/user/ResetPasswordController';
-import { TemporaryAccountController } from '../controllers/user/TemporaryAccountController';
+import { CreateTemporaryAccountController } from '../controllers/user/CreateTemporaryAccountController';
 import { DetailUserController } from '../controllers/user/DetailUserController';
 import { UpdateUserController } from '../controllers/user/UpdateUserController';
 
@@ -16,7 +16,7 @@ const router = Router();
 router.post('/', CreateUserController.handle);
 router.post('/session', LoginUserController.handle);
 router.post('/forgot_password', ForgotPasswordController.handle);
-router.post('/temporary', TemporaryAccountController.handle);
+router.post('/temporary', CreateTemporaryAccountController.handle);
 
 router.get('/me', isAuthenticated, DetailUserController.handle);
 

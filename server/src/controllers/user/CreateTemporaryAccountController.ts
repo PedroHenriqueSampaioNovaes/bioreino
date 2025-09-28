@@ -5,7 +5,7 @@ import { CreateTemporaryAccountService } from '../../services/user/CreateTempora
 
 import { IUser } from '../../models/UserModel';
 
-export class TemporaryAccountController {
+export class CreateTemporaryAccountController {
   static async handle(req: Request, res: Response, next: NextFunction) {
     try {
       const caracteres = 'abcdefghijklmnopqrstuvwxyz';
