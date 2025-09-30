@@ -38,6 +38,16 @@ export default function MethodPaymentForm() {
   if (!subscription) return null;
   return (
     <>
+      <div className={styles.warningMessage}>
+        <h2>ATENÇÃO</h2>
+        <p>
+          Nenhuma transação real será feita, por se tratar de um projeto de
+          aprendizado apenas. Logo, não haverá cobranças em nenhum dos métodos
+          de pagamento abaixo. Pode-se preencher os campos com dados falsos,
+          seguindo seus requisitos de preenchimento.
+        </p>
+      </div>
+
       <div className={styles.methodsPayment}>
         {/* PIX */}
         <div className={styles.divisorPayRadio}>
