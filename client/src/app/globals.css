@@ -27,7 +27,8 @@
   --color-primary: #36a32c;
   --color-secondary: #0eb301;
   --color-error-message: #ff4c2c;
-  --color-warning-message: #FFE900;
+  --color-warning-message: #ffec23;
+  --color-warning-message-border: #f5bb00;
 
   --contrast-1: #737373;
   --contrast-2: #eee;
