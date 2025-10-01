@@ -14,6 +14,7 @@ import { useSubscription } from '@/context/SubscriptionContext';
 
 import AddressForm from './AddressForm';
 import CreditCardForm from './CreditCardForm';
+import Alert from '../ui/Alert';
 
 type MethodPaymentFormValues = z.infer<
   typeof basePaymentMethodSchema & typeof subscriptionSchema
@@ -38,15 +39,10 @@ export default function MethodPaymentForm() {
   if (!subscription) return null;
   return (
     <>
-      <div className={styles.warningMessage}>
-        <h2>ATENÇÃO</h2>
-        <p>
-          Nenhuma transação real será feita, por se tratar de um projeto de
-          aprendizado apenas. Logo, não haverá cobranças em nenhum dos métodos
-          de pagamento abaixo. Pode-se preencher os campos com dados falsos,
-          seguindo seus requisitos de preenchimento.
-        </p>
-      </div>
+      <Alert
+        message="Nenhuma transação real será feita, por se tratar de um projeto apenas para estudo. Logo, não será feita nenhuma cobrança independentemente do método de pagamento abaixo selecionado. Pode-se preencher os campos com dados falsos, se atentando apenas aos seus requisitos de preenchimento."
+        width="31.25rem"
+      />
 
       <div className={styles.methodsPayment}>
         {/* PIX */}
@@ -125,6 +121,9 @@ export default function MethodPaymentForm() {
             <strong>Stripe</strong>
           </label>
           <div className={styles.instructions}>
+            <Alert
+              message="Ao escolher o Stripe como método de pagamento, insira os seguintes dados de cartão de crédito para conseguir concluir o pagamento: 4242 4242 4242 4242. Em seguida, insira o MM/AA com qualquer data futura, ex.: 10/45. Por fim, digite um CVC qualquer, como: 123"
+            />
             <p className={styles.instructionsText}>
               Ao clicar em &quot;Finalizar Pagamento&quot;, a página será
               redirecionada e você poderá pagar à vista pelo Stripe. Esta opção
