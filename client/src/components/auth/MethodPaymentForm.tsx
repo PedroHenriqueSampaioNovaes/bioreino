@@ -126,7 +126,7 @@ export default function MethodPaymentForm() {
           </label>
           <div className={styles.instructions}>
             <p className={styles.instructionsText}>
-              Ao clicar em &quot;Finalizar Compra&quot; a página será
+              Ao clicar em &quot;Finalizar Pagamento&quot;, a página será
               redirecionada e você poderá pagar à vista pelo Stripe. Esta opção
               possui diversos outros meios de pagamento.
             </p>
