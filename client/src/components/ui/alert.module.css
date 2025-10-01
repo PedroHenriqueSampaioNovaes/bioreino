@@ -1,0 +1,23 @@
+.alert {
+  background-color: var(--color-warning-message);
+  border: 2px solid var(--color-warning-message-border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 0 auto 1rem auto;
+  text-align: center;
+}
+
+.fullWidth {
+  width: 100%;
+  max-width: none;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-family: var(--type-second);
+  margin-bottom: 0.125rem;
+}
+
+.message {
+  line-height: 1.2;
+}
