@@ -4,7 +4,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev:all": "run-p frontend backend stripe",
+    "dev:all": "concurrently \"npm run frontend\" \"npm run backend\" \"npm run stripe\"",
     "frontend": "npm run dev --prefix client",
     "backend": "npm run start --prefix server",
     "stripe": "npm run stripe --prefix server",
@@ -14,10 +14,8 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
-    "npm-run-all": "^4.1.5"
-  },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "ts-node": "^10.9.2"
   },
