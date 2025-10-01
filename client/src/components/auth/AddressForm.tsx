@@ -5,6 +5,8 @@ import { useFormContext } from 'react-hook-form';
 import { useHookFormMask } from 'use-mask-input';
 import z from 'zod';
 
+import styles from './addressForm.module.css';
+
 import type { IStateBrazil } from '@/context/StatesContext';
 
 import { basePaymentMethodSchema } from '@/schemas/payments';
@@ -52,7 +54,7 @@ export default function AddressForm({ states }: IAddressFormProps) {
   }));
 
   return (
-    <>
+    <div className={styles.addressForm}>
       <Input
         label="CEP *"
         {...registerWithMask('cep', '99999-999', {
@@ -88,6 +90,6 @@ export default function AddressForm({ states }: IAddressFormProps) {
         {...register('neighborhood')}
         error={errors.neighborhood?.message}
       />
-    </>
+    </div>
   );
 }
