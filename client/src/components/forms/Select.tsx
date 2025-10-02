@@ -201,7 +201,7 @@ export function ControlledByRHF<T extends FormValues>({
       <Select.Root
         items={items}
         name={field.name}
-        value={field.value}
+        value={field.value as string}
         onOpenChange={setIsOpen}
         onValueChange={field.onChange}
         id={id}
