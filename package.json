@@ -8,8 +8,7 @@
     "frontend": "npm run dev --prefix client",
     "backend": "npm run start --prefix server",
     "stripe": "npm run stripe --prefix server",
-    "commit": "cz",
-    "postinstall": "npm install --prefix client"
+    "commit": "cz"
   },
   "keywords": [],
   "author": "",
