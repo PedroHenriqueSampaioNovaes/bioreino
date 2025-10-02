@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx watch ./src/server",
-    "stripe": "stripe listen --forward-to localhost:3333/api/stripe/webhook"
+    "stripe": "stripe listen --forward-to localhost:3333/api/stripe/webhook",
+    "build": "tsc --build",
+    "start:build": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
