@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "postinstall": "npm run build"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@base-ui-components/react": "^1.0.0-beta.1",
