@@ -15,13 +15,13 @@ app.get('/ping', (req, res) => {
   res.send('pong');
 });
 
-// app.use((req, res, next) => {
-//   if (req.originalUrl === '/api/stripe/webhook') {
-//     next();
-//   } else {
-//     express.json()(req, res, next);
-//   }
-// });
+app.use((req, res, next) => {
+  if (req.originalUrl === '/api/stripe/webhook') {
+    next();
+  } else {
+    express.json()(req, res, next);
+  }
+});
 
 // // Creates a base API route for other routes
 // routes.forEach((route) => {
