@@ -23,6 +23,13 @@ export class ResetPasswordService {
       throw new ApiError('Token inválido.', 400);
     }
 
+    if (!user.passwordResetExpires) {
+      throw new ApiError(
+        'Não foi identificado nenhuma solicitação de redefinição de senha.',
+        400
+      );
+    }
+
     const now = new Date();
     if (now > user.passwordResetExpires) {
       throw new ApiError('Token expirado.', 400);
