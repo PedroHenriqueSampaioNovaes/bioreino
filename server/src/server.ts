@@ -23,6 +23,8 @@ app.use((req, res, next) => {
   }
 });
 
+console.log('rotas importadas', routes);
+
 // Creates a base API route for other routes
 routes.forEach((route) => {
   app.use(`/api${route.baseRoute}`, route.router);
