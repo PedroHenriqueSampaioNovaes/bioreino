@@ -6,13 +6,14 @@ import categoryRoutes from './categoryRoutes';
 import coursesProgressRoutes from './coursesProgressRoutes';
 import planRoutes from './planRoutes';
 import userRoutes from './userRoutes';
+import stripeRoutes from './stripeRoutes';
 
 type Route = {
   router: Router;
   baseRoute: string;
 };
 
-export default [courseRoutes, coursesProgressRoutes, categoryRoutes, planRoutes, userRoutes];
+export default [courseRoutes, coursesProgressRoutes, categoryRoutes, planRoutes, userRoutes, stripeRoutes];
 
 // Automates route export
 // export default fs
