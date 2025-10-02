@@ -10,5 +10,5 @@ type Route = {
 // Automates route export
 export default fs
   .readdirSync(__dirname)
-  .filter((file) => file.indexOf('.') !== 0 && file !== 'index.ts')
+  .filter((file) => file.indexOf('.') !== 0 && !/index.[ts|js]/.test(file))
   .map((file) => require(path.resolve(__dirname, file)).default) as Route[];
