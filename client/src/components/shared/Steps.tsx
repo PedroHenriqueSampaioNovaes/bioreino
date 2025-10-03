@@ -39,7 +39,7 @@ export default function Steps<T extends FieldValues>({
 }: IStep<T>) {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const methods = useForm({
+  const methods = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     mode: 'onBlur',
     reValidateMode: 'onBlur',
