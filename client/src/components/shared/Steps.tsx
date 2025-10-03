@@ -18,12 +18,12 @@ import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface IStep<T extends FieldValues> {
-  formSchema: z.ZodType<T>;
+  formSchema: z.Schema;
   steps: {
     label: string;
     fields: (keyof T)[];
     component: ReactNode;
-    schema: z.ZodType<Record<string, unknown>>;
+    schema: z.Schema;
   }[];
   initialFormData: DefaultValues<T>;
   labelAction: string;
