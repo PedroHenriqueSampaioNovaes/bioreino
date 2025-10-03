@@ -10,3 +10,4 @@ async function initializeDb() {
     console.error('Um erro ocorreu ao tentar se conectar com mongoose', error);
   }
 }
+initializeDb();
