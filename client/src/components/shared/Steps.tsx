@@ -14,16 +14,16 @@ import styles from './steps.module.css';
 import classNames from 'classnames';
 
 import { ReactNode, useState } from 'react';
-import z, { ZodSchema } from 'zod';
+import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface IStep<T extends FieldValues> {
-  formSchema: ZodSchema<T>;
+  formSchema: z.ZodType<T>;
   steps: {
     label: string;
     fields: (keyof T)[];
     component: ReactNode;
-    schema: ZodSchema;
+    schema: z.ZodType<Record<string, unknown>>;
   }[];
   initialFormData: DefaultValues<T>;
   labelAction: string;
