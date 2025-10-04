@@ -1,7 +1,7 @@
 import { ICategoryGet } from './@types/category';
 import { ICourseGet, IListCourseGet } from './@types/course';
 
-const BASE_URL = `${process.env.NEXT_PUBLIC_URL}/api`;
+const BASE_URL = `${process.env.NEXT_PUBLIC_API}/api`;
 
 export function LOGIN() {
   return { url: BASE_URL + '/user/session' };
