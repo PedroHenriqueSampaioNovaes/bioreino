@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function LostPasswordPage() {
   return (
     <div className="animeLeft">
-      <Header title="Perdeu a Senha?" />
+      <Header title="Perdeu a Senha?" href='/login' linkTitle='Voltar para o login' />
       <ForgotPasswordForm />
     </div>
   );

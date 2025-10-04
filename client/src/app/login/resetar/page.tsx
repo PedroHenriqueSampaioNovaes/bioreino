@@ -17,7 +17,7 @@ export default async function ResetPasswordPage({
 
   return (
     <div className="animeLeft">
-      <Header title="Resete a Senha" />
+      <Header title="Resete a Senha" href='/login' linkTitle='Voltar para o login' />
       <ResetPasswordForm searchParams={urlSearchParams} />
     </div>
   );
