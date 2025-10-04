@@ -123,6 +123,7 @@ export default function MethodPaymentForm() {
           <div className={styles.instructions}>
             <Alert
               message="Ao escolher o Stripe como método de pagamento, insira os seguintes dados de cartão de crédito para conseguir concluir o pagamento: 4242 4242 4242 4242. Em seguida, insira o MM/AA com qualquer data futura, ex.: 10/45. Por fim, digite um CVC qualquer, como: 123"
+              title='Aviso'
             />
             <p className={styles.instructionsText}>
               Ao clicar em &quot;Finalizar Pagamento&quot;, a página será
