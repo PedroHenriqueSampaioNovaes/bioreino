@@ -15,6 +15,8 @@ import { useUser } from '@/context/UserContext';
 
 import { basePersonalDataSchema } from '@/schemas/personalData';
 
+import Countdown from '@/common/utils/Countdown';
+
 import Input from '../forms/Input';
 
 type PersonalDataFormValues = z.infer<typeof basePersonalDataSchema>;
@@ -40,16 +42,16 @@ export default function PersonalDataForm() {
       return;
     }
 
-    const dateNow = Date.now();
-    const futureDate = new Date(data.accountExpiresAfter).getTime();
-    const timeToExpireAccount = Math.ceil(
-      (futureDate - dateNow) / (24 * 60 * 60 * 1000)
-    );
+    const futureDate = new Date(data.accountExpiresAfter);
+    const timeToExpireAccount = new Countdown(futureDate).total;
 
     toast.success(CreateAccountMsgSuccess, {
       position: 'top-center',
       data: {
-        timeToExpireAccount,
+        dateToExpireAccount: {
+          hours: timeToExpireAccount.hours,
+          minutes: timeToExpireAccount.minutes,
+        },
         email: data.email,
         password: data.password,
       },
@@ -123,15 +125,19 @@ export default function PersonalDataForm() {
 }
 
 type CreateAccountMsgSuccessProps = {
-  data: { timeToExpireAccount: number; email: string; password: string };
+  data: {
+    dateToExpireAccount: { hours: number; minutes: number };
+    email: string;
+    password: string;
+  };
 };
 
 const CreateAccountMsgSuccess = ({
   data,
 }: Partial<ToastContentProps> & CreateAccountMsgSuccessProps) => (
   <div className={styles.toastMsg}>
-    Esta conta expirará em {data.timeToExpireAccount} dia
-    {data.timeToExpireAccount > 1 ? 's' : ''}.
+    Esta conta expirará em {data.dateToExpireAccount.hours} horas e{' '}
+    {data.dateToExpireAccount.minutes} minutos.
     <hr />
     <p>E-MAIL: {data.email}</p>
     <p>SENHA: {data.password}</p>
