@@ -24,7 +24,12 @@ export default function ForgotPasswordForm() {
   } = useForm<Schema>({ resolver: zodResolver(schema) });
 
   const onSubmit: SubmitHandler<Schema> = async ({ email }) => {
-    const { data } = await forgotPassword({ email });
+    const { data, ok, error } = await forgotPassword({ email });
+
+    if (!ok) {
+      toast.error(error, { position: 'top-center' });
+      return;
+    }
 
     toast.success(data, { position: 'top-center' });
   };
