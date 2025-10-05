@@ -16,7 +16,8 @@ export async function sendMail(
     if (mailOptions.to) await transporter.sendMail(mailOptions);
 
     return successMessage || 'E-mail enviado com sucesso!';
-  } catch {
+  } catch (err) {
+    console.error(err);
     throw new ApiError('Ocorreu um erro ao tentar enviar o e-mail.', 400);
   }
 }
