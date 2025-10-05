@@ -5,7 +5,7 @@ import { stripe } from '../../config/stripe';
 
 import { ApiError } from '../../utils/ApiError';
 
-import manageSubscription from '../../modules/manageSubscription';
+import manageSubscription from '../../modules/stripe/manageSubscription';
 
 export class SubscriptionWebhookController {
   static async handle(req: Request, res: Response, next: NextFunction) {

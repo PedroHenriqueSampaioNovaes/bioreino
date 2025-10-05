@@ -1,7 +1,7 @@
 import { SendMailOptions } from 'nodemailer';
-import { transporter } from '../config/mailer';
+import { transporter } from '../../config/mailer';
 
-import { ApiError } from '../utils/ApiError';
+import { ApiError } from '../../utils/ApiError';
 
 interface CustomSendMailOptions extends SendMailOptions {
   template?: string;

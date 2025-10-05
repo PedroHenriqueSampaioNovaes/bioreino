@@ -5,7 +5,7 @@ import { stripe } from '../../config/stripe';
 import { paymentMethods, User } from '../../models/UserModel';
 import { Plan } from '../../models/PlanModel';
 
-import updateStripeUserAccount from '../../utils/updateStripeUserAccount';
+import updateStripeUserAccount from '../../modules/stripe/updateStripeUserAccount';
 
 interface IUpdateUserRequest {
   subscriptionId: string;
