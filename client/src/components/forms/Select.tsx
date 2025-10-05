@@ -118,7 +118,7 @@ export function ControlledWithCallback({
   className,
 }: IControlledWithCallback) {
   const initialOption =
-    (initialValue && findOption(items, initialValue)?.value) || items[0].value;
+    (initialValue && findOption(items, initialValue)?.value) || items[0]?.value;
 
   const [currentValue, setCurrentValue] = useState(initialOption);
   const [isOpen, setIsOpen] = useState(false);
