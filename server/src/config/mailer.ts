@@ -4,11 +4,12 @@ import hbs from 'nodemailer-express-handlebars';
 import path from 'node:path';
 
 const transporter = createTransport({
-  host: 'smtp.sendgrid.net',
-  port: 587,
+  host: 'smtp.resend.com',
+  secure: true,
+  port: 465,
   auth: {
-    user: 'apikey',
-    pass: process.env.SENDGRID_API_KEY,
+    user: 'resend',
+    pass: process.env.RESEND_API_KEY,
   },
 });
 
