@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ForgotPasswordController = void 0;
 const zod_1 = require("zod");
 const ForgotPasswordService_1 = require("../../services/user/ForgotPasswordService");
-const sendMail_1 = require("../../modules/sendMail");
+const sendMail_1 = require("../../modules/mail/sendMail");
 class ForgotPasswordController {
     static handle(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {

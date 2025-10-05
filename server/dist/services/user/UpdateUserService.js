@@ -17,7 +17,7 @@ const ApiError_1 = require("../../utils/ApiError");
 const stripe_1 = require("../../config/stripe");
 const UserModel_1 = require("../../models/UserModel");
 const PlanModel_1 = require("../../models/PlanModel");
-const updateStripeUserAccount_1 = __importDefault(require("../../utils/updateStripeUserAccount"));
+const updateStripeUserAccount_1 = __importDefault(require("../../modules/stripe/updateStripeUserAccount"));
 class UpdateUserService {
     static execute(_a) {
         return __awaiter(this, arguments, void 0, function* ({ subscriptionId, payment_method, user_id, }) {

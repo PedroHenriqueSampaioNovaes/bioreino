@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SubscriptionWebhookController = void 0;
 const stripe_1 = require("../../config/stripe");
 const ApiError_1 = require("../../utils/ApiError");
-const manageSubscription_1 = __importDefault(require("../../modules/manageSubscription"));
+const manageSubscription_1 = __importDefault(require("../../modules/stripe/manageSubscription"));
 class SubscriptionWebhookController {
     static handle(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
