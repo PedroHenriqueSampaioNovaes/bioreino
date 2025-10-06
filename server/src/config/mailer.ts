@@ -13,22 +13,15 @@ const transporter = createTransport({
   },
 });
 
-// Determines the correct path based on the environment
-const isProduction = process.env.NODE_ENV === 'production';
-
-const resourcesPath = isProduction
-  ? path.resolve(process.cwd(), 'dist', 'resources', 'mail')
-  : path.resolve(process.cwd(), 'src', 'resources', 'mail');
-
 transporter.use(
   'compile',
   hbs({
     viewEngine: {
       defaultLayout: undefined,
-      partialsDir: resourcesPath,
+      partialsDir: path.resolve('./src/resources/mail/'),
       extname: '.html',
     },
-    viewPath: resourcesPath,
+    viewPath: path.resolve('./src/resources/mail/'),
     extName: '.html',
   })
 );
