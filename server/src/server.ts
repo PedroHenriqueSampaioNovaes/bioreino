@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   }
 });
 
-app.use(verifyApiKey);
+app.use('/api', verifyApiKey);
 
 // Creates a base API route for other routes
 routes.forEach((route) => {
