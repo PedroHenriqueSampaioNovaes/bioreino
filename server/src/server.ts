@@ -4,6 +4,8 @@ import './db/connection';
 import express from 'express';
 import 'express-async-errors';
 
+import path from 'node:path';
+
 import routes from './routes';
 
 import { errorHandling } from './middlewares/errorHandling';
@@ -12,7 +14,7 @@ const app = express();
 const PORT = 3333;
 
 app.get('/ping', (req, res) => {
-  res.send('pong');
+  res.send(path.resolve());
 });
 
 app.use((req, res, next) => {
