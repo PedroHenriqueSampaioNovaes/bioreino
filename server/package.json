@@ -5,8 +5,7 @@
   "scripts": {
     "start": "tsx watch ./src/server",
     "stripe": "stripe listen --forward-to localhost:3333/api/stripe/webhook",
-    "build": "tsc --build && npm run copy:assets",
-    "copy:assets": "node -e \"const fs=require('fs');const path=require('path');function copyDir(src,dest){if(!fs.existsSync(dest))fs.mkdirSync(dest,{recursive:true});const items=fs.readdirSync(src);items.forEach(item=>{const srcPath=path.join(src,item);const destPath=path.join(dest,item);if(fs.statSync(srcPath).isDirectory()){copyDir(srcPath,destPath);}else{fs.copyFileSync(srcPath,destPath);}});}copyDir('src/resources','dist/resources');\"",
+    "build": "tsc --build",
     "start:build": "node dist/server.js"
   },
   "keywords": [],
