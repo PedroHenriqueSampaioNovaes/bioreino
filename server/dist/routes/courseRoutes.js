@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const ListCourseController_1 = require("../controllers/course/ListCourseController");
+const GetCourseController_1 = require("../controllers/course/GetCourseController");
+const isAuthenticated_1 = require("../middlewares/isAuthenticated");
+const router = (0, express_1.Router)();
+router.get('/', ListCourseController_1.ListCourseController.handle);
+router.get('/slug/:slug', isAuthenticated_1.isAuthenticated, GetCourseController_1.GetCourseController.handle);
+exports.default = { router, baseRoute: '/courses' };
