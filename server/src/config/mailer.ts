@@ -16,10 +16,8 @@ const transporter = createTransport({
 // Determines the correct path based on the environment
 const isProduction = process.env.NODE_ENV === 'production';
 const resourcesPath = isProduction
-  ? path.resolve('./dist/resources/mail/')
+  ? path.resolve('./resources/mail/')
   : path.resolve('./src/resources/mail/');
-
-console.log('Resources path:', resourcesPath);
 
 transporter.use(
   'compile',
