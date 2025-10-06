@@ -7,6 +7,7 @@ import 'express-async-errors';
 import routes from './routes';
 
 import { errorHandling } from './middlewares/errorHandling';
+import { verifyApiKey } from './middlewares/verifyApiKey';
 
 const app = express();
 const PORT = 3333;
@@ -22,6 +23,8 @@ app.use((req, res, next) => {
     express.json()(req, res, next);
   }
 });
+
+app.use(verifyApiKey);
 
 // Creates a base API route for other routes
 routes.forEach((route) => {
