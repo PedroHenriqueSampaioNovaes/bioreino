@@ -18,6 +18,9 @@ export async function sendMail(
     return successMessage || 'E-mail enviado com sucesso!';
   } catch (err) {
     console.error(err);
-    throw new ApiError('Ocorreu um erro ao tentar enviar o e-mail.', 400);
+    throw new ApiError(
+      'Tivemos um problema ao tentar enviar o e-mail de redefinição de senha. Tente novamente mais tarde.',
+      400
+    );
   }
 }
