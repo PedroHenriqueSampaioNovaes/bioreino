@@ -3,6 +3,8 @@
 import { FORGOT_PASSWORD } from '@/common/api';
 import apiError from '@/common/apiError';
 
+import FetchApi from '@/common/utils/FetchApi';
+
 interface IForgot {
   message: string;
 }
@@ -10,22 +12,9 @@ interface IForgot {
 export default async function forgotPassword({ email }: { email: string }) {
   try {
     const { url } = FORGOT_PASSWORD();
+    const data = await FetchApi.post<IForgot>(url, { body: { email } });
 
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    });
-    if (!response.ok)
-      throw new Error(
-        'Tivemos um problema ao tentar enviar o e-mail de redefinição de senha. Tente novamente mais tarde.'
-      );
-
-    const data = (await response.json()) as IForgot;
-
-    return { data: data.message, ok: true, error: '' };
+    return { data, ok: true, error: '' };
   } catch (error) {
     return apiError(error);
   }

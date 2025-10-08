@@ -5,6 +5,8 @@ import apiError from '@/common/apiError';
 
 import { ICourse, IListCourseGet } from '@/common/@types/course';
 
+import FetchApi from '@/common/utils/FetchApi';
+
 export default async function getCourses({
   free,
   limit,
@@ -12,12 +14,12 @@ export default async function getCourses({
 }: IListCourseGet = {}) {
   try {
     const { url } = COURSES_GET({ free, limit, planId });
-    const response = await fetch(url, { cache: 'force-cache' });
 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message);
+    const data = await FetchApi.get<ICourse[]>(url, {
+      init: { cache: 'force-cache' },
+    });
 
-    return { data: data as ICourse[], error: '', ok: true };
+    return { data, error: '', ok: true };
   } catch (error) {
     return apiError(error);
   }

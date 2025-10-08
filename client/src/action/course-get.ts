@@ -7,24 +7,20 @@ import apiError from '@/common/apiError';
 
 import { ICourse, ICourseGet } from '@/common/@types/course';
 
+import FetchApi from '@/common/utils/FetchApi';
+
 export default async function getCourse({ slug }: ICourseGet) {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get('token')?.value || '';
 
     const { url } = COURSE_GET({ slug });
-    const response = await fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      cache: 'force-cache',
+    const data = await FetchApi.get<ICourse>(url, {
+      token,
+      init: { cache: 'force-cache' },
     });
 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message);
-
-    return { data: data as ICourse, error: '', ok: true };
+    return { data, error: '', ok: true };
   } catch (error) {
     return apiError(error);
   }

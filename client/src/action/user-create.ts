@@ -5,20 +5,16 @@ import apiError from '@/common/apiError';
 
 import { IUserCreate, IUserPost } from '@/common/@types/user';
 
+import FetchApi from '@/common/utils/FetchApi';
+
 export default async function userCreate(body: IUserPost) {
   try {
     const { url } = USER_CREATE();
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+    const data = await FetchApi.post<IUserCreate>(url, {
+      body,
     });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message);
 
-    return { data: data as IUserCreate, error: '', ok: true };
+    return { data, error: '', ok: true };
   } catch (error) {
     return apiError(error);
   }

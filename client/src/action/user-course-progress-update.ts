@@ -8,6 +8,8 @@ import apiError from '@/common/apiError';
 
 import getUser from './user-get';
 
+import FetchApi from '@/common/utils/FetchApi';
+
 interface IUpdateCourseProgress {
   courseId: string;
   lessonId: string;
@@ -21,19 +23,10 @@ export default async function updateUserCourseProgress({
     const token = (await cookies()).get('token')?.value;
 
     const { url } = USER_COURSE_PROGRESS_PATCH(courseId);
-    const response = await fetch(url, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ lessonId }),
+    await FetchApi.patch(url, {
+      body: { lessonId },
+      token,
     });
-
-    if (!response.ok) {
-      const data = await response.json();
-      throw new Error(data.message);
-    }
 
     const { data: newUserData } = await getUser();
 

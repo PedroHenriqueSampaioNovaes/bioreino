@@ -3,6 +3,8 @@
 import apiError from '@/common/apiError';
 import { LOGIN } from '@/common/api';
 
+import FetchApi from '@/common/utils/FetchApi';
+
 import { cookies } from 'next/headers';
 
 interface ILogin {
@@ -13,30 +15,29 @@ interface ILogin {
 export default async function login({ email, password }: ILogin) {
   try {
     const { url } = LOGIN();
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message);
 
-    const cookieStore = await cookies();
-    cookieStore.set('token', data.token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      expires: new Date(data.tokenExpiresAt),
-    });
+    const data = await FetchApi.post<{
+      token: string;
+      tokenExpiresAt: string;
+      userId: string;
+    }>(url, { body: { email, password } });
 
-    cookieStore.set('user_id', data.userId, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      expires: new Date(data.tokenExpiresAt),
-    });
+    if (data) {
+      const cookieStore = await cookies();
+      cookieStore.set('token', data.token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'lax',
+        expires: new Date(data.tokenExpiresAt),
+      });
+
+      cookieStore.set('user_id', data.userId, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'lax',
+        expires: new Date(data.tokenExpiresAt),
+      });
+    }
 
     return { data: null, ok: true, error: '' };
   } catch (error: unknown) {
