@@ -31,7 +31,7 @@ export default function ForgotPasswordForm() {
       return;
     }
 
-    toast.success(data, { position: 'top-center' });
+    toast.success(data?.message, { position: 'top-center' });
   };
 
   return (

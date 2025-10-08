@@ -42,7 +42,7 @@ export default function ResetPasswordForm({
     });
 
     if (ok) {
-      toast.success(data, { position: 'top-center' });
+      toast.success(data?.message, { position: 'top-center' });
       router.push('/login');
     } else {
       toast.error(error, { position: 'top-center' });
