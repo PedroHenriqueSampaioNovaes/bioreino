@@ -3,10 +3,15 @@
 import { USER_UPDATE } from '@/common/api';
 import apiError from '@/common/apiError';
 
-import { IUserDataUpdate, IUserUpdate } from '@/common/@types/user';
+import { IUserDataUpdate } from '@/common/@types/user';
 import { cookies } from 'next/headers';
 
 import FetchApi from '@/common/utils/FetchApi';
+
+interface IUserUpdate {
+  subscriptionId: string;
+  payment_method: string;
+}
 
 export default async function userUpdate(body: IUserUpdate) {
   try {
