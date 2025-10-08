@@ -56,6 +56,7 @@ export default function UpgradeAccountForm() {
       toast.error(error, { position: 'top-center' });
       return;
     }
+    if (!data) return;
 
     setUser((oldUserData) => ({ ...oldUserData!, ...data.updatedUser }));
 

@@ -41,6 +41,7 @@ export default function PersonalDataForm() {
       toast.error(error, { position: 'top-center' });
       return;
     }
+    if (!data) return;
 
     const futureDate = new Date(data.accountExpiresAfter);
     const timeToExpireAccount = new Countdown(futureDate).total;
