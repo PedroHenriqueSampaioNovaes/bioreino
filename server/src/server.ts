@@ -34,6 +34,6 @@ routes.forEach((route) => {
 // Handle error api
 app.use(errorHandling);
 
-// app.listen(PORT, () =>
-//   console.log(`Servidor rodando na porta http://localhost:${PORT}`)
-// );
+app.listen(PORT, () =>
+  console.log(`Servidor rodando na porta http://localhost:${PORT}`)
+);
