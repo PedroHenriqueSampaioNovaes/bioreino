@@ -12,6 +12,8 @@ import { verifyApiKey } from './middlewares/verifyApiKey';
 const app = express();
 const PORT = 3333;
 
+import fs from 'fs';
+
 app.get('/ping', (req, res) => {
   res.send('pong');
 });
