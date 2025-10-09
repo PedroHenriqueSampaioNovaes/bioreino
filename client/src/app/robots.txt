@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Block access to private/authenticated areas
+Disallow: /dashboard
+Disallow: /course
+Disallow: /subscription
+Disallow: /api
+
+# Block access to admin areas
+Disallow: /login
+Disallow: /login/perdeu
+Disallow: /login/resetar
+
+# Allow search engines to index public content
+Allow: /
+Allow: /assinar
+
+# Sitemap location
+Sitemap: https://bioreino.com.br/sitemap.xml
