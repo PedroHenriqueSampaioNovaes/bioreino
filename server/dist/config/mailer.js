@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.transporter = void 0;
 const nodemailer_1 = require("nodemailer");
 const nodemailer_express_handlebars_1 = __importDefault(require("nodemailer-express-handlebars"));
-const node_path_1 = __importDefault(require("node:path"));
+const path_1 = __importDefault(require("path"));
 const transporter = (0, nodemailer_1.createTransport)({
     host: 'smtp.resend.com',
     secure: true,
@@ -20,9 +20,9 @@ exports.transporter = transporter;
 transporter.use('compile', (0, nodemailer_express_handlebars_1.default)({
     viewEngine: {
         defaultLayout: undefined,
-        partialsDir: node_path_1.default.resolve('./src/resources/mail/'),
+        partialsDir: path_1.default.resolve('./src/resources/mail/'),
         extname: '.html',
     },
-    viewPath: node_path_1.default.resolve('./src/resources/mail/'),
+    viewPath: path_1.default.resolve('./src/resources/mail/'),
     extName: '.html',
 }));
