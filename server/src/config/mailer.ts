@@ -12,6 +12,8 @@ const transporter = createTransport({
     pass: process.env.RESEND_API_KEY,
   },
 });
+console.log(path.resolve());
+console.log(path.resolve(__dirname));
 
 transporter.use(
   'compile',
