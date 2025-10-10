@@ -12,7 +12,7 @@ const errorHandling_1 = require("./middlewares/errorHandling");
 const verifyApiKey_1 = require("./middlewares/verifyApiKey");
 const app = (0, express_1.default)();
 const PORT = 3333;
-const node_fs_1 = __importDefault(require("node:fs"));
+const fs_1 = __importDefault(require("fs"));
 app.get('/ping', (req, res) => {
     res.send('pong');
 });
@@ -31,5 +31,5 @@ routes_1.default.forEach((route) => {
 });
 // Handle error api
 app.use(errorHandling_1.errorHandling);
-console.log(node_fs_1.default.readdirSync(__dirname));
+console.log(fs_1.default.readdirSync(__dirname + '/resources'));
 app.listen(PORT, () => console.log(`Servidor rodando na porta http://localhost:${PORT}`));
