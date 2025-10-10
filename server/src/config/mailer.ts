@@ -12,16 +12,16 @@ const transporter = createTransport({
     pass: process.env.RESEND_API_KEY,
   },
 });
-
+console.log(path.resolve(__dirname));
 transporter.use(
   'compile',
   hbs({
     viewEngine: {
       defaultLayout: undefined,
-      partialsDir: path.resolve('./src/resources/mail/'),
+      partialsDir: path.resolve(__dirname, '../resources/mail/'),
       extname: '.html',
     },
-    viewPath: path.resolve('./src/resources/mail/'),
+    viewPath: path.resolve(__dirname, '../resources/mail/'),
     extName: '.html',
   })
 );
