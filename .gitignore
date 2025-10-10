@@ -10,7 +10,7 @@ client/out/
 
 # production
 client/build
-server/dist
+# server/dist
 
 # misc
 .DS_Store

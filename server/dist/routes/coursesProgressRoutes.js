@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const isAuthenticated_1 = require("../middlewares/isAuthenticated");
+const UpdateCourseProgressController_1 = require("../controllers/courseProgress/UpdateCourseProgressController");
+const GetCourseProgressController_1 = require("../controllers/courseProgress/GetCourseProgressController");
+const router = (0, express_1.Router)();
+router.get('/', isAuthenticated_1.isAuthenticated, GetCourseProgressController_1.GetCourseProgressController.handle);
+router.patch('/:course_id', isAuthenticated_1.isAuthenticated, UpdateCourseProgressController_1.UpdateCourseProgressController.handle);
+exports.default = { router, baseRoute: '/course_progress' };
