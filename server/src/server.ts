@@ -13,7 +13,7 @@ const app = express();
 const PORT = 3333;
 
 import fs from 'fs';
-import path from 'path';
+import path from 'node:path';
 
 app.get('/ping', (req, res) => {
   res.send('pong');
