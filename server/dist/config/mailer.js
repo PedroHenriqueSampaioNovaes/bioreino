@@ -17,8 +17,6 @@ const transporter = (0, nodemailer_1.createTransport)({
     },
 });
 exports.transporter = transporter;
-console.log(node_path_1.default.resolve());
-console.log(node_path_1.default.resolve(__dirname));
 transporter.use('compile', (0, nodemailer_express_handlebars_1.default)({
     viewEngine: {
         defaultLayout: undefined,
