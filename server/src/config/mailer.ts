@@ -1,7 +1,7 @@
 import { createTransport } from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
 
-import path from 'node:path';
+import path from 'path';
 
 const transporter = createTransport({
   host: 'smtp.resend.com',
