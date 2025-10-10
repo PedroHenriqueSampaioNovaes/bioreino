@@ -13,6 +13,7 @@ const verifyApiKey_1 = require("./middlewares/verifyApiKey");
 const app = (0, express_1.default)();
 const PORT = 3333;
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 app.get('/ping', (req, res) => {
     res.send('pong');
 });
@@ -32,6 +33,10 @@ routes_1.default.forEach((route) => {
 // Handle error api
 app.use(errorHandling_1.errorHandling);
 console.log('teste1', fs_1.default.readdirSync(__dirname, { withFileTypes: true }));
+console.log('teste path1', path_1.default.resolve());
+console.log('teste path2', path_1.default.resolve('./src/resources/mail/'));
+console.log('teste path3', path_1.default.resolve('./src/resources/mail/auth'));
+console.log('teste path4', path_1.default.resolve('./src/resources/mail/auth/forgot_password.html'));
 console.log('teste2', fs_1.default.readdirSync(__dirname + '/resources', { withFileTypes: true }));
 console.log('teste3', fs_1.default.readdirSync(__dirname + '/resources/mail', { withFileTypes: true }));
 console.log('teste4', fs_1.default.readdirSync(__dirname + '/resources/mail/auth', { withFileTypes: true }));

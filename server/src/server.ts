@@ -13,6 +13,7 @@ const app = express();
 const PORT = 3333;
 
 import fs from 'fs';
+import path from 'path';
 
 app.get('/ping', (req, res) => {
   res.send('pong');
@@ -37,6 +38,14 @@ routes.forEach((route) => {
 app.use(errorHandling);
 
 console.log('teste1', fs.readdirSync(__dirname, { withFileTypes: true }));
+
+console.log('teste path1', path.resolve());
+console.log('teste path2', path.resolve('./src/resources/mail/'));
+console.log('teste path3', path.resolve('./src/resources/mail/auth'));
+console.log(
+  'teste path4',
+  path.resolve('./src/resources/mail/auth/forgot_password.html')
+);
 
 console.log(
   'teste2',
