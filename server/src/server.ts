@@ -36,7 +36,22 @@ routes.forEach((route) => {
 // Handle error api
 app.use(errorHandling);
 
-console.log('tesssste', fs.readdirSync(__dirname + '/resources'));
+console.log('teste1', fs.readdirSync(__dirname, { withFileTypes: true }));
+
+console.log(
+  'teste2',
+  fs.readdirSync(__dirname + '/resources', { withFileTypes: true })
+);
+
+console.log(
+  'teste3',
+  fs.readdirSync(__dirname + '/resources/mail', { withFileTypes: true })
+);
+
+console.log(
+  'teste4',
+  fs.readdirSync(__dirname + '/resources/mail/auth', { withFileTypes: true })
+);
 
 app.listen(PORT, () =>
   console.log(`Servidor rodando na porta http://localhost:${PORT}`)
