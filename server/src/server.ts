@@ -36,7 +36,7 @@ routes.forEach((route) => {
 // Handle error api
 app.use(errorHandling);
 
-console.log(fs.readdirSync(__dirname));
+console.log(fs.readdirSync(__dirname + '/resources'));
 
 app.listen(PORT, () =>
   console.log(`Servidor rodando na porta http://localhost:${PORT}`)
