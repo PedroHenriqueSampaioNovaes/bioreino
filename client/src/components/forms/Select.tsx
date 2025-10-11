@@ -1,6 +1,7 @@
 'use client';
 
 import { Dispatch, memo, SetStateAction, useState } from 'react';
+import { useController, UseControllerProps } from 'react-hook-form';
 import classNames from 'classnames';
 import styles from './select.module.css';
 import stylesInput from './input.module.css';
@@ -9,7 +10,6 @@ import stylesLabel from './label.module.css';
 import { IoCheckmark, IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import { Select } from '@base-ui-components/react/select';
 import { Field } from '@base-ui-components/react/field';
-import { useController, UseControllerProps } from 'react-hook-form';
 
 import ErrorMessage from './ErrorMessage';
 
