@@ -48,7 +48,7 @@ export default function Filter({
       return {
         label: subscription.name,
         value: subscription._id,
-        onAction: needAlertDialog ? () => setDialogOpen(true) : undefined,
+        onSelectOption: needAlertDialog ? () => setDialogOpen(true) : undefined,
       };
     }
   );

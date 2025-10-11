@@ -17,7 +17,7 @@ export interface ISelectItemBase {
   label: string;
   value: string;
   disabled?: boolean;
-  onAction?: () => void;
+  onSelectOption?: () => void;
 }
 
 export interface ISelectItem {
@@ -34,11 +34,11 @@ function findOption<T extends Pick<ISelectItemBase, 'label' | 'value'>>(
 }
 
 function renderSelectItems(items: ISelectItemBase[]) {
-  return items.map(({ label, value, disabled = false, onAction }) => (
+  return items.map(({ label, value, disabled = false, onSelectOption }) => (
     <Select.Item
       key={label}
       className={classNames(styles.Item, {
-        [styles.disabled]: !!onAction,
+        [styles.disabled]: !!onSelectOption,
       })}
       value={value}
       disabled={disabled}
@@ -134,8 +134,8 @@ export function ControlledWithCallback({
 
         const optionSelected = findOption(items, value);
 
-        if (optionSelected && optionSelected.onAction) {
-          optionSelected.onAction();
+        if (optionSelected?.onSelectOption) {
+          optionSelected.onSelectOption();
         } else {
           setCurrentValue(value);
           setFilter(value);
