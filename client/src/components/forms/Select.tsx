@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, memo, SetStateAction, useState } from 'react';
 import classNames from 'classnames';
 import styles from './select.module.css';
 import stylesInput from './input.module.css';
@@ -244,9 +244,9 @@ export function ControlledByRHF<T extends FormValues>({
 }
 
 const SelectCustom = {
-  Controlled,
-  ControlledByRHF,
-  ControlledInternally,
+  Controlled: memo(Controlled),
+  ControlledByRHF: memo(ControlledByRHF),
+  ControlledInternally: memo(ControlledInternally),
 };
 
 export default SelectCustom;
