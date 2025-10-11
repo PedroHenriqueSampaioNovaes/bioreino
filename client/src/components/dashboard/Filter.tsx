@@ -62,7 +62,7 @@ export default function Filter({
     <>
       <p>Filtrar por:</p>
       <div className={styles.filter}>
-        <Select.ControlledWithCallback
+        <Select.ControlledInternally
           items={subscriptionOptions}
           initialValue={user?.plan._id}
           setStateValue={setFilterPlan}
