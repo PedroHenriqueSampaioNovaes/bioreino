@@ -102,7 +102,7 @@ export function Controlled({
   );
 }
 
-interface IControlledWithCallback {
+interface IControlledInternally {
   items: ISelectItemBase[];
   initialValue?: string;
   setStateValue: Dispatch<SetStateAction<string>>;
@@ -110,13 +110,13 @@ interface IControlledWithCallback {
   className?: string;
 }
 
-export function ControlledWithCallback({
+export function ControlledInternally({
   items,
   initialValue,
   setStateValue,
   ariaLabel,
   className,
-}: IControlledWithCallback) {
+}: IControlledInternally) {
   const initialOption =
     (initialValue && findOption(items, initialValue)?.value) || items[0]?.value;
 
@@ -126,7 +126,6 @@ export function ControlledWithCallback({
   return (
     <Select.Root
       items={items}
-      defaultValue={currentValue}
       value={currentValue}
       onOpenChange={(open) => setIsOpen(open)}
       onValueChange={(value) => {
@@ -247,7 +246,7 @@ export function ControlledByRHF<T extends FormValues>({
 const SelectCustom = {
   Controlled,
   ControlledByRHF,
-  ControlledWithCallback,
+  ControlledInternally,
 };
 
 export default SelectCustom;
