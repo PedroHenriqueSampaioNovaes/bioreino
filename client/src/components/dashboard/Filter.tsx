@@ -65,7 +65,7 @@ export default function Filter({
         <Select.ControlledWithCallback
           items={subscriptionOptions}
           initialValue={user?.plan._id}
-          setFilter={setFilterPlan}
+          setStateValue={setFilterPlan}
           ariaLabel="Filtrar por plano de assinatura"
           className={styles.width}
         />

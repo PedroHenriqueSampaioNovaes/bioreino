@@ -105,7 +105,7 @@ export function Controlled({
 interface IControlledWithCallback {
   items: ISelectItemBase[];
   initialValue?: string;
-  setFilter: Dispatch<SetStateAction<string>>;
+  setStateValue: Dispatch<SetStateAction<string>>;
   ariaLabel: string;
   className?: string;
 }
@@ -113,7 +113,7 @@ interface IControlledWithCallback {
 export function ControlledWithCallback({
   items,
   initialValue,
-  setFilter,
+  setStateValue,
   ariaLabel,
   className,
 }: IControlledWithCallback) {
@@ -138,7 +138,7 @@ export function ControlledWithCallback({
           optionSelected.onSelectOption();
         } else {
           setCurrentValue(value);
-          setFilter(value);
+          setStateValue(value);
         }
       }}
     >
