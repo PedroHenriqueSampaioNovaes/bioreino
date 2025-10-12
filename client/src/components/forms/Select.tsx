@@ -247,7 +247,7 @@ export function ControlledByRHF<T extends FieldValues>({
 
 const SelectCustom = {
   Controlled: memo(Controlled),
-  ControlledByRHF: memo(ControlledByRHF),
+  ControlledByRHF: ControlledByRHF,
   ControlledInternally: memo(ControlledInternally),
 };
 
