@@ -1,7 +1,11 @@
 'use client';
 
 import { Dispatch, memo, SetStateAction, useState } from 'react';
-import { useController, UseControllerProps } from 'react-hook-form';
+import {
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
 import classNames from 'classnames';
 import styles from './select.module.css';
 import stylesInput from './input.module.css';
@@ -168,9 +172,7 @@ export function ControlledInternally({
   );
 }
 
-type FormValues = Record<string, unknown>;
-
-interface IControlledByRHF<T extends FormValues = FormValues> {
+interface IControlledByRHF<T extends FieldValues> {
   items: ISelectItem[];
   label: string;
   ariaLabel: string;
@@ -179,7 +181,7 @@ interface IControlledByRHF<T extends FormValues = FormValues> {
   className?: string;
 }
 
-export function ControlledByRHF<T extends FormValues>({
+export function ControlledByRHF<T extends FieldValues>({
   items,
   ariaLabel,
   label,
