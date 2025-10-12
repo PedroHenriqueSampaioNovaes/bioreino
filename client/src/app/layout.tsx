@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import classNames from 'classnames';
 import { ToastContainer } from 'react-toastify';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 import { catamaran, fredoka } from '../common/fonts';
 import 'normalize.css';
@@ -25,6 +26,7 @@ export default async function RootLayout({
 
   return (
     <html lang="pt-br">
+      <GoogleTagManager gtmId={process.env.GTM_ID as string} />
       <body className={classNames(fredoka.variable, catamaran.variable)}>
         <UserContextProvider userData={user}>{children}</UserContextProvider>
         <ToastContainer />
