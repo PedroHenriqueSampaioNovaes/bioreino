@@ -5,6 +5,7 @@ import { cookies } from 'next/headers';
 
 const publicRoutes = [
   { path: '/', whenAuthenticated: 'next' },
+  { path: '/creditos', whenAuthenticated: 'next' },
   { path: '/login', whenAuthenticated: 'redirect' },
   { path: '/login/perdeu', whenAuthenticated: 'redirect' },
   { path: '/login/resetar', whenAuthenticated: 'redirect' },
