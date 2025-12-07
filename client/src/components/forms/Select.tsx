@@ -77,7 +77,7 @@ export function Controlled({
       items={items}
       onOpenChange={(open) => setIsOpen(open)}
       value={value}
-      onValueChange={(value) => setValue(value)}
+      onValueChange={(value) => setValue(value as string)}
     >
       <Select.Trigger
         className={classNames(styles.Select, className)}
@@ -140,8 +140,8 @@ export function ControlledInternally({
         if (optionSelected?.onSelectOption) {
           optionSelected.onSelectOption();
         } else {
-          setCurrentValue(value);
-          setStateValue(value);
+          setCurrentValue(value as string);
+          setStateValue(value as string);
         }
       }}
     >
