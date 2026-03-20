@@ -15,7 +15,7 @@ const lessonSchema = new Schema<ILesson>(
     description: { type: String, required: true },
     videoUrl: { type: String, required: true },
     transcription: { type: String, required: true },
-    slug: { type: String, required: true },
+    slug: { type: String, required: true, unique: true },
     courseTitle: { type: String, required: true },
   },
   { timestamps: true }
