@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 
 import { z } from 'zod';
 
-import { ForgotPasswordService } from '../../services/user/ForgotPasswordService';
-import { sendMail } from '../../modules/mail/sendMail';
+import { ForgotPasswordService } from '../../services/user/ForgotPasswordService.js';
+import { sendMail } from '../../modules/mail/sendMail.js';
 
 export class ForgotPasswordController {
   static async handle(req: Request, res: Response, next: NextFunction) {

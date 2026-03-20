@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { ListSubscriptionController } from '../controllers/subscription/ListSubscriptionController';
+import { ListSubscriptionController } from '../controllers/subscription/ListSubscriptionController.js';
 
 const router = Router();
 

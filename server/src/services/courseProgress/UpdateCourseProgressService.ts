@@ -1,9 +1,9 @@
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
-import { Course } from '../../models/CourseModel';
-import { Lesson } from '../../models/LessonModel';
-import { CourseProgress } from '../../models/CourseProgressModel';
-import { User } from '../../models/UserModel';
+import { Course } from '../../models/CourseModel.js';
+import { Lesson } from '../../models/LessonModel.js';
+import { CourseProgress } from '../../models/CourseProgressModel.js';
+import { User } from '../../models/UserModel.js';
 
 interface ICourseProgressRequest {
   courseId: string;

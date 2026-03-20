@@ -3,6 +3,10 @@ import hbs from 'nodemailer-express-handlebars';
 
 import path from 'node:path';
 
+import { getDirnamePath } from '../utils/getDirnamePath.js';
+
+const __dirname = getDirnamePath(import.meta.url);
+
 const transporter = createTransport({
   host: 'smtp.resend.com',
   secure: true,
@@ -23,7 +27,7 @@ transporter.use(
     },
     viewPath: path.resolve(__dirname, '../resources/mail/'),
     extName: '.html',
-  })
+  }),
 );
 
 export { transporter };

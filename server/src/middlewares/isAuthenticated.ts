@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { verify } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
-import { ApiError } from '../utils/ApiError';
+import { ApiError } from '../utils/ApiError.js';
 
 export function isAuthenticated(
   req: Request,
@@ -14,7 +14,7 @@ export function isAuthenticated(
 
     const [, token] = authToken.split(' ');
 
-    const { sub } = verify(token, process.env.JWT_PRIVATE_KEY as string);
+    const { sub } = jwt.verify(token, process.env.JWT_PRIVATE_KEY as string);
     req.user_id = sub as string;
 
     next();

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ApiError } from '../utils/ApiError';
+import { ApiError } from '../utils/ApiError.js';
 import { ZodError } from 'zod';
 
 export function errorHandling(err: any, req: Request, res: Response, _: any) {

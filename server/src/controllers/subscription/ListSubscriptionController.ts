@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { ListSubscriptionService } from '../../services/subscription/ListSubscriptionService';
+import { ListSubscriptionService } from '../../services/subscription/ListSubscriptionService.js';
 
 export class ListSubscriptionController {
   static async handle(req: Request, res: Response, next: NextFunction) {

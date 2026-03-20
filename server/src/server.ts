@@ -1,13 +1,13 @@
-import './config/preload-env';
-import './db/connection';
+import './config/preload-env.js';
+import './db/connection.js';
 
 import express from 'express';
 import 'express-async-errors';
 
-import routes from './routes';
+import { loadRoutes } from './routes/index.js';
 
-import { errorHandling } from './middlewares/errorHandling';
-import { verifyApiKey } from './middlewares/verifyApiKey';
+import { errorHandling } from './middlewares/errorHandling.js';
+import { verifyApiKey } from './middlewares/verifyApiKey.js';
 
 const app = express();
 const PORT = 3333;
@@ -27,13 +27,14 @@ app.use((req, res, next) => {
 app.use('/api', verifyApiKey);
 
 // Creates a base API route for other routes
+const routes = await loadRoutes();
+
 routes.forEach((route) => {
   app.use(`/api${route.baseRoute}`, route.router);
 });
 
-// Handle error api
 app.use(errorHandling);
 
 app.listen(PORT, () =>
-  console.log(`Servidor rodando na porta http://localhost:${PORT}`)
+  console.log(`Servidor rodando na porta http://localhost:${PORT}`),
 );

@@ -1,4 +1,4 @@
-import { User } from '../../models/UserModel';
+import { User } from '../../models/UserModel.js';
 
 export class DetailUserService {
   static async execute(user_id: string) {

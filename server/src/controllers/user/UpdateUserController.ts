@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 
 import { z } from 'zod';
 
-import { UpdateUserService } from '../../services/user/UpdateUserService';
-import { basePaymentMethodSchema } from '../../schema/payments';
+import { UpdateUserService } from '../../services/user/UpdateUserService.js';
+import { basePaymentMethodSchema } from '../../schema/payments.js';
 
 export class UpdateUserController {
   static async handle(req: Request, res: Response, next: NextFunction) {

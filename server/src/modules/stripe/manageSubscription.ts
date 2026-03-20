@@ -1,7 +1,7 @@
-import { stripe } from '../../config/stripe';
+import { stripe } from '../../config/stripe.js';
 
-import { User } from '../../models/UserModel';
-import { Plan } from '../../models/PlanModel';
+import { User } from '../../models/UserModel.js';
+import { Plan } from '../../models/PlanModel.js';
 
 type Action = 'create' | 'delete' | null;
 

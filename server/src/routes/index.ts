@@ -1,6 +1,11 @@
 import { Router } from 'express';
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+
+import { getDirnamePath } from '../utils/getDirnamePath.js';
+
+const __dirname = getDirnamePath(import.meta.url);
 
 type Route = {
   router: Router;
@@ -8,7 +13,17 @@ type Route = {
 };
 
 // Automates route export
-export default fs
-  .readdirSync(__dirname)
-  .filter((file) => file.indexOf('.') !== 0 && !/index.[ts|js]/.test(file))
-  .map((file) => require(path.resolve(__dirname, file)).default) as Route[];
+export async function loadRoutes(): Promise<Route[]> {
+  const files = fs
+    .readdirSync(__dirname)
+    .filter((file) => file.indexOf('.') !== 0 && !/index\.[tj]s/.test(file));
+
+  return Promise.all(
+    files.map((file) => {
+      const filePath = path.resolve(__dirname, file);
+      return import(pathToFileURL(filePath).href).then(
+        (module) => module.default,
+      );
+    }),
+  );
+}

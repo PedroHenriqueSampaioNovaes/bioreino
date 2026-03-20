@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { ListCourseService } from '../../services/course/ListCourseService';
+import { ListCourseService } from '../../services/course/ListCourseService.js';
 
 export class ListCourseController {
   static async handle(

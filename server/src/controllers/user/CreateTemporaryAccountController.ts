@@ -1,9 +1,9 @@
 import { Types } from 'mongoose';
 import { NextFunction, Request, Response } from 'express';
 
-import { CreateTemporaryAccountService } from '../../services/user/CreateTemporaryAccountService';
+import { CreateTemporaryAccountService } from '../../services/user/CreateTemporaryAccountService.js';
 
-import { IUser } from '../../models/UserModel';
+import { IUser } from '../../models/UserModel.js';
 
 export class CreateTemporaryAccountController {
   static async handle(req: Request, res: Response, next: NextFunction) {

@@ -1,9 +1,9 @@
 import { FilterQuery, Types } from 'mongoose';
 
-import { Category, ICategory } from '../../models/CategoryModel';
-import { Plan } from '../../models/PlanModel';
+import { Category, ICategory } from '../../models/CategoryModel.js';
+import { Plan } from '../../models/PlanModel.js';
 
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
 interface ICourseRequest {
   planId?: string;

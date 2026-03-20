@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { CreateUserService } from '../../services/user/CreateUserService';
+import { CreateUserService } from '../../services/user/CreateUserService.js';
 
-import { IAddress } from '../../@types/user/address';
-import { ICard } from '../../@types/user/payment';
+import { IAddress } from '../../@types/user/address.js';
+import { ICard } from '../../@types/user/payment.js';
 
-import { bodyScheme } from '../../schema/createUser';
+import { bodyScheme } from '../../schema/createUser.js';
 
 export class CreateUserController {
   static async handle(req: Request, res: Response, next: NextFunction) {

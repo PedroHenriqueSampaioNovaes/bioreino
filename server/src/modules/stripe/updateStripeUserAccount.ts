@@ -1,7 +1,7 @@
 import { Document, Types } from 'mongoose';
 
-import { IUser } from '../../models/UserModel';
-import { stripe } from '../../config/stripe';
+import { IUser } from '../../models/UserModel.js';
+import { stripe } from '../../config/stripe.js';
 
 type UserDocument = Document<unknown, {}, IUser> &
   IUser & {

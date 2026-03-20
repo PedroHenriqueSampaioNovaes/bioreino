@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import Stripe from 'stripe';
 
-import { stripe } from '../../config/stripe';
+import { stripe } from '../../config/stripe.js';
 
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
-import manageSubscription from '../../modules/stripe/manageSubscription';
+import manageSubscription from '../../modules/stripe/manageSubscription.js';
 
 export class SubscriptionWebhookController {
   static async handle(req: Request, res: Response, next: NextFunction) {

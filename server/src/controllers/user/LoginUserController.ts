@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { z } from 'zod';
 
-import { LoginUserService } from '../../services/user/LoginUserService';
+import { LoginUserService } from '../../services/user/LoginUserService.js';
 
 export class LoginUserController {
   static async handle(req: Request, res: Response, next: NextFunction) {

@@ -1,8 +1,8 @@
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
-import { User } from '../../models/UserModel';
-import { Course } from '../../models/CourseModel';
-import { Lesson } from '../../models/LessonModel';
+import { User } from '../../models/UserModel.js';
+import { Course } from '../../models/CourseModel.js';
+import { Lesson } from '../../models/LessonModel.js';
 
 interface IWatchedLessonRequest {
   courseId: string;

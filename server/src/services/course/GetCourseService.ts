@@ -1,6 +1,6 @@
-import { Course } from '../../models/CourseModel';
+import { Course } from '../../models/CourseModel.js';
 
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
 interface ICourseRequest {
   slug: string;

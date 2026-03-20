@@ -1,15 +1,15 @@
 import { Router } from 'express';
 
-import { isAuthenticated } from '../middlewares/isAuthenticated';
+import { isAuthenticated } from '../middlewares/isAuthenticated.js';
 
-import { CreateUserController } from '../controllers/user/CreateUserController';
-import { LoginUserController } from '../controllers/user/LoginUserController';
-import { UpdateLastWatchedController } from '../controllers/user/UpdateLastWatchedController';
-import { ForgotPasswordController } from '../controllers/user/ForgotPasswordController';
-import { ResetPasswordController } from '../controllers/user/ResetPasswordController';
-import { CreateTemporaryAccountController } from '../controllers/user/CreateTemporaryAccountController';
-import { DetailUserController } from '../controllers/user/DetailUserController';
-import { UpdateUserController } from '../controllers/user/UpdateUserController';
+import { CreateUserController } from '../controllers/user/CreateUserController.js';
+import { LoginUserController } from '../controllers/user/LoginUserController.js';
+import { UpdateLastWatchedController } from '../controllers/user/UpdateLastWatchedController.js';
+import { ForgotPasswordController } from '../controllers/user/ForgotPasswordController.js';
+import { ResetPasswordController } from '../controllers/user/ResetPasswordController.js';
+import { CreateTemporaryAccountController } from '../controllers/user/CreateTemporaryAccountController.js';
+import { DetailUserController } from '../controllers/user/DetailUserController.js';
+import { UpdateUserController } from '../controllers/user/UpdateUserController.js';
 
 const router = Router();
 

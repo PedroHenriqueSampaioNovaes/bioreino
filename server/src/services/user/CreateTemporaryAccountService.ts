@@ -1,7 +1,7 @@
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
-import { IUser, User } from '../../models/UserModel';
-import { Plan } from '../../models/PlanModel';
+import { IUser, User } from '../../models/UserModel.js';
+import { Plan } from '../../models/PlanModel.js';
 
 export class CreateTemporaryAccountService {
   static async execute({

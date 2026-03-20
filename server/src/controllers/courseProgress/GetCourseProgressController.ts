@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { GetCourseProgressService } from '../../services/courseProgress/GetCourseProgressService';
+import { GetCourseProgressService } from '../../services/courseProgress/GetCourseProgressService.js';
 
 export class GetCourseProgressController {
   static async handle(req: Request, res: Response, next: NextFunction) {

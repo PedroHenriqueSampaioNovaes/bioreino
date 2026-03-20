@@ -1,4 +1,4 @@
-import { Plan } from '../../models/PlanModel';
+import { Plan } from '../../models/PlanModel.js';
 
 export class ListSubscriptionService {
   static async execute() {

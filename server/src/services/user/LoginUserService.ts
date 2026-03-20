@@ -1,9 +1,9 @@
 import { compareSync } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
-import { User } from '../../models/UserModel';
+import { User } from '../../models/UserModel.js';
 
 interface ILoginRequest {
   email: string;

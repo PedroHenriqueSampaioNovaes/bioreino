@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import { isAuthenticated } from '../middlewares/isAuthenticated';
+import { isAuthenticated } from '../middlewares/isAuthenticated.js';
 
-import { UpdateCourseProgressController } from '../controllers/courseProgress/UpdateCourseProgressController';
-import { GetCourseProgressController } from '../controllers/courseProgress/GetCourseProgressController';
+import { UpdateCourseProgressController } from '../controllers/courseProgress/UpdateCourseProgressController.js';
+import { GetCourseProgressController } from '../controllers/courseProgress/GetCourseProgressController.js';
 
 const router = Router();
 

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { z } from 'zod';
 
-import { UpdateCourseProgressService } from '../../services/courseProgress/UpdateCourseProgressService';
+import { UpdateCourseProgressService } from '../../services/courseProgress/UpdateCourseProgressService.js';
 
 export class UpdateCourseProgressController {
   static async handle(

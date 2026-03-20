@@ -1,11 +1,11 @@
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
-import { stripe } from '../../config/stripe';
+import { stripe } from '../../config/stripe.js';
 
-import { paymentMethods, User } from '../../models/UserModel';
-import { Plan } from '../../models/PlanModel';
+import { paymentMethods, User } from '../../models/UserModel.js';
+import { Plan } from '../../models/PlanModel.js';
 
-import updateStripeUserAccount from '../../modules/stripe/updateStripeUserAccount';
+import updateStripeUserAccount from '../../modules/stripe/updateStripeUserAccount.js';
 
 interface IUpdateUserRequest {
   subscriptionId: string;

@@ -1,4 +1,4 @@
-import { CourseProgress } from '../../models/CourseProgressModel';
+import { CourseProgress } from '../../models/CourseProgressModel.js';
 
 interface ICourseProgressRequest {
   user_id: string;

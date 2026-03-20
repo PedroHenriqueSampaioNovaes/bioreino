@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { ListCategoryService } from '../../services/category/ListCategoryService';
+import { ListCategoryService } from '../../services/category/ListCategoryService.js';
 
 export class ListCategoryController {
   static async handle(

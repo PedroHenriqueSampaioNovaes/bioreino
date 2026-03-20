@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { z } from 'zod';
 
-import { UpdateLastWatchedService } from '../../services/user/UpdateLastWatchedService';
+import { UpdateLastWatchedService } from '../../services/user/UpdateLastWatchedService.js';
 
 export class UpdateLastWatchedController {
   static async handle(req: Request, res: Response, next: NextFunction) {

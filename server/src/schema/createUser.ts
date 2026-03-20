@@ -1,6 +1,6 @@
 import z from 'zod';
 
-import { basePaymentMethodSchema } from './payments';
+import { basePaymentMethodSchema } from './payments.js';
 
 export const bodyScheme = z
   .object({

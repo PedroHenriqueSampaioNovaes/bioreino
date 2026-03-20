@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import { ListCourseController } from '../controllers/course/ListCourseController';
-import { GetCourseController } from '../controllers/course/GetCourseController';
-import { isAuthenticated } from '../middlewares/isAuthenticated';
+import { ListCourseController } from '../controllers/course/ListCourseController.js';
+import { GetCourseController } from '../controllers/course/GetCourseController.js';
+import { isAuthenticated } from '../middlewares/isAuthenticated.js';
 
 const router = Router();
 

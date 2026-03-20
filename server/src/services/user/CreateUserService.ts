@@ -1,15 +1,15 @@
 import { isValidObjectId } from 'mongoose';
 import { genSaltSync, hashSync } from 'bcryptjs';
 
-import { stripe } from '../../config/stripe';
+import { stripe } from '../../config/stripe.js';
 
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
-import { IAddress } from '../../@types/user/address';
-import { ICard } from '../../@types/user/payment';
+import { IAddress } from '../../@types/user/address.js';
+import { ICard } from '../../@types/user/payment.js';
 
-import { User } from '../../models/UserModel';
-import { Plan } from '../../models/PlanModel';
+import { User } from '../../models/UserModel.js';
+import { Plan } from '../../models/PlanModel.js';
 
 type PaymentMethod = 'pix' | 'stripe' | 'bank_slip' | 'credit_card';
 

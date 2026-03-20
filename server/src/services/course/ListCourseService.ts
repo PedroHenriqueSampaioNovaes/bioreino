@@ -1,9 +1,9 @@
 import { FilterQuery, Types } from 'mongoose';
 
-import { Course, ICourse } from '../../models/CourseModel';
-import { Plan } from '../../models/PlanModel';
+import { Course, ICourse } from '../../models/CourseModel.js';
+import { Plan } from '../../models/PlanModel.js';
 
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
 interface ICourseRequest {
   limit?: number;

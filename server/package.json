@@ -1,7 +1,8 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./server/server.ts",
+  "type": "module",
   "scripts": {
     "start": "tsx watch ./src/server",
     "stripe": "stripe listen --forward-to localhost:3333/api/stripe/webhook",

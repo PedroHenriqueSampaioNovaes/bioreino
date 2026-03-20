@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 
-import { SubscriptionWebhookController } from '../controllers/stripe/SubscriptionWebhookController';
+import { SubscriptionWebhookController } from '../controllers/stripe/SubscriptionWebhookController.js';
 
 const router = Router();
 

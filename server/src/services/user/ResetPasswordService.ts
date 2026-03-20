@@ -1,8 +1,8 @@
-import { User } from '../../models/UserModel';
+import { User } from '../../models/UserModel.js';
 
 import { genSaltSync, hashSync } from 'bcryptjs';
 
-import { ApiError } from '../../utils/ApiError';
+import { ApiError } from '../../utils/ApiError.js';
 
 interface IResetPassword {
   email: string;

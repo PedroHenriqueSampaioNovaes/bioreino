@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { z } from 'zod';
 
-import { ResetPasswordService } from '../../services/user/ResetPasswordService';
+import { ResetPasswordService } from '../../services/user/ResetPasswordService.js';
 
 export class ResetPasswordController {
   static async handle(req: Request, res: Response, next: NextFunction) {
