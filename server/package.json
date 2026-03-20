@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsx watch ./src/server",
     "stripe": "stripe listen --forward-to localhost:3333/api/stripe/webhook",
-    "build": "tsc --build && copyfiles -u 1 src/resources/**/* dist",
+    "build": "tsc --build",
     "start:build": "node dist/server.js"
   },
   "keywords": [],
@@ -30,7 +30,6 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/nodemailer": "^6.4.17",
     "@types/nodemailer-express-handlebars": "^4.0.5",
-    "copyfiles": "^2.4.1",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }
