@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { isAuthenticated } from '../middlewares/isAuthenticated.js';
+import { verifyAuthentication } from '../middlewares/verifyAuthentication.js';
 
 import { CreateUserController } from '../controllers/user/CreateUserController.js';
 import { LoginUserController } from '../controllers/user/LoginUserController.js';
@@ -18,13 +18,13 @@ router.post('/session', LoginUserController.handle);
 router.post('/forgot_password', ForgotPasswordController.handle);
 router.post('/temporary', CreateTemporaryAccountController.handle);
 
-router.get('/me', isAuthenticated, DetailUserController.handle);
+router.get('/me', verifyAuthentication, DetailUserController.handle);
 
-router.patch('/', isAuthenticated, UpdateUserController.handle);
+router.patch('/', verifyAuthentication, UpdateUserController.handle);
 router.patch(
   '/last_course',
-  isAuthenticated,
-  UpdateLastWatchedController.handle
+  verifyAuthentication,
+  UpdateLastWatchedController.handle,
 );
 router.patch('/reset_password', ResetPasswordController.handle);
 

@@ -3,10 +3,10 @@ import jwt from 'jsonwebtoken';
 
 import { ApiError } from '../utils/ApiError.js';
 
-export function isAuthenticated(
+export function verifyAuthentication(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const authToken = req.headers.authorization;
