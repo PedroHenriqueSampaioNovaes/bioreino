@@ -1,12 +1,12 @@
-import { Schema, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 
-interface ILesson {
+export interface ILesson {
   title: string;
   description: string;
   videoUrl: string;
   transcription: string;
   slug: string;
-  courseTitle: string;
+  courseId: Types.ObjectId;
 }
 
 const lessonSchema = new Schema<ILesson>(
@@ -16,7 +16,7 @@ const lessonSchema = new Schema<ILesson>(
     videoUrl: { type: String, required: true },
     transcription: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
-    courseTitle: { type: String, required: true },
+    courseId: { type: Schema.ObjectId, ref: 'Course', required: true },
   },
   { timestamps: true }
 );
