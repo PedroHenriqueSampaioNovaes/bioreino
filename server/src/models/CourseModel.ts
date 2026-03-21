@@ -2,7 +2,7 @@ import { Schema, model, Types } from 'mongoose';
 
 export interface ICourse {
   professor: string;
-  imageUrl: string;
+  image: string;
   title: string;
   slug: string;
   category: {
@@ -19,7 +19,7 @@ export interface ICourse {
 const courseSchema = new Schema<ICourse>(
   {
     professor: { type: String, required: true },
-    imageUrl: { type: String, required: true },
+    image: { type: String, required: true },
     title: { type: String, required: true },
     slug: { type: String, required: true },
     category: { type: Types.ObjectId, required: true },
