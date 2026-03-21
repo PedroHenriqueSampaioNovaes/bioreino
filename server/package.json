@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsx watch ./src/server",
     "stripe": "stripe listen --forward-to localhost:3333/api/stripe/webhook",
-    "build": "tsc --build",
+    "build": "tsc --build && copyfiles -u 1 \"src/resources/**/*\" dist",
     "start:build": "node dist/server.js"
   },
   "keywords": [],
@@ -15,6 +15,7 @@
   "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "copyfiles": "^2.4.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-async-errors": "^3.1.1",
