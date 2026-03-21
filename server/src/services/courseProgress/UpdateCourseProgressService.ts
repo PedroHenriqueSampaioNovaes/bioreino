@@ -28,12 +28,10 @@ export class UpdateCourseProgressService {
     }
 
     // Check if the lesson actually belongs to the course
-    const lessonBelongsToCourse = course.lessons.some((lesson) => {
-      return lesson._id.equals(lessonId);
-    });
+    const lessonBelongsToCourse = course._id.equals(lesson.courseId);
     if (!lessonBelongsToCourse) {
       throw new ApiError(
-        `A aula "${lesson.title}" não pertence ao curso informado.`
+        `A aula "${lesson.title}" não pertence ao curso informado.`,
       );
     }
 
@@ -47,7 +45,7 @@ export class UpdateCourseProgressService {
               courseTitle: course.title,
               slug: course.slug,
               professor: course.professor,
-              imageUrl: course.imageUrl,
+              image: course.image,
             },
             lesson: {
               lessonTitle: lesson.title,
@@ -57,7 +55,7 @@ export class UpdateCourseProgressService {
             watchedAt: new Date(),
           },
         },
-      }
+      },
     );
 
     const courseProgress = await CourseProgress.findOne({
@@ -67,7 +65,7 @@ export class UpdateCourseProgressService {
 
     // If the lesson is already watched, we do not need to update the progress
     const lessonAlreadyWatched = courseProgress?.lessons.some(
-      (lessonInProgress) => lessonInProgress.lessonId.equals(lesson._id)
+      (lessonInProgress) => lessonInProgress.lessonId.equals(lesson._id),
     );
     if (lessonAlreadyWatched) return;
 
@@ -75,10 +73,10 @@ export class UpdateCourseProgressService {
     const quantityLessonsWatched = courseProgress
       ? courseProgress.lessons.length + 1
       : 1;
-    const quantityLessonsInTheCourse = course.lessons.length;
+    const quantityLessonsInTheCourse = course.lessons;
 
     const progress = Math.ceil(
-      (quantityLessonsWatched / quantityLessonsInTheCourse) * 100
+      (quantityLessonsWatched / quantityLessonsInTheCourse) * 100,
     );
 
     // Updates the course progress with a new lesson or creates
@@ -100,7 +98,7 @@ export class UpdateCourseProgressService {
           },
         },
       },
-      { upsert: true }
+      { upsert: true },
     );
   }
 }
