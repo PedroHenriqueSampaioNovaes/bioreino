@@ -7,15 +7,15 @@ import { ApiError } from '../../utils/ApiError.js';
 
 interface ICourseRequest {
   limit?: number;
-  free?: boolean;
+  hasLessonFree?: boolean;
   planId?: string;
 }
 
 export class ListCourseService {
-  static async execute({ limit, free, planId }: ICourseRequest) {
+  static async execute({ limit, hasLessonFree, planId }: ICourseRequest) {
     const query = {} as FilterQuery<ICourse>;
 
-    if (free !== undefined) query['free'] = free;
+    if (hasLessonFree) query['hasLessonFree'] = hasLessonFree;
 
     if (planId && Types.ObjectId.isValid(planId)) {
       const plan = await Plan.findById(planId);

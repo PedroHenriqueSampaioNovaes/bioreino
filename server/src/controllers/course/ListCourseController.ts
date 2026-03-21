@@ -8,17 +8,17 @@ export class ListCourseController {
       any,
       any,
       any,
-      { limit?: string; free?: string; plan_id?: string }
+      { limit?: string; hasLessonFree?: string; plan_id?: string }
     >,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ) {
     try {
-      const { limit, free, plan_id } = req.query;
+      const { limit, hasLessonFree, plan_id } = req.query;
 
       const courses = await ListCourseService.execute({
         limit: limit ? Number(limit) : undefined,
-        free: free === 'true' ? true : free === 'false' ? false : undefined,
+        hasLessonFree: hasLessonFree === 'true',
         planId: plan_id,
       });
 
