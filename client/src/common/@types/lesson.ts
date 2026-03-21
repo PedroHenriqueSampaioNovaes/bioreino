@@ -1,9 +1,10 @@
 export interface ILesson {
   _id: string;
   description: string;
-  videoUrl: string;
+  video: string;
   transcription: string;
   title: string;
-  courseTitle: string;
+  courseId: string;
   slug: string;
+  free: boolean;
 }

@@ -13,13 +13,13 @@ export interface ICourseGet {
 export interface ICourse {
   _id: string;
   professor: string;
-  imageUrl: string;
+  image: string;
   category: string;
   title: string;
-  lessons: string[] | ILesson[];
+  lessons: number;
   updatedAt: string;
   slug: string;
-  free: boolean;
+  hasLessonFree: boolean;
   plan: { _id: string; name: string };
 }
 
