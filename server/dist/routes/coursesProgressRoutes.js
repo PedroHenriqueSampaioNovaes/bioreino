@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { isAuthenticated } from '../middlewares/isAuthenticated.js';
+import { verifyAuthentication } from '../middlewares/verifyAuthentication.js';
 import { UpdateCourseProgressController } from '../controllers/courseProgress/UpdateCourseProgressController.js';
 import { GetCourseProgressController } from '../controllers/courseProgress/GetCourseProgressController.js';
 const router = Router();
-router.get('/', isAuthenticated, GetCourseProgressController.handle);
-router.patch('/:course_id', isAuthenticated, UpdateCourseProgressController.handle);
+router.get('/', verifyAuthentication, GetCourseProgressController.handle);
+router.patch('/:course_id', verifyAuthentication, UpdateCourseProgressController.handle);
 export default { router, baseRoute: '/course_progress' };

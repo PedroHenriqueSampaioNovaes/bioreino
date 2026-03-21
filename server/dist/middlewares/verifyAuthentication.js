@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { ApiError } from '../utils/ApiError.js';
-export function isAuthenticated(req, res, next) {
+export function verifyAuthentication(req, res, next) {
     try {
         const authToken = req.headers.authorization;
         if (!authToken)

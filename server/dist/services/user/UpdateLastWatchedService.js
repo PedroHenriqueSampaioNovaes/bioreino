@@ -17,7 +17,7 @@ export class UpdateLastWatchedService {
                 courseTitle: course.title,
                 slug: course.slug,
                 professor: course.professor,
-                imageUrl: course.imageUrl,
+                image: course.image,
             },
             lesson: {
                 lessonTitle: lesson.title,

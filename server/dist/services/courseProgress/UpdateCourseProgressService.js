@@ -13,9 +13,7 @@ export class UpdateCourseProgressService {
         if (!lesson) {
             throw new ApiError('Não foi possível encontrar a aula.');
         }
-        const lessonBelongsToCourse = course.lessons.some((lesson) => {
-            return lesson._id.equals(lessonId);
-        });
+        const lessonBelongsToCourse = course._id.equals(lesson.courseId);
         if (!lessonBelongsToCourse) {
             throw new ApiError(`A aula "${lesson.title}" não pertence ao curso informado.`);
         }
@@ -26,7 +24,7 @@ export class UpdateCourseProgressService {
                         courseTitle: course.title,
                         slug: course.slug,
                         professor: course.professor,
-                        imageUrl: course.imageUrl,
+                        image: course.image,
                     },
                     lesson: {
                         lessonTitle: lesson.title,
@@ -47,7 +45,7 @@ export class UpdateCourseProgressService {
         const quantityLessonsWatched = courseProgress
             ? courseProgress.lessons.length + 1
             : 1;
-        const quantityLessonsInTheCourse = course.lessons.length;
+        const quantityLessonsInTheCourse = course.lessons;
         const progress = Math.ceil((quantityLessonsWatched / quantityLessonsInTheCourse) * 100);
         await CourseProgress.findOneAndUpdate({ userId: user_id, courseId }, {
             $set: {
