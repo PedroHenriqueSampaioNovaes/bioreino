@@ -7,6 +7,7 @@ export interface ILesson {
   transcription: string;
   slug: string;
   courseId: Types.ObjectId;
+  free: boolean;
 }
 
 const lessonSchema = new Schema<ILesson>(
@@ -17,8 +18,9 @@ const lessonSchema = new Schema<ILesson>(
     transcription: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     courseId: { type: Schema.ObjectId, ref: 'Course', required: true },
+    free: { type: Boolean, default: false },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export const Lesson = model<ILesson>('Lesson', lessonSchema);
