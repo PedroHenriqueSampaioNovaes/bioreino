@@ -12,7 +12,7 @@ export interface ICourse {
     value: string;
   };
   lessons: number;
-  free: boolean;
+  hasLessonFree: boolean;
   plan: Types.ObjectId;
 }
 
@@ -24,7 +24,7 @@ const courseSchema = new Schema<ICourse>(
     slug: { type: String, required: true },
     category: { type: Types.ObjectId, required: true },
     lessons: { type: Number, required: true },
-    free: { type: Boolean, default: false },
+    hasLessonFree: { type: Boolean, default: false },
     plan: { type: Schema.ObjectId, ref: 'Plan', required: true },
   },
   { timestamps: true },
