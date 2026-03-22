@@ -18,7 +18,7 @@ export default function CourseCard({ course }: ICourseCardProps) {
           {course.plan.name}
         </span>
         <Image
-          src={course.imageUrl}
+          src={course.image}
           alt=""
           width={966}
           height={750}
