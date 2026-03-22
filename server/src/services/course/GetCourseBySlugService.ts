@@ -6,7 +6,7 @@ interface ICourseRequest {
   slug: string;
 }
 
-export class GetCourseService {
+export class GetCourseBySlugService {
   static async execute({ slug }: ICourseRequest) {
     const course = await Course.findOne({ slug }).populate('lessons');
 

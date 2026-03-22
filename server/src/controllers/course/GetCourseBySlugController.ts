@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { GetCourseService } from '../../services/course/GetCourseService.js';
+import { GetCourseBySlugService } from '../../services/course/GetCourseBySlugService.js';
 
-export class GetCourseController {
+export class GetCourseBySlugController {
   static async handle(
     req: Request<{ slug: string }>,
     res: Response,
@@ -16,7 +16,7 @@ export class GetCourseController {
         return;
       }
 
-      const course = await GetCourseService.execute({ slug });
+      const course = await GetCourseBySlugService.execute({ slug });
 
       res.json(course);
     } catch (error) {
