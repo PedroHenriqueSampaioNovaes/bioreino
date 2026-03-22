@@ -8,3 +8,7 @@ export interface ILesson {
   slug: string;
   free: boolean;
 }
+
+export interface IListLessonGet {
+  course_id?: string;
+}

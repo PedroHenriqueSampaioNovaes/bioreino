@@ -1,5 +1,6 @@
 import { ICategoryGet } from './@types/category';
 import { ICourseGet, IListCourseGet } from './@types/course';
+import { IListLessonGet } from './@types/lesson';
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_API}/api`;
 
@@ -41,13 +42,21 @@ export function RESET_PASSWORD() {
 
 export function COURSES_GET({ limit, hasLessonFree, planId }: IListCourseGet) {
   return {
-    url: BASE_URL + `/courses/?limit=${limit}&hasLessonFree=${hasLessonFree}&planId=${planId}`,
+    url:
+      BASE_URL +
+      `/courses/?limit=${limit}&hasLessonFree=${hasLessonFree}&planId=${planId}`,
   };
 }
 
 export function COURSE_GET({ slug }: ICourseGet) {
   return {
     url: BASE_URL + `/courses/slug/${slug}`,
+  };
+}
+
+export function LESSONS_GET({ course_id }: IListLessonGet) {
+  return {
+    url: BASE_URL + `/lessons/?course_id=${course_id}`,
   };
 }
 
