@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react';
 
-import { ILesson } from '@/common/@types/lesson';
+import { ILesson, ILessonVideoData } from '@/common/@types/lesson';
 import { ICourse } from '@/common/@types/course';
 import { IUserCourseProgress } from '@/common/@types/user-course-progress';
 
@@ -19,6 +19,7 @@ type ILessonContext = {
   lessons: ILesson[] | null;
   currentLesson: ILesson;
   setCurrentLesson: Dispatch<SetStateAction<ILesson>>;
+  videoLessonInfo: ILessonVideoData | null;
 };
 
 const LessonContext = createContext<ILessonContext | null>(null);
@@ -38,6 +39,7 @@ interface ILessonContextProviderProps {
   courseProgressData: IUserCourseProgress[] | null;
   lessonsData: ILesson[];
   currentLessonData: ILesson;
+  videoLessonInfo: ILessonVideoData | null;
 }
 
 export function LessonContextProvider({
@@ -46,10 +48,10 @@ export function LessonContextProvider({
   courseProgressData,
   lessonsData,
   currentLessonData,
+  videoLessonInfo,
 }: ILessonContextProviderProps) {
-  const [currentLesson, setCurrentLesson] = useState<ILesson>(
-    currentLessonData
-  );
+  const [currentLesson, setCurrentLesson] =
+    useState<ILesson>(currentLessonData);
 
   return (
     <LessonContext
@@ -59,6 +61,7 @@ export function LessonContextProvider({
         lessons: lessonsData,
         currentLesson,
         setCurrentLesson,
+        videoLessonInfo,
       }}
     >
       {children}

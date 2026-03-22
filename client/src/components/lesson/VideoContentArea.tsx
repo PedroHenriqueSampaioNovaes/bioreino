@@ -16,7 +16,7 @@ interface VideoContentAreaProps {
 export default function VideoContentArea({
   menuIsOpen,
 }: VideoContentAreaProps) {
-  const { currentLesson } = useLesson();
+  const { videoLessonInfo } = useLesson();
 
   const isMobile = useMedia('(max-width: 768px)');
 
@@ -27,14 +27,18 @@ export default function VideoContentArea({
       })}
     >
       <div className={styles.videoContainer}>
-        <iframe
-          src={currentLesson?.videoUrl}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
+        {videoLessonInfo?.video ? (
+          <iframe
+            src={videoLessonInfo?.video}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        ) : (
+          <p>Ocorreu um erro e não foi possível carregar o vídeo.</p>
+        )}
       </div>
 
       <Transcription />

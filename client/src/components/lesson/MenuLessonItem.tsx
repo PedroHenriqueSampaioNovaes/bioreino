@@ -17,16 +17,16 @@ interface MenuLessonItemProps {
 }
 
 function MenuLessonItem({ lessonItem }: MenuLessonItemProps) {
-  const { currentLesson, course, courseProgress } = useLesson();
+  const { currentLesson, course, courseProgress, videoLessonInfo } = useLesson();
 
   const isCurrentLesson = lessonItem.slug === currentLesson?.slug;
 
   const currentCourseProgress = courseProgress?.find(
-    (progress) => progress.courseId === course?._id
+    (progress) => progress.courseId === course?._id,
   );
 
   const isLessonCompleted = currentCourseProgress?.lessons.find(
-    (lesson) => lesson.lessonId === lessonItem._id
+    (lesson) => lesson.lessonId === lessonItem._id,
   );
 
   return (
@@ -42,6 +42,7 @@ function MenuLessonItem({ lessonItem }: MenuLessonItemProps) {
         <p className={styles.description} title={lessonItem.description}>
           {lessonItem.description}
         </p>
+        {lessonItem.free ? <p>Grátis</p> : <p>Pago</p>}
       </Link>
     </li>
   );

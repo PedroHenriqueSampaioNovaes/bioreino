@@ -19,3 +19,7 @@ export interface IListLessonGet {
 export interface ILessonGet {
   slug: string;
 }
+
+export interface IVideoLessonDetailsGet {
+  lessonId: string;
+}

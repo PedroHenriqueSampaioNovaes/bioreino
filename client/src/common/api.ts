@@ -1,6 +1,10 @@
 import { ICategoryGet } from './@types/category';
 import { ICourseGet, IListCourseGet } from './@types/course';
-import { IListLessonGet } from './@types/lesson';
+import {
+  ILessonGet,
+  IListLessonGet,
+  IVideoLessonDetailsGet,
+} from './@types/lesson';
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_API}/api`;
 
@@ -57,6 +61,18 @@ export function COURSE_GET({ slug }: ICourseGet) {
 export function LESSONS_GET({ course_id }: IListLessonGet) {
   return {
     url: BASE_URL + `/lessons/?course_id=${course_id}`,
+  };
+}
+
+export function LESSON_GET({ slug }: ILessonGet) {
+  return {
+    url: BASE_URL + `/lessons/slug/${slug}`,
+  };
+}
+
+export function VIDEO_LESSON_INFO_GET({ lessonId }: IVideoLessonDetailsGet) {
+  return {
+    url: BASE_URL + `/lessons/${lessonId}/video`,
   };
 }
 

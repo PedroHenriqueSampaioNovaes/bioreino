@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
 
-import { ILesson } from '@/common/@types/lesson';
-
 import getCourse from '@/action/course-get';
 import getUserCourseProgress from '@/action/user-course-progress-get';
+import getLessons from '@/action/lessons-get';
+import getLesson from '@/action/lesson-get';
+import getVideoLessonInfo from '@/action/video-lesson-info-get';
 
 import Lesson from '@/components/lesson/Lesson';
 import { LessonContextProvider } from '@/context/LessonContext';
@@ -28,10 +29,6 @@ interface ICoursePageProps {
   params: Promise<{ slug: string[] }>;
 }
 
-function getCurrentLesson(lessons: ILesson[], urlSlugLesson: string) {
-  return lessons.find((lesson) => lesson.slug === urlSlugLesson) || null;
-}
-
 export default async function CoursePage({ params }: ICoursePageProps) {
   const {
     slug: [slugCourseParam, slugLessonParam],
@@ -39,16 +36,22 @@ export default async function CoursePage({ params }: ICoursePageProps) {
 
   const { data: course } = await getCourse({ slug: slugCourseParam });
   const { data: courseProgress } = await getUserCourseProgress();
+  const { data: lessons } = await getLessons({ course_id: course?._id });
 
-  if (!course) redirect('/dashboard');
+  if (!course || !lessons?.length) redirect('/dashboard');
 
-  const lessons = course.lessons as ILesson[];
-  const currentLesson =
-    getCurrentLesson(lessons, slugLessonParam) || lessons[0];
+  let currentLesson = lessons[0];
+  const { data: lesson } = await getLesson({ slug: slugLessonParam });
+
+  if (lesson) currentLesson = lesson;
 
   if (!slugLessonParam) {
-    redirect(`/curso/${slugCourseParam}/${lessons[0].slug}`);
+    redirect(`/curso/${slugCourseParam}/${currentLesson?.slug}`);
   }
+
+  const { data: videoLessonInfo } = await getVideoLessonInfo({
+    lessonId: currentLesson?._id,
+  });
 
   return (
     <LessonContextProvider
@@ -56,6 +59,7 @@ export default async function CoursePage({ params }: ICoursePageProps) {
       courseProgressData={courseProgress}
       lessonsData={lessons}
       currentLessonData={currentLesson}
+      videoLessonInfo={videoLessonInfo}
     >
       <Lesson />
     </LessonContextProvider>

@@ -9,7 +9,7 @@ import { useLesson } from '@/context/LessonContext';
 import { IoChevronDown } from 'react-icons/io5';
 
 export default function Transcription() {
-  const { currentLesson } = useLesson();
+  const { videoLessonInfo } = useLesson();
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -50,13 +50,13 @@ export default function Transcription() {
   return (
     <div ref={transcriptionRef} className={styles.transcriptionContainer}>
       <h2 className={styles.transcriptionTitle}>Transcrição</h2>
-      {currentLesson?.transcription ? (
+      {videoLessonInfo?.transcription ? (
         <p
           className={classNames(styles.transcriptionText, {
             [styles.active]: isExpanded,
           })}
         >
-          {currentLesson?.transcription}
+          {videoLessonInfo?.transcription}
         </p>
       ) : (
         <p className={styles.noTranscription}>
@@ -64,7 +64,7 @@ export default function Transcription() {
         </p>
       )}
 
-      {currentLesson?.transcription && (
+      {videoLessonInfo?.transcription && (
         <button
           className={classNames(styles.expandButton, {
             [styles.active]: isExpanded,
