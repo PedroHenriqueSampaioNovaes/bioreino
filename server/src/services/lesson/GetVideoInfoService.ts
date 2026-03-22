@@ -18,7 +18,9 @@ export class GetVideoInfoService {
       throw new ApiError('ID da aula inválido.', 400);
     }
 
-    const lesson = await Lesson.findById(lessonId);
+    const lesson = await Lesson.findById(lessonId).select(
+      'video transcription',
+    );
 
     if (!lesson) {
       throw new ApiError('Aula não encontrada.', 404);
