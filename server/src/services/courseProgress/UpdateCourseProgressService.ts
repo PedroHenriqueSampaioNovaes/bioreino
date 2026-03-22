@@ -41,17 +41,8 @@ export class UpdateCourseProgressService {
       {
         $set: {
           lastWatched: {
-            course: {
-              courseTitle: course.title,
-              slug: course.slug,
-              professor: course.professor,
-              image: course.image,
-            },
-            lesson: {
-              lessonTitle: lesson.title,
-              lessonDescription: lesson.description,
-              slug: lesson.slug,
-            },
+            course: course._id,
+            lesson: lesson._id,
             watchedAt: new Date(),
           },
         },
