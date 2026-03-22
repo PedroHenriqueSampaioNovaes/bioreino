@@ -35,7 +35,7 @@ function CourseCard({
       className={classNames(styles.card)}
     >
       <Image
-        src={course.imageUrl}
+        src={course.image}
         alt=""
         width={966}
         height={750}

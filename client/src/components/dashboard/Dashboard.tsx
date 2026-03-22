@@ -69,7 +69,7 @@ export default function Dashboard({
             {user?.lastWatched ? (
               <div className={styles.cardLastCourse}>
                 <Image
-                  src={user?.lastWatched.course.imageUrl}
+                  src={user?.lastWatched.course.image}
                   alt=""
                   width={966}
                   height={750}

@@ -3,7 +3,7 @@ export interface ILastWatched {
     courseTitle: string;
     slug: string;
     professor: string;
-    imageUrl: string;
+    image: string;
   };
   lesson: {
     lessonTitle: string;
