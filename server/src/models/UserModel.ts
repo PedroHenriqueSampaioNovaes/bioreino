@@ -14,7 +14,7 @@ interface ILastWatched {
     courseTitle: string;
     slug: string;
     professor: string;
-    imageUrl: string;
+    image: string;
   };
   lesson: {
     lessonTitle: string;
@@ -48,7 +48,7 @@ const lastWatchedSchema = new Schema<ILastWatched>(
       courseTitle: String,
       slug: String,
       professor: String,
-      imageUrl: String,
+      image: String,
     },
     lesson: {
       lessonTitle: String,
