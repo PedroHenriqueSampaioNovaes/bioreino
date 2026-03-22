@@ -2,11 +2,13 @@ import { NextFunction, Request, Response } from 'express';
 
 import { GetCourseBySlugService } from '../../services/course/GetCourseBySlugService.js';
 
+import { isAuthenticated } from '../../utils/isAuthenticated.js';
+
 export class GetCourseBySlugController {
   static async handle(
     req: Request<{ slug: string }>,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ) {
     try {
       const { slug } = req.params;
@@ -16,7 +18,12 @@ export class GetCourseBySlugController {
         return;
       }
 
-      const course = await GetCourseBySlugService.execute({ slug });
+      const isUserAuthenticated = isAuthenticated(req);
+
+      const course = await GetCourseBySlugService.execute({
+        slug,
+        isUserAuthenticated,
+      });
 
       res.json(course);
     } catch (error) {
