@@ -8,12 +8,12 @@ import { ICourse, IListCourseGet } from '@/common/@types/course';
 import FetchApi from '@/common/utils/FetchApi';
 
 export default async function getCourses({
-  free,
+  hasLessonFree,
   limit,
   planId,
 }: IListCourseGet = {}) {
   try {
-    const { url } = COURSES_GET({ free, limit, planId });
+    const { url } = COURSES_GET({ hasLessonFree, limit, planId });
 
     const data = await FetchApi.get<ICourse[]>(url, {
       init: { cache: 'force-cache' },

@@ -39,9 +39,9 @@ export function RESET_PASSWORD() {
   return { url: BASE_URL + '/user/reset_password' };
 }
 
-export function COURSES_GET({ limit, free, planId }: IListCourseGet) {
+export function COURSES_GET({ limit, hasLessonFree, planId }: IListCourseGet) {
   return {
-    url: BASE_URL + `/courses/?limit=${limit}&free=${free}&plan_id=${planId}`,
+    url: BASE_URL + `/courses/?limit=${limit}&hasLessonFree=${hasLessonFree}&planId=${planId}`,
   };
 }
 

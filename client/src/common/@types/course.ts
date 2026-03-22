@@ -1,8 +1,6 @@
-import { ILesson } from './lesson';
-
 export interface IListCourseGet {
   limit?: number;
-  free?: boolean;
+  hasLessonFree?: boolean;
   planId?: string;
 }
 
