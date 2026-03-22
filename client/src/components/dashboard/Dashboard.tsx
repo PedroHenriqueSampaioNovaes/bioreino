@@ -78,7 +78,7 @@ export default function Dashboard({
                 />
                 <div className={styles.details}>
                   <h2 className={styles.courseTitle} tabIndex={0}>
-                    {user?.lastWatched.course.courseTitle}
+                    {user?.lastWatched.course.title}
                   </h2>
                   <p
                     className={styles.instructor}
@@ -101,15 +101,15 @@ export default function Dashboard({
                     <ClapperboardClosed />
                     <h3
                       className={styles.lessonTitle}
-                      title={user?.lastWatched.lesson.lessonTitle}
+                      title={user?.lastWatched.lesson.title}
                     >
-                      {user?.lastWatched.lesson.lessonTitle}
+                      {user?.lastWatched.lesson.title}
                     </h3>
                     <p
                       className={styles.lessonDescription}
-                      title={user?.lastWatched.lesson.lessonDescription}
+                      title={user?.lastWatched.lesson.description}
                     >
-                      {user?.lastWatched.lesson.lessonDescription}
+                      {user?.lastWatched.lesson.description}
                     </p>
                   </Link>
                 </div>

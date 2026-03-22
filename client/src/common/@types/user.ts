@@ -1,13 +1,13 @@
 export interface ILastWatched {
   course: {
-    courseTitle: string;
+    title: string;
     slug: string;
     professor: string;
     image: string;
   };
   lesson: {
-    lessonTitle: string;
-    lessonDescription: string;
+    title: string;
+    description: string;
     slug: string;
   };
   watchedAt: string;
