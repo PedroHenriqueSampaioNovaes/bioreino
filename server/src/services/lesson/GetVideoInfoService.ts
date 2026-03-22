@@ -18,8 +18,8 @@ export class GetVideoInfoService {
       throw new ApiError('ID da aula inválido.', 400);
     }
 
-    const lesson = await Lesson.findById(lessonId).select(
-      'video transcription',
+    const lesson = await Lesson.findById(new Types.ObjectId(lessonId)).select(
+      'video transcription free',
     );
 
     if (!lesson) {
