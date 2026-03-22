@@ -3,6 +3,7 @@
 import styles from './courseCard.module.css';
 import classNames from 'classnames';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { ICourse } from '@/common/@types/course';
 
@@ -13,7 +14,7 @@ interface ICourseCardProps {
 export default function CourseCard({ course }: ICourseCardProps) {
   return (
     <li className={classNames(styles.course)}>
-      <a href="">
+      <Link href={`/curso/${course.slug}`}>
         <span className={classNames(styles.subscription)}>
           {course.plan.name}
         </span>
@@ -31,7 +32,7 @@ export default function CourseCard({ course }: ICourseCardProps) {
             Prof. {course.professor}
           </span>
         </div>
-      </a>
+      </Link>
     </li>
   );
 }
