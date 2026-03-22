@@ -23,24 +23,15 @@ export class UpdateLastWatchedService {
     }
 
     const newWatchedLessonData = {
-      course: {
-        courseTitle: course.title,
-        slug: course.slug,
-        professor: course.professor,
-        image: course.image,
-      },
-      lesson: {
-        lessonTitle: lesson.title,
-        lessonDescription: lesson.description,
-        slug: lesson.slug,
-      },
+      course: course._id,
+      lesson: lesson._id,
       watchedAt: Date.now(),
     };
 
     const updatedUser = await User.findByIdAndUpdate(
       user_id,
       { $set: { lastWatched: newWatchedLessonData } },
-      { new: true, timestamps: false }
+      { new: true, timestamps: false },
     );
 
     return updatedUser;

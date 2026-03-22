@@ -10,17 +10,8 @@ export const paymentMethods = [
 ] as const;
 
 interface ILastWatched {
-  course: {
-    courseTitle: string;
-    slug: string;
-    professor: string;
-    image: string;
-  };
-  lesson: {
-    lessonTitle: string;
-    lessonDescription: string;
-    slug: string;
-  };
+  course: Types.ObjectId;
+  lesson: Types.ObjectId;
   watchedAt: Date;
 }
 
@@ -44,20 +35,11 @@ export interface IUser {
 
 const lastWatchedSchema = new Schema<ILastWatched>(
   {
-    course: {
-      courseTitle: String,
-      slug: String,
-      professor: String,
-      image: String,
-    },
-    lesson: {
-      lessonTitle: String,
-      lessonDescription: String,
-      slug: String,
-    },
+    course: { type: Schema.ObjectId, ref: 'Course', required: true },
+    lesson: { type: Schema.ObjectId, ref: 'Lesson', required: true },
     watchedAt: Date,
   },
-  { _id: true }
+  { _id: true },
 );
 
 const userSchema = new Schema<IUser>(
@@ -97,7 +79,7 @@ const userSchema = new Schema<IUser>(
       _id: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export const User = model<IUser>('User', userSchema);
