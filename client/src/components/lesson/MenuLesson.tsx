@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 import { useLesson } from '@/context/LessonContext';
+import { useUser } from '@/context/UserContext';
 
 import AdviceMessageWhat from '@/icons/AdviceMessageWhat';
 
@@ -25,6 +26,7 @@ export default function MenuLesson({
   setMenuIsOpen,
 }: MenuLessonProps) {
   const { lessons } = useLesson();
+  const { user } = useUser();
 
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -39,8 +41,8 @@ export default function MenuLesson({
         </button>
       </div>
 
-      <Link href="/dashboard" className={styles.navHeader}>
-        <IoChevronBack /> <span>Dashboard</span>
+      <Link href={user ? '/dashboard' : '/'} className={styles.navHeader}>
+        <IoChevronBack /> <span>{user ? 'Dashboard' : 'Home'}</span>
       </Link>
       <ul className={styles.list}>
         {lessons?.map((lesson) => (
