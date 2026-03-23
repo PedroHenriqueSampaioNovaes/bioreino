@@ -37,7 +37,18 @@ export default function VideoContentArea({
             allowFullScreen
           ></iframe>
         ) : (
-          <p>Ocorreu um erro e não foi possível carregar o vídeo.</p>
+          <p
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+              textAlign: 'center',
+            }}
+          >
+            Ocorreu um erro e não foi possível carregar o vídeo. Verifique se
+            está logado e se possui uma assinatura ativa.
+          </p>
         )}
       </div>
 
