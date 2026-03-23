@@ -43,6 +43,7 @@ function MenuLessonItem({ lessonItem, setDialogOpen }: MenuLessonItemProps) {
           href={`/curso/${course?.slug}/${lessonItem.slug}`}
           className={classNames(styles.lesson, {
             [styles.active]: isCurrentLesson,
+            [styles.free]: lessonItem.free && !user,
           })}
         >
           {isLessonCompleted ? <ClapperboardClosed /> : <ClapperboardOpen />}
@@ -50,7 +51,7 @@ function MenuLessonItem({ lessonItem, setDialogOpen }: MenuLessonItemProps) {
           <p className={styles.description} title={lessonItem.description}>
             {lessonItem.description}
           </p>
-          {lessonItem.free ? <p>Grátis</p> : <p>Pago</p>}
+          {!user && lessonItem.free && <p className={styles.freeText}>G</p>}
         </Link>
       ) : (
         <div
@@ -64,7 +65,6 @@ function MenuLessonItem({ lessonItem, setDialogOpen }: MenuLessonItemProps) {
           <p className={styles.description} title={lessonItem.description}>
             {lessonItem.description}
           </p>
-          {lessonItem.free ? <p>Grátis</p> : <p>Pago</p>}
         </div>
       )}
     </li>
