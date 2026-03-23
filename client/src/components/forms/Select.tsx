@@ -12,8 +12,8 @@ import stylesInput from './input.module.css';
 import stylesLabel from './label.module.css';
 
 import { IoCheckmark, IoChevronDown, IoChevronUp } from 'react-icons/io5';
-import { Select } from '@base-ui-components/react/select';
-import { Field } from '@base-ui-components/react/field';
+import { Select } from '@base-ui/react/select';
+import { Field } from '@base-ui/react/field';
 
 import ErrorMessage from './ErrorMessage';
 
