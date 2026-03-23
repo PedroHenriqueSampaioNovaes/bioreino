@@ -87,6 +87,7 @@
   align-items: center;
 
   text-align: center;
+  z-index: 999;
 
   &[data-starting-style],
   &[data-ending-style] {
