@@ -12,7 +12,8 @@ export default async function getLessons({ course_id }: IListLessonGet = {}) {
     const { url } = LESSONS_GET({ course_id });
 
     const data = await FetchApi.get<ILesson[]>(url, {
-      init: { cache: 'force-cache', next: { revalidate: 60 * 60 * 24 } },
+      cache: 'force-cache',
+      next: { revalidate: 60 * 60 * 24 },
     });
 
     return { data, error: '', ok: true };

@@ -10,7 +10,7 @@ export default async function getCategories({ planId }: ICategoryGet = {}) {
   try {
     const { url } = CATEGORIES_GET({ planId });
     const data = await FetchApi.get<ICategory[]>(url, {
-      init: { cache: 'force-cache' },
+      cache: 'force-cache',
     });
 
     return { data, error: '', ok: true };

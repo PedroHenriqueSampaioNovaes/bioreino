@@ -16,7 +16,7 @@ export default async function getCourses({
     const { url } = COURSES_GET({ hasLessonFree, limit, planId });
 
     const data = await FetchApi.get<ICourse[]>(url, {
-      init: { cache: 'force-cache' },
+      cache: 'force-cache',
     });
 
     return { data, error: '', ok: true };

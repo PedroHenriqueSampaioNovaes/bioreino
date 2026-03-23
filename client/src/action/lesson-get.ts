@@ -11,7 +11,8 @@ export default async function getLesson({ slug }: ILessonGet) {
   try {
     const { url } = LESSON_GET({ slug });
     const data = await FetchApi.get<ILesson>(url, {
-      init: { cache: 'force-cache', next: { revalidate: 60 * 60 * 24 * 7 } },
+      cache: 'force-cache',
+      next: { revalidate: 60 * 60 * 24 * 7 },
     });
 
     return { data, error: '', ok: true };

@@ -20,10 +20,8 @@ export default async function getVideoLessonInfo({
 
     const { url } = VIDEO_LESSON_INFO_GET({ lessonId });
     const data = await FetchApi.get<ILessonVideoData>(url, {
-      init: {
-        cache: 'force-cache',
-        next: { revalidate: 60 * 60 * 24 * 7 },
-      },
+      cache: 'force-cache',
+      next: { revalidate: 60 * 60 * 24 * 7 },
       token,
     });
 

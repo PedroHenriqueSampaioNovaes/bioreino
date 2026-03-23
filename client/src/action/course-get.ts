@@ -17,7 +17,7 @@ export default async function getCourse({ slug }: ICourseGet) {
     const { url } = COURSE_GET({ slug });
     const data = await FetchApi.get<ICourse>(url, {
       token,
-      init: { cache: 'force-cache' },
+      cache: 'force-cache',
     });
 
     return { data, error: '', ok: true };

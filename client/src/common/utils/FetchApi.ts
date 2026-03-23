@@ -1,10 +1,9 @@
 const apiKey = process.env.API_KEY;
 
-interface FetchOptions {
+type FetchOptions = Omit<RequestInit, 'method' | 'headers' | 'body'> & {
   token?: string;
   body?: unknown;
-  init?: Omit<RequestInit, 'method' | 'headers' | 'body'>;
-}
+};
 
 export default class FetchApi {
   static async get<T>(url: string, options: Omit<FetchOptions, 'body'> = {}) {
@@ -14,16 +13,13 @@ export default class FetchApi {
         'x-api-key': apiKey,
         Authorization: options.token ? `Bearer ${options.token}` : '',
       } as HeadersInit,
-      ...options.init,
+      ...options,
     });
 
     return await FetchApi.extractData<T>(response);
   }
 
-  static async post<T>(
-    url: string,
-    options: FetchOptions = {}
-  ) {
+  static async post<T>(url: string, options: FetchOptions = {}) {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -59,7 +55,7 @@ export default class FetchApi {
     } catch {
       if (!response.ok) {
         throw new Error(
-          `Ocorreu um erro inesperado com o servidor. Tente novamente mais tarde.`
+          `Ocorreu um erro inesperado com o servidor. Tente novamente mais tarde.`,
         );
       }
 

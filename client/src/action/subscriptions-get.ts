@@ -10,7 +10,7 @@ export default async function getSubscriptions() {
   try {
     const { url } = SUBSCRIPTIONS_GET();
     const data = await FetchApi.get<ISubscription[]>(url, {
-      init: { cache: 'force-cache' },
+      cache: 'force-cache',
     });
 
     return { data, error: '', ok: true };
