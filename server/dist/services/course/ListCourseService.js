@@ -3,10 +3,10 @@ import { Course } from '../../models/CourseModel.js';
 import { Plan } from '../../models/PlanModel.js';
 import { ApiError } from '../../utils/ApiError.js';
 export class ListCourseService {
-    static async execute({ limit, free, planId }) {
+    static async execute({ limit, hasLessonFree, planId }) {
         const query = {};
-        if (free !== undefined)
-            query['free'] = free;
+        if (hasLessonFree)
+            query['hasLessonFree'] = hasLessonFree;
         if (planId && Types.ObjectId.isValid(planId)) {
             const plan = await Plan.findById(planId);
             if (!plan)

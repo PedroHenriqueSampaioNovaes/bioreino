@@ -6,7 +6,7 @@ export class GetVideoInfoService {
         if (!Types.ObjectId.isValid(lessonId)) {
             throw new ApiError('ID da aula inválido.', 400);
         }
-        const lesson = await Lesson.findById(lessonId);
+        const lesson = await Lesson.findById(new Types.ObjectId(lessonId)).select('video transcription free');
         if (!lesson) {
             throw new ApiError('Aula não encontrada.', 404);
         }

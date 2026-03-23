@@ -6,17 +6,8 @@ export const paymentMethods = [
     'stripe',
 ];
 const lastWatchedSchema = new Schema({
-    course: {
-        courseTitle: String,
-        slug: String,
-        professor: String,
-        imageUrl: String,
-    },
-    lesson: {
-        lessonTitle: String,
-        lessonDescription: String,
-        slug: String,
-    },
+    course: { type: Schema.ObjectId, ref: 'Course', required: true },
+    lesson: { type: Schema.ObjectId, ref: 'Lesson', required: true },
     watchedAt: Date,
 }, { _id: true });
 const userSchema = new Schema({

@@ -14,10 +14,10 @@ export class ListLessonService {
             }
             const lessons = await Lesson.find({
                 courseId: new Types.ObjectId(courseId),
-            }).select('-video -transcription');
+            });
             return lessons;
         }
-        const lessons = await Lesson.find().select('-video -transcription');
+        const lessons = await Lesson.find();
         return lessons;
     }
 }
