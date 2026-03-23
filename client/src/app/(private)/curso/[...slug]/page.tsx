@@ -35,19 +35,21 @@ export default async function CoursePage({ params }: ICoursePageProps) {
   } = await params;
 
   const { data: course } = await getCourse({ slug: slugCourseParam });
-  const { data: courseProgress } = await getUserCourseProgress();
-  const { data: lessons } = await getLessons({ course_id: course?._id });
+  const [{ data: courseProgress }, { data: lessons }] = await Promise.all([
+    getUserCourseProgress(),
+    getLessons({ course_id: course?._id }),
+  ]);
 
   if (!course || !lessons?.length) redirect('/dashboard');
 
   let currentLesson = lessons[0];
-  const { data: lesson } = await getLesson({ slug: slugLessonParam });
-
-  if (lesson) currentLesson = lesson;
 
   if (!slugLessonParam) {
     redirect(`/curso/${slugCourseParam}/${currentLesson?.slug}`);
   }
+
+  const { data: lesson } = await getLesson({ slug: slugLessonParam });
+  if (lesson) currentLesson = lesson;
 
   const { data: videoLessonInfo } = await getVideoLessonInfo({
     lessonId: currentLesson?._id,
