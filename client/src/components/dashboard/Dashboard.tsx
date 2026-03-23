@@ -39,8 +39,9 @@ export default function Dashboard({
   const { user, setUser } = useUser();
 
   async function userLogout() {
-    await logout();
     setUser(null);
+    await logout();
+    window.location.href = '/login';
   }
 
   return (
