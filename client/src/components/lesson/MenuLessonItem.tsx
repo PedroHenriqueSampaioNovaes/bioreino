@@ -17,7 +17,7 @@ interface MenuLessonItemProps {
 }
 
 function MenuLessonItem({ lessonItem }: MenuLessonItemProps) {
-  const { currentLesson, course, courseProgress, videoLessonInfo } = useLesson();
+  const { currentLesson, course, courseProgress } = useLesson();
 
   const isCurrentLesson = lessonItem.slug === currentLesson?.slug;
 
