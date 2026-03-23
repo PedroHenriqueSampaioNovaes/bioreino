@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, memo, SetStateAction } from 'react';
+import { memo } from 'react';
 import styles from './menuLessonItem.module.css';
 import Link from 'next/link';
 import classNames from 'classnames';
@@ -13,12 +13,14 @@ import ClapperboardClosed from '@/icons/ClapperboardClosed';
 import { useLesson } from '@/context/LessonContext';
 import { useUser } from '@/context/UserContext';
 
+import { AlertDialogTriggerUi } from '../ui/AlertDialog';
+import { alertDialogMenuLessonHandle } from './MenuLesson';
+
 interface MenuLessonItemProps {
   lessonItem: ILesson;
-  setDialogOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-function MenuLessonItem({ lessonItem, setDialogOpen }: MenuLessonItemProps) {
+function MenuLessonItem({ lessonItem }: MenuLessonItemProps) {
   const { currentLesson, course, courseProgress } = useLesson();
   const { user } = useUser();
 
@@ -31,10 +33,6 @@ function MenuLessonItem({ lessonItem, setDialogOpen }: MenuLessonItemProps) {
   const isLessonCompleted = currentCourseProgress?.lessons.find(
     (lesson) => lesson.lessonId === lessonItem._id,
   );
-
-  function emitAlertToCreateAccount() {
-    setDialogOpen(true);
-  }
 
   return (
     <li className={styles.wrapper}>
@@ -54,18 +52,18 @@ function MenuLessonItem({ lessonItem, setDialogOpen }: MenuLessonItemProps) {
           {!user && lessonItem.free && <p className={styles.freeText}>G</p>}
         </Link>
       ) : (
-        <div
+        <AlertDialogTriggerUi
+          handle={alertDialogMenuLessonHandle}
           className={classNames(styles.lesson, {
             [styles.active]: isCurrentLesson,
           })}
-          onClick={emitAlertToCreateAccount}
         >
           {isLessonCompleted ? <ClapperboardClosed /> : <ClapperboardOpen />}
           <h3 className={styles.title}>{lessonItem.title}</h3>
           <p className={styles.description} title={lessonItem.description}>
             {lessonItem.description}
           </p>
-        </div>
+        </AlertDialogTriggerUi>
       )}
     </li>
   );

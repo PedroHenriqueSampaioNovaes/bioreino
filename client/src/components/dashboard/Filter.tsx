@@ -2,6 +2,7 @@
 
 import { Dispatch, SetStateAction, useState } from 'react';
 import styles from './filter.module.css';
+import Link from 'next/link';
 
 import { ICategory } from '@/common/@types/category';
 import { ISubscription } from '@/common/@types/subscription';
@@ -15,7 +16,14 @@ import Select, {
   ISelectItemBase,
 } from '@/components/forms/Select';
 
-import DialogImage from '../ui/AlertDialogImage';
+import {
+  AlertDialogClose,
+  AlertDialogDescription,
+  AlertDialogPopup,
+  AlertDialogPortal,
+  AlertDialogRootUi,
+  AlertDialogTitle,
+} from '../ui/AlertDialog';
 
 interface IFilter {
   user: IUser | null;
@@ -37,7 +45,7 @@ export default function Filter({
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const fullAccessSubscription = subscriptions.find(
-    (subscription) => subscription.fullaccess
+    (subscription) => subscription.fullaccess,
   );
 
   const subscriptionOptions: ISelectItemBase[] = subscriptions.map(
@@ -50,7 +58,7 @@ export default function Filter({
         value: subscription._id,
         onSelectOption: needAlertDialog ? () => setDialogOpen(true) : undefined,
       };
-    }
+    },
   );
 
   const categoryOptions: ISelectItem[] = categories.map((category) => ({
@@ -79,25 +87,31 @@ export default function Filter({
         />
       </div>
 
-      <DialogImage
-        dialogOpen={dialogOpen}
-        setDialogOpen={setDialogOpen}
-        ImageElement={AdviceMessageWhat}
-        dialogConfig={{
-          title: 'Um momento, amigo! 🧐',
-          descriptionElement: (
-            <>
+      <AlertDialogRootUi open={dialogOpen} onOpenChange={setDialogOpen}>
+        <AlertDialogPortal>
+          <AlertDialogPopup>
+            <AdviceMessageWhat />
+            <AlertDialogTitle>Um momento, amigo! 🧐</AlertDialogTitle>
+            <AlertDialogDescription>
               Para ter acesso às aulas do plano{' '}
               <strong>{fullAccessSubscription?.name}</strong>, você precisa
               atualizar seu plano atual (<strong>{user?.plan.name}</strong>
               )!!
-            </>
-          ),
-          callToActionDeny: 'Deixar pra depois',
-          callToActionConfirm: 'Atualizar plano',
-          href: `/assinar/${fullAccessSubscription?.name}`,
-        }}
-      />
+            </AlertDialogDescription>
+            <AlertDialogClose
+              nativeButton={false}
+              render={
+                <Link href={`/assinar/${fullAccessSubscription?.name}`} />
+              }
+            >
+              Atualizar plano
+            </AlertDialogClose>
+            <AlertDialogClose buttonStyle="deny">
+              Deixar pra depois
+            </AlertDialogClose>
+          </AlertDialogPopup>
+        </AlertDialogPortal>
+      </AlertDialogRootUi>
     </>
   );
 }
