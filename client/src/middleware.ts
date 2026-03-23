@@ -12,13 +12,23 @@ const publicRoutes = [
   { path: '/assinar', whenAuthenticated: 'redirect' },
   { path: '/assinar/scholar', whenAuthenticated: 'redirect' },
   { path: '/assinar/professional', whenAuthenticated: 'next' },
+  { path: '/curso/:param', whenAuthenticated: 'next' },
+  { path: '/curso/:param/:param', whenAuthenticated: 'next' },
 ] as const;
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/login';
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const publicRoute = publicRoutes.find((route) => route.path === path);
+  const publicRoute = publicRoutes.find((route) => {
+    // Converts dynamic segments (:param) into regex that accepts any value
+    const pattern = route.path
+      .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      .replace(/:[\w]+/g, '[^/]+');
+
+    const regex = new RegExp(`^${pattern}$`);
+    return regex.test(path);
+  });
 
   const token = request.cookies.get('token')?.value;
 
