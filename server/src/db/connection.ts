@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 async function initializeDb(retries: number = 5) {
   try {
     await mongoose.connect(
-      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@bioreino.l8j1rrnu.mongodb.net/${process.env.DB}`,
+      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@bioreino.l8j1rrn.mongodb.net/${process.env.DB}`,
     );
     console.log('Conectou-se ao MongoDB');
   } catch (error) {
