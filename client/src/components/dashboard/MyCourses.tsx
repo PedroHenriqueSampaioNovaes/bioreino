@@ -24,10 +24,10 @@ function filterCourses(
   courses: ICourse[],
   categories: ICategory[],
   filterCategory: string | null,
-  filterPlan: string | null
+  filterPlan: string | null,
 ) {
   const categoryId = categories.find(
-    (category) => category.value === filterCategory
+    (category) => category.value === filterCategory,
   )?._id;
 
   return courses.filter((course) => {
@@ -51,7 +51,7 @@ export default function MyCourses({
 
   const listCourse = useMemo(
     () => filterCourses(courses, categories, filterCategory, filterPlan),
-    [courses, categories, filterCategory, filterPlan]
+    [courses, categories, filterCategory, filterPlan],
   );
 
   // Filters by categories related to the filtered plan
@@ -74,7 +74,7 @@ export default function MyCourses({
         user={user}
         categories={categoryOptions}
         subscriptions={subscriptions}
-        filterCategory={filterCategory}
+        filterPlan={filterPlan}
         setFilterPlan={setFilterPlan}
         setFilterCategory={setFilterCategory}
       />
