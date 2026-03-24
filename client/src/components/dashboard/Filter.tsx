@@ -12,8 +12,8 @@ import Arrow from '@/icons/Arrow';
 import AdviceMessageWhat from '@/icons/AdviceMessageWhat';
 
 import Select, {
-  ISelectItem,
-  ISelectItemBase,
+  ISelectItems,
+  ISelectItemsControlled,
 } from '@/components/forms/Select';
 
 import {
@@ -29,7 +29,7 @@ interface IFilter {
   user: IUser | null;
   subscriptions: ISubscription[];
   categories: ICategory[];
-  filterCategory: string;
+  filterPlan: string;
   setFilterPlan: Dispatch<SetStateAction<string>>;
   setFilterCategory: Dispatch<SetStateAction<string>>;
 }
@@ -38,7 +38,7 @@ export default function Filter({
   user,
   subscriptions,
   categories,
-  filterCategory,
+  filterPlan,
   setFilterPlan,
   setFilterCategory,
 }: IFilter) {
@@ -48,20 +48,22 @@ export default function Filter({
     (subscription) => subscription.fullaccess,
   );
 
-  const subscriptionOptions: ISelectItemBase[] = subscriptions.map(
-    (subscription) => {
+  const subscriptionOptions = subscriptions.map(
+    (subscription): ISelectItemsControlled => {
       const userNotHaveFullaccess = !user?.plan.fullaccess;
       const needAlertDialog = subscription.fullaccess && userNotHaveFullaccess;
 
       return {
         label: subscription.name,
         value: subscription._id,
-        onSelectOption: needAlertDialog ? () => setDialogOpen(true) : undefined,
+        onSelectOptionDisabled: needAlertDialog
+          ? () => setDialogOpen(true)
+          : undefined,
       };
     },
   );
 
-  const categoryOptions: ISelectItem[] = categories.map((category) => ({
+  const categoryOptions: ISelectItems[] = categories.map((category) => ({
     label: category.name,
     value: category.value,
   }));
@@ -69,21 +71,20 @@ export default function Filter({
   return (
     <>
       <p>Filtrar por:</p>
+
       <div className={styles.filter}>
-        <Select.ControlledInternally
+        <Select.Controlled
           items={subscriptionOptions}
-          initialValue={user?.plan._id}
-          setStateValue={setFilterPlan}
+          valueData={filterPlan || user?.plan._id}
+          onValueChange={(value) => value && setFilterPlan(value)}
           ariaLabel="Filtrar por plano de assinatura"
-          className={styles.width}
         />
         <Arrow />
-        <Select.Controlled
+        <Select.Uncontrolled
           items={categoryOptions}
-          value={filterCategory || categoryOptions[0]?.value}
-          setValue={setFilterCategory}
+          defaultValue={categoryOptions[0]?.value}
+          onValueChange={(value) => value && setFilterCategory(value)}
           ariaLabel="Filtrar por categoria"
-          className={styles.width}
         />
       </div>
 

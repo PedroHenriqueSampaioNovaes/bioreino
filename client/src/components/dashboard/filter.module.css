@@ -16,10 +16,6 @@
   display: none;
 }
 
-.width {
-  max-width: 4.5rem;
-}
-
 @media (min-width: 450px) {
   .filter {
     flex-direction: row;
