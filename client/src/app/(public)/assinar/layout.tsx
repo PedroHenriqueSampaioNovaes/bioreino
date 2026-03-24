@@ -18,19 +18,20 @@ export const metadata: Metadata = {
 };
 
 export default async function Layout({ children }: { children: ReactNode }) {
-  const response = await fetch('https://brasilapi.com.br/api/ibge/uf/v1', {
-    cache: 'force-cache',
-    next: {
-      revalidate: 86400,
-    },
-  });
-  const states = (await response.json()) as IStateBrazil[];
-
-  const { data: subscriptions } = await getSubscriptions();
+  const [responseStates, responseSubscriptions] = await Promise.all([
+    fetch('https://brasilapi.com.br/api/ibge/uf/v1', {
+      cache: 'force-cache',
+      next: {
+        revalidate: 7 * 24 * 60 * 60,
+      },
+    }).then((response) => response.json() as Promise<IStateBrazil[]>),
+    getSubscriptions(),
+  ]);
+  const { data: subscriptions } = responseSubscriptions;
   if (!subscriptions) redirect('/');
 
   return (
-    <StatesProvider states={states}>
+    <StatesProvider states={responseStates}>
       <SubscriptionProvider subscriptions={subscriptions}>
         <CreateAccountFormHeader />
         <div className={styles.container}>{children}</div>
