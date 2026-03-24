@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, memo, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import {
   FieldValues,
   useController,
@@ -9,176 +9,164 @@ import {
 import classNames from 'classnames';
 import styles from './select.module.css';
 import stylesInput from './input.module.css';
-import stylesLabel from './label.module.css';
 
 import { IoCheckmark, IoChevronDown, IoChevronUp } from 'react-icons/io5';
-import { Select } from '@base-ui/react/select';
-import { Field } from '@base-ui/react/field';
 
-import ErrorMessage from './ErrorMessage';
+import {
+  SelectIcon,
+  SelectItem,
+  SelectItemIndicator,
+  SelectItemText,
+  SelectList,
+  SelectPopup,
+  SelectPortal,
+  SelectPositioner,
+  SelectRootUi,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/Select';
+import { FieldError, FieldLabel, FieldRootUi } from '../ui/Field';
 
-export interface ISelectItemBase {
+export interface ISelectItems {
   label: string;
   value: string;
   disabled?: boolean;
-  onSelectOption?: () => void;
 }
 
-export interface ISelectItem {
-  label: string;
-  value: string;
-  disabled?: boolean;
+export interface ISelectItemsControlled extends ISelectItems {
+  onSelectOptionDisabled?: () => void;
 }
 
-function findOption<T extends Pick<ISelectItemBase, 'label' | 'value'>>(
+function getOptionData<T extends Pick<ISelectItems, 'label' | 'value'>>(
   options: T[],
-  target: string | null
+  target: string | null,
 ) {
   return options.find((option) => option.value === target);
 }
 
-function renderSelectItems(items: ISelectItemBase[]) {
-  return items.map(({ label, value, disabled = false, onSelectOption }) => (
-    <Select.Item
-      key={label}
-      className={classNames(styles.Item, {
-        [styles.disabled]: !!onSelectOption,
-      })}
-      value={value}
-      disabled={disabled}
-    >
-      <Select.ItemIndicator className={styles.ItemIndicator}>
-        <IoCheckmark className={styles.ItemIndicatorIcon} />
-      </Select.ItemIndicator>
-      <Select.ItemText className={styles.ItemText}>{label}</Select.ItemText>
-    </Select.Item>
-  ));
+function renderSelectItemsControlled(items: ISelectItemsControlled[]) {
+  return items.map(
+    ({ label, value, disabled = false, onSelectOptionDisabled }) => (
+      <SelectItem
+        key={label}
+        className={classNames({
+          [styles.disabled]: disabled || !!onSelectOptionDisabled,
+        })}
+        value={value}
+        disabled={disabled}
+      >
+        <SelectItemIndicator>
+          <IoCheckmark />
+        </SelectItemIndicator>
+        <SelectItemText>{label}</SelectItemText>
+      </SelectItem>
+    ),
+  );
 }
 
 interface IControlled {
-  items: ISelectItem[];
-  value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  items: ISelectItemsControlled[];
+  valueData?: string | null;
+  onValueChange: (value: string | null) => void;
   ariaLabel: string;
-  className?: string;
 }
 
 export function Controlled({
   items,
-  value,
-  setValue,
+  valueData,
+  onValueChange,
   ariaLabel,
-  className,
 }: IControlled) {
+  const [value, setValue] = useState(valueData);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Select.Root
+    <SelectRootUi
       items={items}
-      onOpenChange={(open) => setIsOpen(open)}
       value={value}
-      onValueChange={(value) => setValue(value as string)}
-    >
-      <Select.Trigger
-        className={classNames(styles.Select, className)}
-        aria-label={ariaLabel}
-      >
-        <Select.Value className={styles.TriggerValue} />
-        <Select.Icon className={styles.SelectIcon}>
-          {isOpen ? <IoChevronUp /> : <IoChevronDown />}
-        </Select.Icon>
-      </Select.Trigger>
-
-      <Select.Portal>
-        <Select.Positioner
-          className={styles.Positioner}
-          alignItemWithTrigger={false}
-          sideOffset={2}
-        >
-          <Select.ScrollUpArrow className={styles.ScrollArrow} />
-          <Select.Popup className={styles.Popup}>
-            {renderSelectItems(items)}
-          </Select.Popup>
-          <Select.ScrollDownArrow className={styles.ScrollArrow} />
-        </Select.Positioner>
-      </Select.Portal>
-    </Select.Root>
-  );
-}
-
-interface IControlledInternally {
-  items: ISelectItemBase[];
-  initialValue?: string;
-  setStateValue: Dispatch<SetStateAction<string>>;
-  ariaLabel: string;
-  className?: string;
-}
-
-export function ControlledInternally({
-  items,
-  initialValue,
-  setStateValue,
-  ariaLabel,
-  className,
-}: IControlledInternally) {
-  const initialOption =
-    (initialValue && findOption(items, initialValue)?.value) || items[0]?.value;
-
-  const [currentValue, setCurrentValue] = useState(initialOption);
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <Select.Root
-      items={items}
-      value={currentValue}
       onOpenChange={(open) => setIsOpen(open)}
-      onValueChange={(value) => {
-        if (value === currentValue) return;
+      onValueChange={(newValue) => {
+        if (newValue === value) return;
 
-        const optionSelected = findOption(items, value);
+        const optionSelected = getOptionData(items, newValue);
 
-        if (optionSelected?.onSelectOption) {
-          optionSelected.onSelectOption();
+        if (optionSelected?.onSelectOptionDisabled) {
+          optionSelected.onSelectOptionDisabled();
         } else {
-          setCurrentValue(value as string);
-          setStateValue(value as string);
+          setValue(newValue);
+          onValueChange(newValue);
         }
       }}
     >
-      <Select.Trigger
-        className={classNames(styles.Select, className)}
-        aria-label={ariaLabel}
-      >
-        <Select.Value className={styles.TriggerValue} />
-        <Select.Icon className={styles.SelectIcon}>
-          {isOpen ? <IoChevronUp /> : <IoChevronDown />}
-        </Select.Icon>
-      </Select.Trigger>
+      <SelectTrigger aria-label={ariaLabel}>
+        <SelectValue />
+        <SelectIcon>{isOpen ? <IoChevronUp /> : <IoChevronDown />}</SelectIcon>
+      </SelectTrigger>
 
-      <Select.Portal>
-        <Select.Positioner
-          className={styles.Positioner}
-          alignItemWithTrigger={false}
-          sideOffset={2}
-        >
-          <Select.ScrollUpArrow className={styles.ScrollArrow} />
-          <Select.Popup className={styles.Popup}>
-            {renderSelectItems(items)}
-          </Select.Popup>
-          <Select.ScrollDownArrow className={styles.ScrollArrow} />
-        </Select.Positioner>
-      </Select.Portal>
-    </Select.Root>
+      <SelectPortal>
+        <SelectPositioner alignItemWithTrigger={false} sideOffset={2}>
+          <SelectPopup>
+            <SelectList>{renderSelectItemsControlled(items)}</SelectList>
+          </SelectPopup>
+        </SelectPositioner>
+      </SelectPortal>
+    </SelectRootUi>
+  );
+}
+
+interface IUncontrolled {
+  items: ISelectItems[];
+  defaultValue?: string;
+  onValueChange: (value: string | null) => void;
+  ariaLabel: string;
+}
+
+export function Uncontrolled({
+  items,
+  defaultValue,
+  onValueChange,
+  ariaLabel,
+}: IUncontrolled) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <SelectRootUi
+      items={items}
+      defaultValue={defaultValue}
+      onOpenChange={(open) => setIsOpen(open)}
+      onValueChange={(newValue) => onValueChange(newValue)}
+    >
+      <SelectTrigger aria-label={ariaLabel}>
+        <SelectValue />
+        <SelectIcon>{isOpen ? <IoChevronUp /> : <IoChevronDown />}</SelectIcon>
+      </SelectTrigger>
+
+      <SelectPortal>
+        <SelectPositioner alignItemWithTrigger={false} sideOffset={2}>
+          <SelectPopup>
+            <SelectList>
+              {items.map(({ label, value, disabled = false }) => (
+                <SelectItem key={label} value={value} disabled={disabled}>
+                  <SelectItemIndicator>
+                    <IoCheckmark />
+                  </SelectItemIndicator>
+                  <SelectItemText>{label}</SelectItemText>
+                </SelectItem>
+              ))}
+            </SelectList>
+          </SelectPopup>
+        </SelectPositioner>
+      </SelectPortal>
+    </SelectRootUi>
   );
 }
 
 interface IControlledByRHF<T extends FieldValues> {
-  items: ISelectItem[];
+  items: ISelectItemsControlled[];
   label: string;
   ariaLabel: string;
   id: string;
   controller: UseControllerProps<T>;
-  className?: string;
 }
 
 export function ControlledByRHF<T extends FieldValues>({
@@ -187,68 +175,57 @@ export function ControlledByRHF<T extends FieldValues>({
   label,
   id,
   controller,
-  className,
 }: IControlledByRHF<T>) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { field, fieldState } = useController(controller);
 
   return (
-    <Field.Root className={stylesLabel.wrapper}>
-      <Field.Label className={classNames(stylesLabel.label, styles.Label)}>
-        {label}
-      </Field.Label>
+    <FieldRootUi>
+      <FieldLabel>{label}</FieldLabel>
 
-      <Select.Root
+      <SelectRootUi
         items={items}
         name={field.name}
-        value={field.value as string}
+        value={field.value}
         onOpenChange={setIsOpen}
         onValueChange={field.onChange}
         id={id}
         inputRef={field.ref}
       >
-        <Select.Trigger
-          className={classNames(styles.Select, className, {
-            [stylesInput.error]: fieldState.error,
+        <SelectTrigger
+          className={classNames({
+            [stylesInput.error]: !!fieldState.error,
           })}
           aria-label={ariaLabel}
           onBlur={field.onBlur}
         >
-          <Select.Value className={styles.TriggerValue} />
-          <Select.Icon className={styles.SelectIcon}>
+          <SelectValue />
+          <SelectIcon>
             {isOpen ? <IoChevronUp /> : <IoChevronDown />}
-          </Select.Icon>
-        </Select.Trigger>
+          </SelectIcon>
+        </SelectTrigger>
 
-        <Select.Portal>
-          <Select.Positioner
-            className={styles.Positioner}
-            alignItemWithTrigger={false}
-            sideOffset={2}
-          >
-            <Select.ScrollUpArrow className={styles.ScrollArrow} />
-            <Select.Popup className={styles.Popup}>
-              {renderSelectItems(items)}
-            </Select.Popup>
-            <Select.ScrollDownArrow className={styles.ScrollArrow} />
-          </Select.Positioner>
-        </Select.Portal>
-      </Select.Root>
+        <SelectPortal>
+          <SelectPositioner alignItemWithTrigger={false} sideOffset={2}>
+            <SelectPopup>
+              <SelectList>{renderSelectItemsControlled(items)}</SelectList>
+            </SelectPopup>
+          </SelectPositioner>
+        </SelectPortal>
+      </SelectRootUi>
 
-      {fieldState.error && (
-        <ErrorMessage customClassName={stylesInput.errorMessage}>
-          {fieldState.error.message}
-        </ErrorMessage>
-      )}
-    </Field.Root>
+      <FieldError match={!!fieldState.error}>
+        {fieldState.error?.message}
+      </FieldError>
+    </FieldRootUi>
   );
 }
 
 const SelectCustom = {
-  Controlled: memo(Controlled),
-  ControlledByRHF: ControlledByRHF,
-  ControlledInternally: memo(ControlledInternally),
+  Controlled,
+  Uncontrolled,
+  ControlledByRHF,
 };
 
 export default SelectCustom;
