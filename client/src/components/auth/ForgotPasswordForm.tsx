@@ -18,7 +18,7 @@ type Schema = z.infer<typeof schema>;
 
 export default function ForgotPasswordForm() {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<Schema>({ resolver: zodResolver(schema) });
@@ -36,12 +36,7 @@ export default function ForgotPasswordForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        label="Email"
-        type="email"
-        {...register('email')}
-        error={errors.email?.message}
-      />
+      <Input label="Email" type="email" control={control} name="email" />
       {isSubmitting ? (
         <Button disabled>Enviando...</Button>
       ) : (

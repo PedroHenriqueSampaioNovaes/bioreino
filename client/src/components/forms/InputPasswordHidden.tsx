@@ -8,14 +8,19 @@ import { useState } from 'react';
 
 import Input, { InputProps } from './Input';
 
-interface InputHiddenPasswordProps extends Omit<InputProps, 'type'> {
+import { FieldValues } from 'react-hook-form';
+
+interface InputHiddenPasswordProps<T extends FieldValues> extends Omit<
+  InputProps<T>,
+  'type'
+> {
   error?: string;
 }
 
-export default function InputHiddenPassword({
+export default function InputHiddenPassword<T extends FieldValues>({
   label,
   ...props
-}: InputHiddenPasswordProps) {
+}: InputHiddenPasswordProps<T>) {
   const [isVisible, setIsVisible] = useState(false);
 
   function toggleVisibility() {

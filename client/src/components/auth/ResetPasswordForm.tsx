@@ -29,9 +29,9 @@ export default function ResetPasswordForm({
   const router = useRouter();
 
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm<Schema>({ resolver: zodResolver(schema) });
 
   const resetPasswordHandler: SubmitHandler<Schema> = async ({ password }) => {
@@ -53,8 +53,8 @@ export default function ResetPasswordForm({
     <form onSubmit={handleSubmit(resetPasswordHandler)}>
       <InputHiddenPassword
         label="Nova senha"
-        {...register('password')}
-        error={errors.password?.message}
+        control={control}
+        name="password"
       />
       {isSubmitting ? (
         <Button disabled>Redefinindo senha...</Button>
