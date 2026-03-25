@@ -8,7 +8,6 @@ import {
 } from 'react-hook-form';
 import classNames from 'classnames';
 import styles from './select.module.css';
-import stylesInput from './input.module.css';
 
 import { IoCheckmark, IoChevronDown, IoChevronUp } from 'react-icons/io5';
 
@@ -181,7 +180,7 @@ export function ControlledByRHF<T extends FieldValues>({
   const { field, fieldState } = useController(controller);
 
   return (
-    <FieldRootUi>
+    <FieldRootUi invalid={fieldState.invalid}>
       <FieldLabel>{label}</FieldLabel>
 
       <SelectRootUi
@@ -193,13 +192,7 @@ export function ControlledByRHF<T extends FieldValues>({
         id={id}
         inputRef={field.ref}
       >
-        <SelectTrigger
-          className={classNames({
-            [stylesInput.error]: !!fieldState.error,
-          })}
-          aria-label={ariaLabel}
-          onBlur={field.onBlur}
-        >
+        <SelectTrigger aria-label={ariaLabel} onBlur={field.onBlur}>
           <SelectValue />
           <SelectIcon>
             {isOpen ? <IoChevronUp /> : <IoChevronDown />}
