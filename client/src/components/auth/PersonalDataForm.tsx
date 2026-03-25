@@ -40,18 +40,20 @@ export default function PersonalDataForm() {
     const futureDate = new Date(data.accountExpiresAfter);
     const timeToExpireAccount = new Countdown(futureDate).total;
 
-    toast.success(CreateAccountMsgSuccess, {
-      position: 'top-center',
-      data: {
-        dateToExpireAccount: {
-          hours: timeToExpireAccount.hours,
-          minutes: timeToExpireAccount.minutes,
-        },
-        email: data.email,
-        password: data.password,
-      },
-      autoClose: 30000,
-    });
+    toast.success(`${futureDate} - ${JSON.stringify(timeToExpireAccount)}`);
+
+    // toast.success(CreateAccountMsgSuccess, {
+    //   position: 'top-center',
+    //   data: {
+    //     dateToExpireAccount: {
+    //       hours: timeToExpireAccount.hours,
+    //       minutes: timeToExpireAccount.minutes,
+    //     },
+    //     email: data.email,
+    //     password: data.password,
+    //   },
+    //   autoClose: 30000,
+    // });
 
     const { ok: successLogin } = await login({
       email: data.email,
