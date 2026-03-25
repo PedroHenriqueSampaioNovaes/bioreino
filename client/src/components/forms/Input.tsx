@@ -9,7 +9,7 @@ import {
 } from 'react-hook-form';
 import { Options, withMask } from 'use-mask-input';
 
-interface InputProps<T extends FieldValues> extends UseControllerProps<T> {
+export interface InputProps<T extends FieldValues> extends UseControllerProps<T> {
   label: string;
   mask?: string | string[];
   maskOptions?: Options;
