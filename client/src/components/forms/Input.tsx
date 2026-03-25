@@ -37,7 +37,7 @@ function Input<T extends FieldValues>({
         withMask(mask, maskOptions)(node);
       }
     },
-    [field.ref, mask, maskOptions],
+    [field, mask, maskOptions],
   );
 
   const handleValueChange = (val: string) => {
