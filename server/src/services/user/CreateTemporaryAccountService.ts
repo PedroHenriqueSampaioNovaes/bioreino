@@ -21,8 +21,7 @@ export class CreateTemporaryAccountService {
       throw new ApiError('Ocorreu um problema ao tentar obter a assinatura');
     }
 
-    const now = new Date();
-    now.setDate(now.getDate() + 1);
+    const accountExpiresAfter = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
     const user = new User({
       email,
@@ -31,7 +30,7 @@ export class CreateTemporaryAccountService {
       plan: plan._id,
       status: 'active',
       payment_method,
-      accountExpiresAfter: now,
+      accountExpiresAfter,
     });
     await user.save();
 
@@ -39,7 +38,7 @@ export class CreateTemporaryAccountService {
       _id: user._id,
       email: user.email,
       password: user.password,
-      accountExpiresAfter: now,
+      accountExpiresAfter,
     };
   }
 }
