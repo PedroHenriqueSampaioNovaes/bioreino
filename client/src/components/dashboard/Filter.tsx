@@ -76,14 +76,14 @@ export default function Filter({
         <Select.Controlled
           items={subscriptionOptions}
           valueData={filterPlan || user?.plan._id}
-          onValueChange={(value) => value && setFilterPlan(value)}
+          onValueChange={(value) => value !== null && setFilterPlan(value)}
           ariaLabel="Filtrar por plano de assinatura"
         />
         <Arrow />
         <Select.Uncontrolled
           items={categoryOptions}
           defaultValue={categoryOptions[0]?.value}
-          onValueChange={(value) => value && setFilterCategory(value)}
+          onValueChange={(value) => value !== null && setFilterCategory(value)}
           ariaLabel="Filtrar por categoria"
         />
       </div>
