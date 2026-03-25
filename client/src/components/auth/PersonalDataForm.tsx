@@ -21,12 +21,8 @@ import Input from '../forms/Input';
 type PersonalDataFormValues = z.infer<typeof basePersonalDataSchema>;
 
 export default function PersonalDataForm() {
-  const {
-    control,
-    getValues,
-    trigger,
-    formState: { errors },
-  } = useFormContext<PersonalDataFormValues>();
+  const { control, getValues, trigger } =
+    useFormContext<PersonalDataFormValues>();
 
   const { setUser } = useUser();
 
