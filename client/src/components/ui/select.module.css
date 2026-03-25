@@ -22,6 +22,16 @@
   min-width: 9rem;
   cursor: pointer;
 
+  &[data-invalid] {
+    border-color: var(--color-error-message) !important;
+    box-shadow: 0 0 0 2px #ffad9e !important;
+  }
+
+  &[data-invalid]:focus,
+  &[data-invalid]:hover {
+    background: #fff;
+  }
+
   &:focus {
     background-color: #fff;
     box-shadow: 0 0 0 2px rgb(14, 179, 1, 0.5);

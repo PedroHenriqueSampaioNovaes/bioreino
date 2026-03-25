@@ -26,10 +26,13 @@ export default function LoginForm() {
   const [error, setError] = useState<string>('');
 
   const {
-    register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<Schema>({ resolver: zodResolver(schema) });
+    formState: { isSubmitting },
+    control,
+  } = useForm<Schema>({
+    resolver: zodResolver(schema),
+    defaultValues: { email: '', password: '' },
+  });
 
   const signInWithEmailAndPassword: SubmitHandler<Schema> = async ({
     email,
@@ -49,17 +52,8 @@ export default function LoginForm() {
       onSubmit={handleSubmit(signInWithEmailAndPassword)}
       className={classNames(styles.form)}
     >
-      <Input
-        type="email"
-        label="E-mail"
-        {...register('email')}
-        error={errors.email?.message}
-      />
-      <InputPasswordHidden
-        label="Senha"
-        {...register('password')}
-        error={errors.password?.message}
-      />
+      <Input label="E-mail" name="email" control={control} />
+      <InputPasswordHidden label="Senha" name="password" control={control} />
 
       <p className={classNames(styles.suggestions)}>
         Perdeu a Senha? <Link href={'/login/perdeu'}>Clique aqui</Link>

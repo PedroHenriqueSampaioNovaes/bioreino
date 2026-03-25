@@ -33,7 +33,12 @@ export function FieldLabel(props: FieldLabelProps) {
 }
 
 export function FieldControl(props: FieldControlProps) {
-  return <Field.Control {...props}>{props.children}</Field.Control>;
+  return (
+    <Field.Control
+      {...props}
+      className={classNames(styles.Input, props.className)}
+    />
+  );
 }
 
 export function FieldDescription(props: FieldDescriptionProps) {
@@ -48,7 +53,7 @@ export function FieldDescription(props: FieldDescriptionProps) {
 }
 
 export function FieldItem(props: FieldItemProps) {
-  return <Field.Item {...props}>{props.children}</Field.Item>;
+  return <Field.Item {...props} />;
 }
 
 export function FieldError(props: FieldErrorProps) {

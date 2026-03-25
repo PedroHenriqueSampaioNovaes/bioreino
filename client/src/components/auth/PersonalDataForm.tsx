@@ -3,7 +3,6 @@
 import { useFormContext } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import styles from './personalDataForm.module.css';
-import { useHookFormMask } from 'use-mask-input';
 import z from 'zod';
 import { toast, ToastContentProps } from 'react-toastify';
 
@@ -23,12 +22,11 @@ type PersonalDataFormValues = z.infer<typeof basePersonalDataSchema>;
 
 export default function PersonalDataForm() {
   const {
-    register,
+    control,
     getValues,
     trigger,
     formState: { errors },
   } = useFormContext<PersonalDataFormValues>();
-  const registerWithMask = useHookFormMask(register);
 
   const { setUser } = useUser();
 
@@ -85,41 +83,32 @@ export default function PersonalDataForm() {
         Auto cadastramento para recrutadores
       </button>
 
-      <Input
-        label="Nome completo *"
-        {...register('name')}
-        error={errors.name?.message}
-      />
-      <Input
-        label="Email *"
-        {...register('email')}
-        error={errors.email?.message}
-      />
+      <Input label="Nome completo *" name="name" control={control} />
+      <Input label="Email *" name="email" control={control} />
       <Input
         label="CPF *"
-        {...registerWithMask('cpf', 'cpf', {
-          jitMasking: true,
-        })}
-        error={errors.cpf?.message}
+        name="cpf"
+        control={control}
+        mask="cpf"
+        maskOptions={{ jitMasking: true }}
       />
       <Input
         label="Senha *"
         type="password"
-        {...register('password', {
-          onBlur: () => {
-            const confirmPasswordValue = getValues('confirm_password');
-            if (!confirmPasswordValue) return;
+        name="password"
+        control={control}
+        onChange={() => {
+          const confirmPasswordValue = getValues('confirm_password');
+          if (!confirmPasswordValue) return;
 
-            trigger('confirm_password');
-          },
-        })}
-        error={errors.password?.message}
+          trigger('confirm_password');
+        }}
       />
       <Input
         label="Confirmar senha *"
         type="password"
-        {...register('confirm_password')}
-        error={errors.confirm_password?.message}
+        name="confirm_password"
+        control={control}
       />
     </>
   );

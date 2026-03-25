@@ -4,6 +4,36 @@
   margin-bottom: 0.75rem;
 }
 
+.Input {
+  background: var(--contrast-2);
+  border: 1px solid var(--contrast-2);
+  border-radius: 0.3125rem;
+  padding: 0.5rem;
+  font-family: var(--type-first);
+
+  &:hover:not([data-invalid], [disabled]),
+  &:focus:not([data-invalid], [disabled]) {
+    outline: none;
+    background: #fff;
+    border-color: var(--bg-2);
+    box-shadow: 0 0 0 2px #0eb30180;
+  }
+
+  &[data-invalid] {
+    border-color: var(--color-error-message);
+    box-shadow: 0 0 0 2px #ffad9e;
+  }
+
+  &[data-invalid]:focus,
+  &[data-invalid]:hover {
+    background: #fff;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
 .Label {
   padding-bottom: 0.3125rem;
 }

@@ -21,20 +21,14 @@ interface IAddressFormProps {
 }
 
 export default function AddressForm({ states }: IAddressFormProps) {
-  const {
-    register,
-    setValue,
-    trigger,
-    formState: { errors },
-  } = useFormContext<AddressFormValues>();
-  const registerWithMask = useHookFormMask(register);
+  const { control, setValue, trigger } = useFormContext<AddressFormValues>();
 
-  async function handleZipcodeBlur(e: FocusEvent<HTMLInputElement>) {
-    const zipcode = e.currentTarget.value;
+  async function handleZipcodeBlur(value: string) {
+    const zipcode = value;
     if (!zipcode) return;
 
     const response = await fetch(
-      `https://brasilapi.com.br/api/cep/v2/${zipcode}`
+      `https://brasilapi.com.br/api/cep/v2/${zipcode}`,
     );
 
     if (response.ok) {
@@ -57,11 +51,11 @@ export default function AddressForm({ states }: IAddressFormProps) {
     <div className={styles.addressForm}>
       <Input
         label="CEP *"
-        {...registerWithMask('cep', '99999-999', {
-          jitMasking: true,
-          onBlur: handleZipcodeBlur,
-        })}
-        error={errors.cep?.message}
+        control={control}
+        name="cep"
+        mask="99999-999"
+        maskOptions={{ jitMasking: true }}
+        onChange={handleZipcodeBlur}
       />
 
       <Select.ControlledByRHF
@@ -75,21 +69,9 @@ export default function AddressForm({ states }: IAddressFormProps) {
         controller={{ name: 'state' }}
       />
 
-      <Input
-        label="Endereço *"
-        {...register('street')}
-        error={errors.street?.message}
-      />
-      <Input
-        label="Número *"
-        {...register('home_number')}
-        error={errors.home_number?.message}
-      />
-      <Input
-        label="Bairro *"
-        {...register('neighborhood')}
-        error={errors.neighborhood?.message}
-      />
+      <Input label="Endereço *" control={control} name="street" />
+      <Input label="Número *" control={control} name="home_number" />
+      <Input label="Bairro *" control={control} name="neighborhood" />
     </div>
   );
 }

@@ -1,8 +1,6 @@
 'use client';
 
-import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useHookFormMask } from 'use-mask-input';
 import z from 'zod';
 
 import formatCurrency from '@/common/utils/formatCurrency';
@@ -34,17 +32,9 @@ interface ICreditCardForm {
 }
 
 export default function CreditCardForm({ price }: ICreditCardForm) {
-  const {
-    register,
-    control,
-    setValue,
-    formState: { errors },
-  } = useFormContext<CardFormValues>();
-  const registerWithMask = useHookFormMask(register);
+  const { control, setValue } = useFormContext<CardFormValues>();
 
-  function formatValidityField(e: ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
-
+  function formatValidityField(value: string) {
     const firstNumberOfTheMonth = Number(value.charAt(0));
     const firstTwoNumbersOfTheMonth = Number(value.slice(0, 2));
     if (firstNumberOfTheMonth > 1) {
@@ -60,31 +50,33 @@ export default function CreditCardForm({ price }: ICreditCardForm) {
     <>
       <Input
         label="Número do cartão *"
-        {...registerWithMask('card_number', '9999 9999 9999 9999', {
-          jitMasking: true,
-        })}
-        error={errors.card_number?.message}
+        mask="9999 9999 9999 9999"
+        maskOptions={{ jitMasking: true }}
+        control={control}
+        name="card_number"
       />
       <FieldSplit>
         <Input
           label="Nome do portador *"
-          {...register('cardholder_name')}
-          error={errors.cardholder_name?.message}
+          control={control}
+          name="cardholder_name"
         />
         <Input
           label="Validade (mm/aa) *"
-          {...registerWithMask('validate', '99/99', {
-            jitMasking: true,
-            onChange: formatValidityField,
-          })}
-          error={errors.validate?.message}
+          mask="99/99"
+          maskOptions={{ jitMasking: true }}
+          onChange={formatValidityField}
+          control={control}
+          name="validate"
         />
       </FieldSplit>
       <FieldSplit>
         <Input
           label="Código de segurança *"
-          {...registerWithMask('cvv', '999', { jitMasking: true })}
-          error={errors.cvv?.message}
+          mask="999"
+          maskOptions={{ jitMasking: true }}
+          control={control}
+          name="cvv"
         />
         <Select.ControlledByRHF
           id="installments"
