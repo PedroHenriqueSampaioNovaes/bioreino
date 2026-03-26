@@ -3,6 +3,7 @@ import './db/connection.js';
 
 import express from 'express';
 import 'express-async-errors';
+import cors from 'cors';
 
 import { loadRoutes } from './routes/index.js';
 
@@ -10,7 +11,9 @@ import { errorHandling } from './middlewares/errorHandling.js';
 import { verifyApiKey } from './middlewares/verifyApiKey.js';
 
 const app = express();
-const PORT = 3333;
+const PORT = process.env.PORT || 3333;
+
+app.use(cors({ origin: process.env.CLIENT_ORIGIN_URL }));
 
 app.get('/ping', (req, res) => {
   res.send('pong');
