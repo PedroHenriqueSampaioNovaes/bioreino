@@ -1,0 +1,30 @@
+name: bioreino-fullstack
+
+services:
+  server:
+    container_name: container-bioreino-server
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+      args:
+        - CLIENT_ORIGIN_URL=http://client:3000
+    image: pedrosampaionovaes/bioreino-server:1.0
+    ports:
+      - '3333:3333'
+    env_file:
+      - server/.env.local
+
+  client:
+    container_name: container-bioreino-client
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+      args:
+        - NEXT_PUBLIC_API=http://server:3333
+    image: pedrosampaionovaes/bioreino-client:1.0
+    ports:
+      - '3000:3000'
+    env_file:
+      - client/.env
+    depends_on:
+      - server
