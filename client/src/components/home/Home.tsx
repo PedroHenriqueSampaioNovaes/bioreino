@@ -33,7 +33,7 @@ export default function Home({ courses, subscriptions }: IHomeProps) {
         <section className={classNames(styles.introduction, 'container')}>
           <div>
             <h1 className={classNames(styles.title)}>
-              aaaaFaça diversos cursos de biologia e se torne um expert na área!
+              Faça diversos cursos de biologia e se torne um expert na área!
             </h1>
             <p className={classNames(styles.paragraph)}>
               Ajudamos você a alcançar suas metas com conteúdos inéditos e
