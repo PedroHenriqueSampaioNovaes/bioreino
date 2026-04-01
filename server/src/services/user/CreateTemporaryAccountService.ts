@@ -22,7 +22,7 @@ export class CreateTemporaryAccountService {
     }
 
     const accountExpiresAfter = new Date(
-      Date.now() + 24 * 60 * 60 * 1000 - 1000,
+      Date.now() + 24 * 60 * 60 * 1000 - 30000,
     );
 
     const user = new User({
