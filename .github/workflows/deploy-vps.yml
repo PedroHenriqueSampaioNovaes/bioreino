@@ -19,9 +19,3 @@ jobs:
 
       - name: Push para o Docker Hub
         run: docker compose push
-
-      # - name: Deploy to Hostinger
-      #   uses: hostinger/deploy-action@v1
-      #   with:
-      #     api-key: ${{ secrets.HOSTINGER_API_KEY }}
-      #     virtual-machine: ${{ vars.HOSTINGER_VM_ID }}
