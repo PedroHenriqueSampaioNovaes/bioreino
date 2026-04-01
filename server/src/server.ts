@@ -27,7 +27,13 @@ app.use((req, res, next) => {
   }
 });
 
-app.use('/api', verifyApiKey);
+app.use('/api', (req, res, next) => {
+  if (req.originalUrl === '/api/stripe/webhook') {
+    next();
+  } else {
+    verifyApiKey(req, res, next);
+  }
+});
 
 // Creates a base API route for other routes
 const routes = await loadRoutes();
