@@ -15,3 +15,5 @@ jobs:
         with:
           api-key: ${{ secrets.HOSTINGER_API_KEY }}
           virtual-machine: ${{ secrets.HOSTINGER_VM_ID }}
+          project-name: bioreino
+          docker-compose-path: docker-production/docker-compose.yml
