@@ -9,6 +9,7 @@ services:
       - '443:443'
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    restart: unless-stopped
     depends_on:
       - server
       - client
@@ -23,6 +24,7 @@ services:
     image: pedrosampaionovaes/bioreino-server:1.0
     env_file:
       - server/.env.local
+    restart: unless-stopped
 
   client:
     container_name: container-bioreino-client
@@ -34,5 +36,6 @@ services:
     image: pedrosampaionovaes/bioreino-client:1.0
     env_file:
       - client/.env
+    restart: unless-stopped
     depends_on:
       - server
