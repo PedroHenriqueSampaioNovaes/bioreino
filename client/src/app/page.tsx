@@ -6,7 +6,8 @@ import getSubscriptions from '@/action/subscriptions-get';
 import Home from '@/components/home/Home';
 
 export const metadata: Metadata = {
-  title: 'Bioreino | Home',
+  title:
+    'Bioreino | Cursos de Biologia Online do Fundamental ao ENEM e Profissionalizante',
   description:
     'Página inicial da bioreino para apresentar a plataforma e a vantagem de cada plano de assinatura.',
 };
